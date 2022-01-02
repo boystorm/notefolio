@@ -1,5 +1,3 @@
 $(function() {
 
-    alert("1")
-
 });
