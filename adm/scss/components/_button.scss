@@ -1,5 +1,35 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
-
-// button
+.btn {
+    padding: 13px 12px;
+    font-size: 16px;
+    vertical-align: baseline;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn-primary {
+    background-color: #0053D9;
+    color: #fff;
+}
+.btn-primary{
+    &:hover {
+        color: #fff;
+        background-color: #286090;
+        border-color: #204d74;
+    }
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}

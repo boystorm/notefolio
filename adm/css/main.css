@@ -331,6 +331,53 @@ a {
     color: #222222;
     text-decoration: underline; }
 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
 /**
  * Basic typography style for copy text
  */
@@ -392,3 +439,75 @@ body {
   padding: 0;
   position: absolute;
   width: 1px; }
+
+.btn {
+  padding: 13px 12px;
+  font-size: 16px;
+  vertical-align: baseline;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.btn-primary {
+  background-color: #0053D9;
+  color: #fff; }
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74; }
+
+.btn-block {
+  display: block;
+  width: 100%; }
+
+/**/
+/* login */
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh; }
+  .login .login-wrap {
+    width: 300px; }
+    .login .login-wrap .login-title {
+      margin: 0 0 30px 0;
+      text-align: center; }
+      .login .login-wrap .login-title h1 {
+        font-size: 22px;
+        font-weight: bold; }
+      .login .login-wrap .login-title p {
+        font-size: 14px;
+        color: #888;
+        margin-top: 10px; }
+    .login .login-wrap form {
+      margin-bottom: 10px; }
+      .login .login-wrap form .form-box {
+        margin-bottom: 15px; }
+        .login .login-wrap form .form-box input {
+          height: 40px;
+          margin-bottom: -1px;
+          border-color: #E0E0E0;
+          padding: 0 12px;
+          line-height: 40px;
+          border: 1px solid #ddd;
+          font-size: 14px;
+          width: 100%; }
+    .login .login-wrap .login-txt {
+      display: flex;
+      font-size: 12px; }
+      .login .login-wrap .login-txt input {
+        margin-right: 5px; }
+      .login .login-wrap .login-txt a {
+        margin-left: auto;
+        color: #1A6DFF; }
