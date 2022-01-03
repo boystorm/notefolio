@@ -551,6 +551,9 @@ body {
       margin-top: 10px; }
       .password .password-wrap .password-txt .password-help {
         font-size: 12px; }
+      .password .password-wrap .password-txt .password-check {
+        font-weight: bold;
+        font-size: 13px; }
       .password .password-wrap .password-txt a {
         margin-left: auto;
         color: #1A6DFF; }
