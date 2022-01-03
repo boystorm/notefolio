@@ -530,23 +530,29 @@ body {
         font-size: 14px;
         color: #888;
         margin-top: 10px; }
-    .password .password-wrap form {
+    .password .password-wrap .form-box {
       margin-bottom: 10px; }
-      .password .password-wrap form .form-box {
-        margin-bottom: 15px; }
-        .password .password-wrap form .form-box input {
-          height: 40px;
-          margin-bottom: -1px;
-          border-color: #E0E0E0;
-          padding: 0 12px;
-          line-height: 40px;
-          border: 1px solid #ddd;
-          font-size: 14px;
-          width: 100%; }
-          .password .password-wrap form .form-box input:first-child {
-            background: #eee; }
-          .password .password-wrap form .form-box input::placeholder {
-            color: #888; }
-      .password .password-wrap form .password-help {
-        font-size: 12px;
-        margin-bottom: 10px; }
+      .password .password-wrap .form-box input {
+        height: 40px;
+        margin-bottom: -1px;
+        border-color: #E0E0E0;
+        padding: 0 12px;
+        line-height: 40px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        width: 100%; }
+        .password .password-wrap .form-box input:first-child {
+          background: #eee; }
+        .password .password-wrap .form-box input::placeholder {
+          color: #888; }
+    .password .password-wrap .password-txt {
+      display: flex;
+      font-size: 12px;
+      margin-top: 10px; }
+      .password .password-wrap .password-txt .password-help {
+        font-size: 12px; }
+      .password .password-wrap .password-txt a {
+        margin-left: auto;
+        color: #1A6DFF; }
+
+/* Detail  */

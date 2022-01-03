@@ -29,8 +29,9 @@
 
 // 6. Page-specific styles
 @import
-  'pages/home',
-  'pages/password';
+  'pages/login',
+  'pages/password',
+  'pages/admin';
 // 7. Themes
 @import
   'themes/default';
