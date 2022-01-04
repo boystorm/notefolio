@@ -94,6 +94,13 @@ main{
     padding: 49px 0 0 256px;
     font-size: 14px;
     .content {
+        width: 100%;
         padding: 20px;
+        .card {
+            border-radius: 4px;
+            box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 20px;
+        }
     }
 }
