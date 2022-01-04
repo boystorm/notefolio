@@ -326,7 +326,7 @@ html {
  * Basic styles for links
  */
 a {
-  color: #e50050;
+  color: #1a6dff;
   text-decoration: none; }
   a:hover, a:active, a:focus {
     color: #222222;
@@ -362,7 +362,8 @@ footer, header, hgroup, menu, nav, section {
   display: block; }
 
 body {
-  line-height: 1; }
+  line-height: 1;
+  background-color: #e6e6e6; }
 
 ol, ul {
   list-style: none; }
@@ -559,13 +560,18 @@ body {
         margin-left: auto;
         color: #1A6DFF; }
 
+/* Navigation */
 nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 256px;
-  height: 100vh;
+  height: 100%;
   background-color: #333; }
   nav .logo .logo__link {
     display: flex;
-    padding: 20px;
+    padding: 10px 20px;
     color: #fff;
     border-bottom: 1px solid #3d3d3d;
     text-decoration-line: none; }
@@ -578,11 +584,13 @@ nav {
       padding: 25px 20px;
       background-color: #2a2a2a; }
       nav .nav__content .nav__content--user i {
+        font-size: 20px;
         margin-right: 10px; }
     nav .nav__content .nav__content--list {
       overflow-y: auto; }
       nav .nav__content .nav__content--list .nav__content--item i {
-        margin-right: 10px; }
+        margin-right: 10px;
+        font-size: 14px; }
       nav .nav__content .nav__content--list .nav__content--item a {
         display: flex;
         align-items: center;
@@ -593,6 +601,26 @@ nav {
           background: #1A6DFF; }
         nav .nav__content .nav__content--list .nav__content--item a.active {
           background: #1A6DFF; }
+
+/* Toolbar */
+.toolbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 256px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  height: 49px; }
+  .toolbar .toolbar__menu {
+    padding: 0px 20px; }
+    .toolbar .toolbar__menu a {
+      display: flex;
+      padding: 0 5px;
+      text-decoration-line: none;
+      color: #222222; }
+      .toolbar .toolbar__menu a:hover {
+        color: #1a6dff; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
