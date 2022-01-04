@@ -75,4 +75,25 @@ nav {
             }
         }
     }
+    .toolbar__logout {
+        margin-left: auto;
+        padding: 0px 20px;
+        a {
+            display: flex;
+            padding: 0 5px;
+            text-decoration-line: none;
+            color: $text-color;
+            &:hover {
+                color: $brand-color;
+            }
+        }
+    }
+}
+/* contents */
+main{
+    padding: 49px 0 0 256px;
+    font-size: 14px;
+    .content {
+        padding: 20px;
+    }
 }

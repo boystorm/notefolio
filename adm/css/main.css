@@ -621,6 +621,23 @@ nav {
       color: #222222; }
       .toolbar .toolbar__menu a:hover {
         color: #1a6dff; }
+  .toolbar .toolbar__logout {
+    margin-left: auto;
+    padding: 0px 20px; }
+    .toolbar .toolbar__logout a {
+      display: flex;
+      padding: 0 5px;
+      text-decoration-line: none;
+      color: #222222; }
+      .toolbar .toolbar__logout a:hover {
+        color: #1a6dff; }
+
+/* contents */
+main {
+  padding: 49px 0 0 256px;
+  font-size: 14px; }
+  main .content {
+    padding: 20px; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
