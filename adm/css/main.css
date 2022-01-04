@@ -638,7 +638,9 @@ main {
   font-size: 14px; }
   main .content {
     width: 100%;
-    padding: 20px; }
+    padding: 20px;
+    /* password modify */
+    /* category list */ }
     main .content .card {
       border-radius: 4px;
       box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.1);
@@ -672,6 +674,12 @@ main {
         font-weight: bold; }
         main .content .member-modify p i {
           margin-right: 5px; }
+    main .content .mng {
+      display: flex;
+      justify-content: space-between; }
+      main .content .mng .mng__setting {
+        width: 20%;
+        min-width: 300px; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com

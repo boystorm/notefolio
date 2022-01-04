@@ -102,6 +102,7 @@ main{
             background-color: #fff;
             padding: 20px;
         }
+        /* password modify */
         .member-modify {
             width: 20%;
             min-width: 330px;
@@ -142,5 +143,15 @@ main{
                 }
             }
         }
+        /* category list */
+        .mng {
+            display: flex;
+            justify-content: space-between;
+            .mng__setting {
+                width: 20%;
+                min-width: 300px;
+            }
+        }
+    
     }
 }
