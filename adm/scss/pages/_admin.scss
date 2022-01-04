@@ -100,46 +100,48 @@ main{
             border-radius: 4px;
             box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.1);
             background-color: #fff;
-            padding: 20px;
         }
         /* password modify */
         .member-modify {
             width: 20%;
             min-width: 330px;
-            h1 {
-                margin-bottom: 10px;
-                font: {
-                    size: 14px;
-                    weight: bold;
-                }
-            }
-            .form-box{
-                margin-bottom: 15px;
-                input {
-                    height: 40px;
-                    margin-bottom: -1px;
-                    border-color: #E0E0E0;
-                    padding: 0 12px;
-                    line-height: 40px;
-                    border: 1px solid #ddd;
-                    font-size: 14px;
-                    width: 100%;
-                    &:first-child{
-                        background: #eee;
-                    }
-                    &::placeholder{
-                        color: #888;
+            .member-modify--area{
+                padding: 20px;
+                h1 {
+                    margin-bottom: 10px;
+                    font: {
+                        size: 14px;
+                        weight: bold;
                     }
                 }
-            }
-            p {
-                margin-bottom: 10px;
-                font: {
-                    size: 12px;
-                    weight: bold;
+                .form-box{
+                    margin-bottom: 15px;
+                    input {
+                        height: 40px;
+                        margin-bottom: -1px;
+                        border-color: #E0E0E0;
+                        padding: 0 12px;
+                        line-height: 40px;
+                        border: 1px solid #ddd;
+                        font-size: 14px;
+                        width: 100%;
+                        &:first-child{
+                            background: #eee;
+                        }
+                        &::placeholder{
+                            color: #888;
+                        }
+                    }
                 }
-                i {
-                    margin-right: 5px;
+                p {
+                    margin-bottom: 10px;
+                    font: {
+                        size: 12px;
+                        weight: bold;
+                    }
+                    i {
+                        margin-right: 5px;
+                    }
                 }
             }
         }
@@ -150,6 +152,43 @@ main{
             .mng__setting {
                 width: 20%;
                 min-width: 300px;
+                .mng__title {
+                    display: flex;
+                    padding: 20px;
+                    .mng__title--btn {
+                        margin-left: auto;
+                        color: #333;
+                        &:hover {
+                            color: $brand-color;
+                        }
+                    }
+                }
+                ul {
+                    li {
+                        padding: 5px 20px;
+                        a {
+                            display: block;
+                            border-radius: 4px;
+                            padding: 10px;
+                            text-decoration-line: none;
+                            &.active {
+                                background-color: $brand-color;
+                                color: #fff;
+                                &:hover{
+                                    cursor: default;
+                                    background-color: $brand-color;
+                                }
+                            }
+                            &:hover {
+                                background-color: $mid-grey;
+                                color: #fff;
+                            }
+                        }
+                        &:last-child{
+                            padding-bottom: 15px;
+                        }
+                    }
+                }
             }
         }
     
