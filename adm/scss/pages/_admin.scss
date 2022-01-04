@@ -102,5 +102,45 @@ main{
             background-color: #fff;
             padding: 20px;
         }
+        .member-modify {
+            width: 20%;
+            min-width: 330px;
+            h1 {
+                margin-bottom: 10px;
+                font: {
+                    size: 14px;
+                    weight: bold;
+                }
+            }
+            .form-box{
+                margin-bottom: 15px;
+                input {
+                    height: 40px;
+                    margin-bottom: -1px;
+                    border-color: #E0E0E0;
+                    padding: 0 12px;
+                    line-height: 40px;
+                    border: 1px solid #ddd;
+                    font-size: 14px;
+                    width: 100%;
+                    &:first-child{
+                        background: #eee;
+                    }
+                    &::placeholder{
+                        color: #888;
+                    }
+                }
+            }
+            p {
+                margin-bottom: 10px;
+                font: {
+                    size: 12px;
+                    weight: bold;
+                }
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
     }
 }
