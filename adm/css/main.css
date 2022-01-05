@@ -382,7 +382,7 @@ table {
   border-spacing: 0; }
 
 /* display none */
-.display--none {
+.display-none {
   display: none; }
 
 /**
@@ -734,7 +734,42 @@ main {
         main .content .mng .mng__setting .mng-category ul li:last-child {
           padding-bottom: 10px; }
       main .content .mng .mng__data {
-        width: 78%; }
+        width: 78%;
+        /* option */
+        /* table */ }
+        main .content .mng .mng__data .mng__option {
+          display: flex;
+          margin-bottom: 20px;
+          /* search */
+          /* btn */ }
+          main .content .mng .mng__data .mng__option .mng__search {
+            display: flex;
+            width: 300px;
+            background-color: #fff;
+            border-radius: 30px;
+            padding: 0 20px;
+            box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.1); }
+            main .content .mng .mng__data .mng__option .mng__search .mng-search--input {
+              border: 0; }
+            main .content .mng .mng__data .mng__option .mng__search button {
+              margin-left: auto; }
+          main .content .mng .mng__data .mng__option .mng__btn {
+            margin-left: auto; }
+        main .content .mng .mng__data .mng__table table {
+          width: 100%; }
+          main .content .mng .mng__data .mng__table table thead tr th {
+            padding: 10px 0;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd; }
+          main .content .mng .mng__data .mng__table table tbody tr td {
+            vertical-align: middle;
+            padding: 10px 0; }
+            main .content .mng .mng__data .mng__table table tbody tr td.mng__table--center {
+              text-align: center; }
+            main .content .mng .mng__data .mng__table table tbody tr td a .mng__table--thumb {
+              border: 1px solid #ddd;
+              width: 50px;
+              height: 50px; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com

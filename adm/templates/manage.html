@@ -115,12 +115,13 @@
                     </div>
                     <!-- right -->
                     <div class="mng__data">
+                        <!-- top option -->
                         <div class="mng__option">
                             <form action="" method="get">
                                 <fieldset>
                                     <legend class="visually-hidden">검색</legend>
                                     <div class="mng__search">
-                                        <input type="text" placeholder="Search">
+                                        <input type="text" placeholder="Search" class="mng-search--input">
                                         <button type="submit" class="btn btn-simple">
                                             <i class="fas fa-search"></i>
                                         </button>
@@ -139,11 +140,46 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="card">
-                            <h1>table</h1>
+
+                        <!-- bottom table -->
+                        <div class="mng__empty display-none">등록된 프로젝트가 없습니다.</div>
+                        <div class="card mng__table">
+                            <table>
+                                <caption></caption>
+                                <colgroup> 
+                                    <col style="width:5%"> 
+                                    <col style="width:8%"> 
+                                    <col style="width:10%">
+                                    <col style="width:22%">
+                                    <col style="width:20%">
+                                    <col style="width:20%">
+                                    <col style="width:15%">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><input type="checkbox"></th>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Thumbnail</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Image/Video File</th>
+                                        <th scope="col">Category Name</th>
+                                        <th scope="col">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="mng__table--center"><input type="checkbox"></td>
+                                        <td class="mng__table--center">1</td>
+                                        <td class="mng__table--center"><a href="javascript:;"><img src="" class="mng__table--thumb"></a></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
                 </div>
             </div>
         </main>
