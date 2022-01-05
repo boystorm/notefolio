@@ -327,7 +327,8 @@ html {
  */
 a {
   color: #1a6dff;
-  text-decoration: none; }
+  text-decoration: none;
+  transition: all 0.3s ease-in-out; }
   a:hover, a:active, a:focus {
     color: #222222;
     text-decoration: underline; }
@@ -379,6 +380,10 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0; }
+
+/* display none */
+.display--none {
+  display: none; }
 
 /**
  * Basic typography style for copy text
@@ -680,7 +685,8 @@ main {
       justify-content: space-between; }
       main .content .mng .mng__setting {
         width: 20%;
-        min-width: 300px; }
+        min-width: 300px;
+        /* category */ }
         main .content .mng .mng__setting .mng__title {
           display: flex;
           padding: 20px; }
@@ -689,24 +695,35 @@ main {
             color: #333; }
             main .content .mng .mng__setting .mng__title .mng__title--btn:hover {
               color: #1a6dff; }
-        main .content .mng .mng__setting ul li {
-          padding: 5px 20px; }
-          main .content .mng .mng__setting ul li a {
-            display: block;
-            border-radius: 4px;
-            padding: 10px;
-            text-decoration-line: none; }
-            main .content .mng .mng__setting ul li a.active {
-              background-color: #1a6dff;
-              color: #fff; }
-              main .content .mng .mng__setting ul li a.active:hover {
-                cursor: default;
-                background-color: #1a6dff; }
-            main .content .mng .mng__setting ul li a:hover {
-              background-color: #999999;
-              color: #fff; }
-          main .content .mng .mng__setting ul li:last-child {
-            padding-bottom: 15px; }
+        main .content .mng .mng__setting .mng-category .mng-category__all a {
+          display: block;
+          padding: 7px 20px;
+          text-decoration-line: none;
+          color: #333;
+          font-weight: bold; }
+          main .content .mng .mng__setting .mng-category .mng-category__all a.active {
+            background-color: #1a6dff;
+            color: #fff; }
+            main .content .mng .mng__setting .mng-category .mng-category__all a.active:hover {
+              cursor: default;
+              background-color: #1a6dff; }
+          main .content .mng .mng__setting .mng-category .mng-category__all a:hover {
+            background-color: #eee; }
+        main .content .mng .mng__setting .mng-category ul li a {
+          display: block;
+          padding: 7px 30px;
+          text-decoration-line: none;
+          color: #333; }
+          main .content .mng .mng__setting .mng-category ul li a.active {
+            background-color: #1a6dff;
+            color: #fff; }
+            main .content .mng .mng__setting .mng-category ul li a.active:hover {
+              cursor: default;
+              background-color: #1a6dff; }
+          main .content .mng .mng__setting .mng-category ul li a:hover {
+            background-color: #eee; }
+        main .content .mng .mng__setting .mng-category ul li:last-child {
+          padding-bottom: 10px; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com

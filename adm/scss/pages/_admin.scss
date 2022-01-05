@@ -163,14 +163,15 @@ main{
                         }
                     }
                 }
-                ul {
-                    li {
-                        padding: 5px 20px;
+                /* category */
+                .mng-category{
+                    .mng-category__all{
                         a {
                             display: block;
-                            border-radius: 4px;
-                            padding: 10px;
+                            padding: 7px 20px;
                             text-decoration-line: none;
+                            color: #333;
+                            font-weight: bold;
                             &.active {
                                 background-color: $brand-color;
                                 color: #fff;
@@ -180,17 +181,36 @@ main{
                                 }
                             }
                             &:hover {
-                                background-color: $mid-grey;
-                                color: #fff;
+                                background-color: #eee;
                             }
                         }
-                        &:last-child{
-                            padding-bottom: 15px;
+                    }
+                    ul {
+                        li {
+                            a {
+                                display: block;
+                                padding: 7px 30px;
+                                text-decoration-line: none;
+                                color: #333;
+                                &.active {
+                                    background-color: $brand-color;
+                                    color: #fff;
+                                    &:hover{
+                                        cursor: default;
+                                        background-color: $brand-color;
+                                    }
+                                }
+                                &:hover {
+                                    background-color: #eee;
+                                }
+                            }
+                            &:last-child{
+                                padding-bottom: 10px;
+                            }
                         }
                     }
                 }
             }
         }
-    
     }
 }
