@@ -698,7 +698,8 @@ main {
         /* category */ }
         main .content .mng .mng__setting .mng__title {
           display: flex;
-          padding: 20px; }
+          padding: 20px;
+          border-bottom: 1px solid #eee; }
           main .content .mng .mng__setting .mng__title .mng__title--btn {
             margin-left: auto;
             color: #333; }
@@ -755,24 +756,45 @@ main {
               margin-left: auto; }
           main .content .mng .mng__data .mng__option .mng__btn {
             margin-left: auto; }
-        main .content .mng .mng__data .mng__table table {
-          width: 100%; }
-          main .content .mng .mng__data .mng__table table thead tr th {
-            padding: 10px 0;
-            font-weight: bold;
-            border-bottom: 1px solid #ddd; }
-          main .content .mng .mng__data .mng__table table tbody tr td {
-            vertical-align: middle;
-            padding: 10px 0;
-            color: #888;
-            font-size: 13px; }
-            main .content .mng .mng__data .mng__table table tbody tr td.mng__table--center {
-              text-align: center; }
-            main .content .mng .mng__data .mng__table table tbody tr td a .mng__table--thumb {
-              border: 1px solid #ddd;
-              border-radius: 4px;
-              width: 50px;
-              height: 50px; }
+        main .content .mng .mng__data .mng__table {
+          /* pagination */ }
+          main .content .mng .mng__data .mng__table table {
+            width: 100%; }
+            main .content .mng .mng__data .mng__table table thead tr th {
+              padding: 10px 0;
+              font-weight: bold;
+              border-bottom: 1px solid #ddd; }
+            main .content .mng .mng__data .mng__table table tbody tr td {
+              vertical-align: middle;
+              padding: 10px 0;
+              color: #888;
+              font-size: 13px; }
+              main .content .mng .mng__data .mng__table table tbody tr td.mng__table--center {
+                text-align: center; }
+              main .content .mng .mng__data .mng__table table tbody tr td a .mng__table--thumb {
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                width: 50px;
+                height: 50px; }
+          main .content .mng .mng__data .mng__table .mng__pagination {
+            width: 100%;
+            margin-top: 20px; }
+            main .content .mng .mng__data .mng__table .mng__pagination .pagination {
+              display: flex;
+              justify-content: center; }
+              main .content .mng .mng__data .mng__table .mng__pagination .pagination li.active a {
+                background-color: #333;
+                color: #fff; }
+              main .content .mng .mng__data .mng__table .mng__pagination .pagination li a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 24px;
+                height: 24px;
+                line-height: 25px;
+                color: #212121;
+                border-radius: 3px;
+                text-decoration: none; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com

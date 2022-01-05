@@ -156,6 +156,7 @@ main{
                 .mng__title {
                     display: flex;
                     padding: 20px;
+                    border-bottom: 1px solid #eee;
                     .mng__title--btn {
                         margin-left: auto;
                         color: #333;
@@ -263,6 +264,34 @@ main{
                                     border-radius: 4px;
                                     width: 50px;
                                     height: 50px;
+                                }
+                            }
+                        }
+                    }
+                    /* pagination */
+                    .mng__pagination {
+                        width: 100%;
+                        margin-top: 20px;
+                        .pagination {
+                            display: flex;
+                            justify-content: center;
+                            li {
+                                &.active {
+                                    a {
+                                        background-color: #333;
+                                        color: #fff;
+                                    }
+                                }
+                                a {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    width: 24px;
+                                    height: 24px;
+                                    line-height: 25px;
+                                    color: #212121;
+                                    border-radius: 3px;
+                                    text-decoration: none;
                                 }
                             }
                         }
