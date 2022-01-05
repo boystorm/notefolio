@@ -36,15 +36,15 @@
                 </div>
                 <ul class="nav__content--list">
                     <li class="nav__content--item">
-                        <a href="javascript:;" class="active">
+                        <a href="javascript:;">
                             <i class="fas fa-unlock-alt"></i>
-                            <span>상세</span>
+                            <span>회원정보 수정</span>
                         </a>
                     </li>
                     <li class="nav__content--item">
-                        <a href="javascript:;">
+                        <a href="javascript:;" class="active">
                             <i class="fab fa-flipboard"></i>
-                            <span>상세</span>
+                            <span>카테고리 관리</span>
                         </a>
                     </li>
                 </ul>
@@ -55,7 +55,9 @@
             <div class="toolbar">
                 <div class="toolbar__menu">
                     <a href="javascript:;">
-                        <i class="fas fa-bars"></i>
+                        <i class="fas fa-angle-double-left"></i>
+                        <!-- menu -->
+                        <!-- <i class="fas fa-bars"></i> -->
                     </a>
                 </div>
                 <div class="toolbar__logout">
@@ -112,15 +114,33 @@
                         </div>
                     </div>
                     <!-- right -->
-                    <div class="mng__list">
-                        <div class="mng__list--search">
-                            <form action="">
-                                <input>    
-                                <input type="submit">
+                    <div class="mng__data">
+                        <div class="mng__option">
+                            <form action="" method="get">
+                                <fieldset>
+                                    <legend class="visually-hidden">검색</legend>
+                                    <div class="mng__search">
+                                        <input type="text" placeholder="Search">
+                                        <button type="submit" class="btn btn-simple">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </fieldset>
                             </form>
+                            <div class="mng__btn">
+                                <button type="button" class="btn btn-simple">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button type="button" class="btn btn-simple">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" class="btn btn-simple">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="card">
-                            <h1>Category manager</h1>
+                            <h1>table</h1>
                         </div>
                     </div>
 

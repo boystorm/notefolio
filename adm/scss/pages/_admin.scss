@@ -149,6 +149,7 @@ main{
         .mng {
             display: flex;
             justify-content: space-between;
+            /* left category add */
             .mng__setting {
                 width: 20%;
                 min-width: 300px;
@@ -210,6 +211,10 @@ main{
                         }
                     }
                 }
+            }
+            /* right option grid */
+            .mng__data {
+                width: 78%;
             }
         }
     }

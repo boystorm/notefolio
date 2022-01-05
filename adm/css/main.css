@@ -466,12 +466,19 @@ body {
 
 .btn-primary {
   background-color: #0053D9;
-  color: #fff; }
-
-.btn-primary:hover {
   color: #fff;
-  background-color: #286090;
-  border-color: #204d74; }
+  border: 0; }
+  .btn-primary:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74; }
+
+.btn-simple {
+  background: none;
+  color: #333;
+  border: 0; }
+  .btn-simple:hover {
+    color: #0053D9; }
 
 .btn-block {
   display: block;
@@ -682,7 +689,9 @@ main {
             margin-right: 5px; }
     main .content .mng {
       display: flex;
-      justify-content: space-between; }
+      justify-content: space-between;
+      /* left category add */
+      /* right option grid */ }
       main .content .mng .mng__setting {
         width: 20%;
         min-width: 300px;
@@ -724,6 +733,8 @@ main {
             background-color: #eee; }
         main .content .mng .mng__setting .mng-category ul li:last-child {
           padding-bottom: 10px; }
+      main .content .mng .mng__data {
+        width: 78%; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com

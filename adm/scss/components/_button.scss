@@ -21,12 +21,19 @@
 .btn-primary {
     background-color: #0053D9;
     color: #fff;
-}
-.btn-primary{
+    border: 0;
     &:hover {
         color: #fff;
         background-color: #286090;
         border-color: #204d74;
+    }
+}
+.btn-simple {
+    background: none;
+    color: #333;
+    border: 0;
+    &:hover {
+        color: #0053D9;
     }
 }
 .btn-block {
