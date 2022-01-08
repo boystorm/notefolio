@@ -298,10 +298,18 @@ main{
                     }
                 }
             }
+        }    
+        /* category add,mod */
+        .register {
+            .register__option{
+                display: flex;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            .register__btn{
+                margin-left: auto;
+            }
         }
-        /* add form */
         
-    
-    
     }
 }
