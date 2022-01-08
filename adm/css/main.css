@@ -823,6 +823,21 @@ main {
       margin-bottom: 15px; }
     main .content .register .register__btn {
       margin-left: auto; }
+    main .content .register .register__action {
+      display: flex;
+      width: 100%;
+      justify-content: space-between; }
+      main .content .register .register__action h2 {
+        font-color: #333;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 15px; }
+      main .content .register .register__action .register__act01 {
+        width: 19%;
+        padding: 20px; }
+      main .content .register .register__action .register__act02 {
+        width: 79%;
+        padding: 20px; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com

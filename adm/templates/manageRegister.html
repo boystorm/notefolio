@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+li<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </header>
-        <!-- https://fineuploader.com/demos.html -->
+        
         <main>
             <div class="content">
                 <div class="register">
@@ -77,15 +77,49 @@
                             <button type="button" class="btn btn-confirm">확인</button>
                         </div>
                     </div>
-                    
-                    <div class="card">
-                        
+                    <form action="registerForm" method="post"><!-- 파일 넘길때 속성 필요 -->
+                        <div class="register__action">
+                            <div class="card register__act01">
+                                <h2>카테고리 선택</h2>
+                                <ul>
+                                    <li><input type="checkbox"><label>카테고리1</label></li>
+                                    <li><input type="checkbox"><label>카테고리2</label></li>
+                                    <li><input type="checkbox"><label>카테고리3</label></li>
+                                    <li><input type="checkbox"><label>카테고리4</label></li>
+                                </ul>
+                            </div>
+                            <!-- https://fineuploader.com/demos.html -->
+                            <div class="card register__act02">
+                                <h2>썸네일 이미지</h2>
+                                <div class="form__groups">
+                                    썸네일 파일업로드
+                                </div>
+
+                                <!-- 선택해서 올리게 (라디오 박스) -->
+                                <!-- 또는 edit 라이브러리로 끝낼 수 있는지 확인 필요 -->
+                                <h2>팝업 이미지</h2>
+                                <div class="">
+                                    <input id="" type="radio" name="detailContent" value="팝업 이미지">
+                                    <input id="" type="radio" name="detailContent">
+                                </div>                                
 
 
-                    </div>
-                    <div class="card">
+                                <h2>상세입력</h2>
+                                <div class="form__groups">
+                                    <label for="registerTitle">제목</label>
+                                    <input id="registerTitle" type="text">
+                                </div>
+                                <!-- edit 라이브러리 -->
+                                <div class="form__groups">
+                                    <label for="registerText">설명</label>
+                                </div>
+                                
 
-                    </div>
+
+                            </div>
+                           
+                        </div>
+                    </form>
                 </div>
             </div>
         </main>

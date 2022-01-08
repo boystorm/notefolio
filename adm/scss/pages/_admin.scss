@@ -301,13 +301,36 @@ main{
         }    
         /* category add,mod */
         .register {
-            .register__option{
+            .register__option {
                 display: flex;
                 width: 100%;
                 margin-bottom: 15px;
             }
-            .register__btn{
+            .register__btn {
                 margin-left: auto;
+            }
+            .register__action {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                h2 {
+                    font: {
+                        color: #333;
+                        weight: bold;
+                        size: 16px;
+                    }
+                    margin-bottom: 15px;
+                }
+                .register__act01 {
+                    width: 19%;
+                    padding: 20px;
+                }
+                .register__act02 {
+                    width: 79%;
+                    padding: 20px;
+                }
+                
+
             }
         }
         
