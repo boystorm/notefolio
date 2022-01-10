@@ -221,21 +221,37 @@
             </div>
         </main>
 
+        <button type="button" class="btn btn-primary" id="btn">
+            Eyecargo
+        </button>
+
         <!-- Category Manager Pop Up -->
-        <div class="modal">
-            <div class="modal__dialog modal__dialog--centered">
-                <div class="modal__content">
-                    <div class="modal__header">
-                        <h2 class="modal__title">New Category</h2>
-                        <div class="modal__btn">
-                            <button type="button" class="btn-cancel">Cancel</button>
-                            <button type="submit" class="btn-confirm">Confirm</button>
+        <form action="" method="post">
+            <fieldset>
+                <legend>Choose your Category</legend>
+                <div class="modal fade"><!-- display-none -->
+                    <div class="modal__dialog modal__dialog--centered">
+                        <div class="modal__content">
+                            <div class="modal__header">
+                                <h2 class="modal__title">New Category</h2>
+                                <div class="modal__btn">
+                                    <button type="button" class="btn btn-cancel">Cancel</button>
+                                    <button type="submit" class="btn btn-confirm">Confirm</button>
+                                </div>
+                            </div>
+                            <div class="modal__body">
+                                <div class="modal__tree"></div>
+                                <div class="modal__mod">
+                                    <lable>Category Mod</lable>
+                                    <input type="text" placeholder="category">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
                 </div>
-            </div>
-        </div>
+            </fieldset>
+        </form>
+        <!-- Category Manager Pop Up -->
 
     </div>
 </body>
