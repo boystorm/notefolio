@@ -398,13 +398,41 @@ main{
         border-bottom: 1px solid #dee2e6;
         border-top-left-radius: calc(0.3rem - 1px);
         border-top-right-radius: calc(0.3rem - 1px);
+        h2 {
+            font: {
+                size: 16px;
+                weight: bold;
+            }
+        }
     }
     .modal__body {
         position: relative;
+        display: flex;
+        justify-content: space-between;
         flex: 1 1 auto;
-        padding: 1rem;
         border-bottom-right-radius: calc(0.3rem - 1px);
         border-bottom-left-radius: calc(0.3rem - 1px);
+    }
+    .modal__tree {
+        width: 50%;
+        padding: 1rem;
+        border-right: 1px solid #ddd;
+    }
+    .modal__mod {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding: 1rem;
+        font-size: 13px;
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px 10px;
+        }
     }
 }
 
