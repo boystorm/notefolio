@@ -162,8 +162,10 @@
                                             <th scope="col">No</th>
                                             <th scope="col">Thumbnail</th>
                                             <th scope="col">Name</th>
+                                            <!-- START : 에디트 구현 여부에 따라 변경 예정  -->
                                             <th scope="col">[Pop up] Image/Video File</th>
                                             <th scope="col">Category Name</th>
+                                            <!-- END : 에디트 구현 여부에 따라 변경 예정  -->
                                             <th scope="col">Date</th>
                                         </tr>
                                     </thead>
@@ -218,6 +220,23 @@
                 </div>
             </div>
         </main>
+
+        <!-- Category Manager Pop Up -->
+        <div class="modal">
+            <div class="modal__dialog modal__dialog--centered">
+                <div class="modal__content">
+                    <div class="modal__header">
+                        <h2 class="modal__title">New Category</h2>
+                        <div class="modal__btn">
+                            <button type="button" class="btn-cancel">Cancel</button>
+                            <button type="submit" class="btn-confirm">Confirm</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>

@@ -323,16 +323,26 @@ main{
                 }
                 .register__act01 {
                     width: 19%;
+                    height: 100%;
                     padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    .register__act01--label {
+                        margin-bottom: 10px;
+                        cursor: pointer;
+                    }
                 }
                 .register__act02 {
                     width: 79%;
                     padding: 20px;
                 }
-                
-
             }
         }
-        
     }
 }
+
+/* Pop up Common */
+/* Category Manager Pop up */
+
+
+

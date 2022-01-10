@@ -834,11 +834,19 @@ main {
         margin-bottom: 15px; }
       main .content .register .register__action .register__act01 {
         width: 19%;
-        padding: 20px; }
+        height: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column; }
+        main .content .register .register__action .register__act01 .register__act01--label {
+          margin-bottom: 10px;
+          cursor: pointer; }
       main .content .register .register__action .register__act02 {
         width: 79%;
         padding: 20px; }
 
+/* Pop up Common */
+/* Category Manager Pop up */
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
