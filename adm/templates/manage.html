@@ -19,6 +19,9 @@
     <!-- common -->
     <script src="../js/common/common.js"></script>
 
+    <!-- admin -->
+    <script src="../js/admin.js"></script>
+
     <title>title</title>
 </head>
 <body>
@@ -208,7 +211,6 @@
                                     </li>
                                 </ul>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -219,7 +221,7 @@
         <form id="categoryForm" action="" method="post">
             <fieldset>
                 <legend>Choose your Category</legend>
-                <div class="modal fade"><!-- display-none -->
+                <div class="modal fade display-none"><!-- display-none -->
                     <div class="modal__dialog modal__dialog--centered">
                         <div class="modal__content">
                             <div class="modal__header">
@@ -232,36 +234,30 @@
                             <div class="modal__body">
                                 <div class="modal__tree">
                                     <div class="modal__new--btn">
-                                        <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+                                        <button type="button" id="categoryNewBtn" class="btn btn-primary"><i class="fas fa-plus"></i></button>
                                     </div>
                                     <ul class="modal__draw">
                                         <li class="modal__draw--parent">
                                             <label for="categoryProjectRadio">
-                                                <input type="radio" id="categoryProjectRadio" name="newCategory">
+                                                <input type="radio" id="categoryProjectRadio" name="newCategory" value="project" checked>
                                                 <span>Project</span>
                                             </label>
                                             <!-- drag drop -->
-                                            <ul class="modal__draw--child">
-                                                <li><a href="javascript:;">category1</a></li>
-                                                <li><a href="javascript:;">category2</a></li>
-                                            </ul>
+                                            <ul id="categoryProjectSoltable" class="modal__draw--child"></ul>
                                         </li>
                                         <li class="modal__draw--parent">
                                             <label for="categoryArtworkRadio">
-                                                <input type="radio" id="categoryArtworkRadio" name="newCategory">
+                                                <input type="radio" id="categoryArtworkRadio" value="artwork" name="newCategory">
                                                 <span>Artwork</span>
                                             </label>
                                             <!-- drag drop -->
-                                            <ul class="modal__draw--child">
-                                                <li><a href="javascript:;">category1</a></li>
-                                                <li><a href="javascript:;">category2</a></li>
-                                            </ul>
+                                            <ul id="categoryArtworkSoltable" class="modal__draw--child"></ul>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="modal__mod">
                                     <label for="categoryModForm">Category Mod</label>
-                                    <input type="text" placeholder="category">
+                                    <input type="text">
                                 </div>
                             </div>
                         </div>

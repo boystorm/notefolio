@@ -852,7 +852,6 @@ main {
 /* Pop up Common */
 /* Category Manager Pop up */
 .modal {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
