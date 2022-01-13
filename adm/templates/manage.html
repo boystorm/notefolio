@@ -241,10 +241,33 @@
                             </div>
                             <div class="modal__body">
                                 <div class="modal__tree">
-                                    <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button>
-                                    <div class="modal__">
-
+                                    <div class="modal__new--btn">
+                                        <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button>
                                     </div>
+                                    <ul class="modal__draw">
+                                        <li class="modal__draw--parent">
+                                            <label for="categoryProjectRadio">
+                                                <input type="radio" id="categoryProjectRadio" name="newCategory">
+                                                <span>Project</span>
+                                            </label>
+                                            <!-- drag drop -->
+                                            <ul class="modal__draw--child">
+                                                <li><a href="javascript:;">category1</a></li>
+                                                <li><a href="javascript:;">category2</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="modal__draw--parent">
+                                            <label for="categoryArtworkRadio">
+                                                <input type="radio" id="categoryArtworkRadio" name="newCategory">
+                                                <span>Artwork</span>
+                                            </label>
+                                            <!-- drag drop -->
+                                            <ul class="modal__draw--child">
+                                                <li><a href="javascript:;">category1</a></li>
+                                                <li><a href="javascript:;">category2</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
                                 <div class="modal__mod">
                                     <label for="categoryModForm">Category Mod</label>

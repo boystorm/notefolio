@@ -417,6 +417,14 @@ main{
         width: 50%;
         padding: 1rem;
         border-right: 1px solid #ddd;
+        
+    }
+    .modal__new--btn {
+        display: flex;
+        button {
+            margin-left: auto;
+            margin-bottom: 10px;
+        }
     }
     .modal__mod {
         display: flex;
@@ -432,6 +440,42 @@ main{
             border: 1px solid #ddd;
             border-radius: 4px;
             padding: 10px 10px;
+        }
+    }
+    .modal__draw--parent {
+        label {
+            display: flex;
+            align-items: center;
+            border-top: 1px dotted #ddd;
+            border-bottom: 1px dotted #ddd;
+            padding: 6px 10px;
+            background-color: #eee;
+            cursor: pointer;
+            margin: 5px 0;
+            font: {
+                size: 14px;
+                weight: bold;
+            }
+            span {
+                padding-left: 5px;
+            }
+        }
+    }
+    .modal__draw--child {
+        li {
+            a {
+                display: flex;
+                padding: 10px 25px;
+                color: #888;
+                border-radius: 4px;
+                text-decoration: none;
+                &:hover {
+                    background-color: #eee;
+                }
+                font: {
+                    size: 14px;
+                }
+            }
         }
     }
 }
