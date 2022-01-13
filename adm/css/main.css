@@ -851,12 +851,6 @@ main {
 
 /* Pop up Common */
 /* Category Manager Pop up */
-#btn {
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
-  z-index: 9; }
-
 .modal {
   display: none;
   position: fixed;
