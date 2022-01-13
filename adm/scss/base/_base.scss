@@ -84,7 +84,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
+a {
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
+}
 /* display none */
 .display-none {
 	display: none;

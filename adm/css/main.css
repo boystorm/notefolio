@@ -381,6 +381,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+a {
+  text-decoration: none; }
+  a:hover {
+    text-decoration: none; }
+
 /* display none */
 .display-none {
   display: none; }
@@ -815,8 +820,7 @@ main {
                 height: 24px;
                 line-height: 25px;
                 color: #212121;
-                border-radius: 3px;
-                text-decoration: none; }
+                border-radius: 3px; }
     main .content .register .register__option {
       display: flex;
       width: 100%;
@@ -948,7 +952,6 @@ main {
     padding: 10px 25px;
     color: #888;
     border-radius: 4px;
-    text-decoration: none;
     font-size: 14px; }
     .modal .modal__draw--child li a:hover {
       background-color: #eee; }
