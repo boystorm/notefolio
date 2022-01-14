@@ -41,49 +41,41 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 카테고리 아이템 텍스트
+     * 설  명 : 카테고리 아이템 텍스트 수정
      * =======================================
      */
     $(document).on("click", "#categoryProjectSoltable li a, #categoryArtworkSoltable li a",function(e){
         let text = $(this).text();
         let data = $(this).attr('data-value');
         
+        $("#categoryModForm").focus();
         $("#categoryModForm").val(text);
         $("#categoryModForm").attr("data-value", data);
 
         e.preventDefault();
     });
 
-    // $("#categoryModForm").focus(function(){
-    //     let data = $(this).data('value');
-    //     let dataVal = $("#categoryModForm").val();
-    //     let item = $("#categoryProjectSoltable li a, #categoryArtworkSoltable li a");
-        
-    //     $(item).each(function( index, element ) {
-    //         if(data == $(this).data('value')){
-    //             $(this).text(dataVal);
-    //             $(this).attr("data-value", dataVal);
-    //         }
-    //     });
-    // });
-
     $('#categoryModForm').blur(function(e){
         let inputVal = $(this).attr('data-value'); 
-        //console.log("<input>" + inputVal);
-        // 절대 안바뀌는 key 값으로 유지해야 바뀜***** 이로직이 필요
         let dataVal = $("#categoryModForm").val();
-
         let item = $("#categoryProjectSoltable li a, #categoryArtworkSoltable li a"); 
         
         $(item).each(function( index, element ) {
             if(inputVal == $(this).attr('data-value')){
-                $(this).text(dataVal);
-                $(this).attr("data-value", dataVal);
+                if(dataVal != ''){
+                    $(this).text(dataVal);
+                }else{
+                    $(this).trigger("click");
+                }
             }
-        });
+        });        
     });
 
-
-
+    $("#categoryModForm").keydown(function(keyNum){ 
+        //현재의 키보드의 입력값을 keyNum으로 받음 
+        if(keyNum.keyCode == 13){ 
+            $("#categoryModForm").blur();
+        } 
+    })
 
 });
