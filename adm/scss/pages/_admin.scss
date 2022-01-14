@@ -381,6 +381,9 @@ main{
         border-radius: 0.3rem;
         outline: 0;
     }
+    .modal__category {
+        min-height: 400px;
+    }
     .modal__header {
         display: flex;
         flex-shrink: 0;
@@ -457,14 +460,14 @@ main{
         li {
             a {
                 display: flex;
-                padding: 10px 25px;
+                padding: 7px 25px;
                 color: #888;
                 border-radius: 4px;
                 &:hover {
                     background-color: #eee;
                 }
                 font: {
-                    size: 14px;
+                    size: 13px;
                 }
             }
         }

@@ -886,6 +886,8 @@ main {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.3rem;
     outline: 0; }
+  .modal .modal__category {
+    min-height: 400px; }
   .modal .modal__header {
     display: flex;
     flex-shrink: 0;
@@ -942,10 +944,10 @@ main {
       padding-left: 5px; }
   .modal .modal__draw--child li a {
     display: flex;
-    padding: 10px 25px;
+    padding: 7px 25px;
     color: #888;
     border-radius: 4px;
-    font-size: 14px; }
+    font-size: 13px; }
     .modal .modal__draw--child li a:hover {
       background-color: #eee; }
 
