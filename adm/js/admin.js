@@ -1,17 +1,7 @@
 $(function() {
     /**
      * =======================================
-     * 설  명 : jQuery Ui Sortable
-     * 작성자/작성일 : 양동준/2022.01.13
-     * =======================================
-     */
-    $("#categoryProjectSoltable").sortable();
-    $("#categoryArtworkSoltable").sortable();
-
-    /**
-     * =======================================
-     * 설  명 : 카테고리 아이템 추가
-     * 작성자/작성일 : 양동준/2022.01.13
+     * 설  명 : 카테고리 팝업 아이템 추가
      * =======================================
      */
     let projectNum = 1;
@@ -39,6 +29,27 @@ $(function() {
             }
             artworkNum++;
         }
-        
     });
+
+    /**
+     * =======================================
+     * 설  명 : jQuery Ui Sortable
+     * =======================================
+     */
+     $("#categoryProjectSoltable").sortable();
+     $("#categoryArtworkSoltable").sortable();
+
+    /**
+     * =======================================
+     * 설  명 : 카테고리 아이템 텍스트
+     * =======================================
+     */
+    $(document).on("click", "#categoryProjectSoltable li a, #categoryArtworkSoltable li a",function(e){
+        let text = $(this).text();
+        $("#categoryModForm").val(text);
+        e.preventDefault();
+    });
+
+
+
 });
