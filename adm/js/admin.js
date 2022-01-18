@@ -134,6 +134,10 @@ $(function() {
      * =======================================
      */
      $(document).on("click", ".del__btn", function(e){
+        // 2022 01 18
+        // Category mod data-value // text del work ***
+
+
         // 지우는 순간 카테고리 숫자 변경
         if($(this).parent().parent("ul").attr("id") === "categoryProjectSoltable") {
             $(this).closest("li").remove();
