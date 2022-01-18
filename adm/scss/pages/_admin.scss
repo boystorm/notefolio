@@ -471,9 +471,9 @@ main{
                 .drag {
                     display: block;
                 }
-            }
-            &:active {
-                background-color: #eee;
+                .del {
+                    display: block;
+                }
             }
             .drag{
                 display: none;
@@ -489,6 +489,24 @@ main{
                     opacity: 0.9;
                 }
             }
+            .del{
+                display: none;
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                opacity: 0.33;
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+            .del__btn{
+                color: #333;
+                &:hover{
+                    color: #333;
+                    background-color: #eee;
+                    border-color: #eee;
+                }
+            }
             a {
                 display: flex;
                 padding: 7px 25px;
@@ -500,8 +518,9 @@ main{
                 font: {
                     size: 13px;
                 }
-                .active {
-                    background-color: #eee;
+                &.active {
+                    color: #fff;
+                    background-color: #1A6DFF;
                 }
             }
         }

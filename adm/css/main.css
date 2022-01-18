@@ -951,8 +951,8 @@ main {
     position: relative; }
     .modal .modal__draw--child li:hover .drag {
       display: block; }
-    .modal .modal__draw--child li:active {
-      background-color: #eee; }
+    .modal .modal__draw--child li:hover .del {
+      display: block; }
     .modal .modal__draw--child li .drag {
       display: none;
       position: absolute;
@@ -965,6 +965,20 @@ main {
       cursor: -webkit-grab; }
       .modal .modal__draw--child li .drag:hover {
         opacity: 0.9; }
+    .modal .modal__draw--child li .del {
+      display: none;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      opacity: 0.33; }
+      .modal .modal__draw--child li .del:hover {
+        opacity: 0.9; }
+    .modal .modal__draw--child li .del__btn {
+      color: #333; }
+      .modal .modal__draw--child li .del__btn:hover {
+        color: #333;
+        background-color: #eee;
+        border-color: #eee; }
     .modal .modal__draw--child li a {
       display: flex;
       padding: 7px 25px;
@@ -973,8 +987,9 @@ main {
       font-size: 13px; }
       .modal .modal__draw--child li a:hover {
         background-color: #eee; }
-      .modal .modal__draw--child li a .active {
-        background-color: #eee; }
+      .modal .modal__draw--child li a.active {
+        color: #fff;
+        background-color: #1A6DFF; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com

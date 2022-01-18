@@ -14,30 +14,29 @@ $(function() {
      * 설  명 : 카테고리 팝업 아이템 추가
      * =======================================
      */
-    let projectNum = 1;
-    let artworkNum = 1;
+    let projectNum = 0;
+    let artworkNum = 0;
     $("#categoryNewBtn").on("click", function(){
         // 카테고리 생성 버튼을 클릭시
         let categoryItemVal = $('.dropdown__handle a.active').attr('data-value');
-
         if(categoryItemVal === "largeMenuProject") {
-            if(projectNum <= 3){
+            if(projectNum < 3){
                 $("#categoryProjectSoltable").append(
-                    `<li><a href="javascript:;" data-value="project${projectNum}">카테고리${projectNum}</a><div class="drag"></div></li>`
+                    `<li><a href="javascript:;" data-value="project${projectNum}">새 카테고리</a><div class="drag"></div><button class="del del__btn">X</button></li>`
                 )
+                projectNum++;
             } else {
                 alert("카테고리는 3개 이상 추가 하실 수 없습니다.");
             }
-            projectNum++;
         } else if(categoryItemVal === "largeMenuArtwork") {
-            if(artworkNum <= 2){
+            if(artworkNum < 2){
                 $("#categoryArtworkSoltable").append(
-                    `<li><a href="javascript:;" data-value="artwork${artworkNum}">카테고리${artworkNum}</a></li>`
+                    `<li><a href="javascript:;" data-value="artwork${artworkNum}">새 카테고리</a><div class="drag"></div><button class="del del__btn">X</button></li>`
                 )
+                artworkNum++;
             } else {
                 alert("카테고리는 2개 이상 추가 하실 수 없습니다.");
             }
-            artworkNum++;
         }
     });
 
@@ -56,7 +55,7 @@ $(function() {
      * =======================================
      */
     $("#categoryProjectRadio, #categoryArtworkRadio").on("click", function(){
-        $("#categoryProjectRadio, #categoryArtworkRadio").removeClass("active");
+        $("#categoryProjectRadio, #categoryArtworkRadio, #categoryProjectSoltable li a, #categoryArtworkSoltable li a").removeClass("active");
         $(this).addClass("active");
 
         let categoryItemVal = $(this).attr('data-value');
@@ -75,6 +74,9 @@ $(function() {
      * =======================================
      */
     $(document).on("click", "#categoryProjectSoltable li a, #categoryArtworkSoltable li a",function(e){
+        $("#categoryProjectRadio, #categoryArtworkRadio, #categoryProjectSoltable li a, #categoryArtworkSoltable li a").removeClass("active");
+        $(this).addClass("active");
+
         let text = $(this).text();
         let data = $(this).attr('data-value');
 
@@ -126,4 +128,29 @@ $(function() {
         } 
     })
 
+    /**
+     * =======================================
+     * 설  명 : 카테고리 아이템 삭제 (id 값 중복 확인 필요 이후)
+     * =======================================
+     */
+     $(document).on("click", ".del__btn", function(e){
+        // 지우는 순간 카테고리 숫자 변경
+        if($(this).parent().parent("ul").attr("id") === "categoryProjectSoltable") {
+            $(this).closest("li").remove();
+            let projectItem = $("#categoryProjectSoltable li a");
+            $(projectItem).each(function( index, element ) {
+                $(element).attr('data-value', "project" + index);
+            });
+            projectNum--;
+        } else if($(this).parent().parent("ul").attr("id") === "categoryArtworkSoltable") {
+            $(this).closest("li").remove();
+            let artworkItem = $("#categoryArtworkSoltable li a");
+            $(artworkItem).each(function( index, element ) {
+                console.log(index);
+                console.log(element);
+                $(element).attr('data-value', "artwork" + index);
+            });
+            artworkNum--;
+        }
+     });
 });
