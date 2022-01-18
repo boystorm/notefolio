@@ -438,26 +438,57 @@ main{
         }
     }
     .modal__draw--parent {
-        label {
-            display: flex;
-            align-items: center;
-            border-top: 1px dotted #ddd;
-            border-bottom: 1px dotted #ddd;
-            padding: 6px 10px;
-            background-color: #eee;
-            cursor: pointer;
-            margin: 5px 0;
-            font: {
-                size: 14px;
-                weight: bold;
-            }
-            span {
-                padding-left: 5px;
+        .dropdown__handle {
+            a {
+                display: flex;
+                align-items: center;
+                border-top: 1px dotted #ddd;
+                border-bottom: 1px dotted #ddd;
+                padding: 6px 10px;
+                background-color: #eee;
+                cursor: pointer;
+                margin: 5px 0;
+                text-decoration: none;
+                color: #333;
+                font: {
+                    size: 14px;
+                    weight: bold;
+                }
+                &:hover{
+                    text-decoration: none;
+                    color: #1A6DFF;
+                }
+                &.active {
+                    color: #1A6DFF;
+                }
             }
         }
     }
     .modal__draw--child {
         li {
+            position: relative;
+            &:hover {
+                .drag {
+                    display: block;
+                }
+            }
+            &:active {
+                background-color: #eee;
+            }
+            .drag{
+                display: none;
+                position: absolute;
+                left: 5px;
+                top: 5px;
+                background: url('../images/drag_pointer.png') no-repeat scroll 0 0 / 50% auto rgba(0, 0, 0, 0);
+                width: 12px;
+                height: 20px;
+                opacity: 0.33;
+                cursor: -webkit-grab;
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
             a {
                 display: flex;
                 padding: 7px 25px;
@@ -468,6 +499,9 @@ main{
                 }
                 font: {
                     size: 13px;
+                }
+                .active {
+                    background-color: #eee;
                 }
             }
         }

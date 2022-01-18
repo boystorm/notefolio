@@ -929,7 +929,7 @@ main {
       border: 1px solid #ddd;
       border-radius: 4px;
       padding: 10px 10px; }
-  .modal .modal__draw--parent label {
+  .modal .modal__draw--parent .dropdown__handle a {
     display: flex;
     align-items: center;
     border-top: 1px dotted #ddd;
@@ -938,18 +938,43 @@ main {
     background-color: #eee;
     cursor: pointer;
     margin: 5px 0;
+    text-decoration: none;
+    color: #333;
     font-size: 14px;
     font-weight: bold; }
-    .modal .modal__draw--parent label span {
-      padding-left: 5px; }
-  .modal .modal__draw--child li a {
-    display: flex;
-    padding: 7px 25px;
-    color: #888;
-    border-radius: 4px;
-    font-size: 13px; }
-    .modal .modal__draw--child li a:hover {
+    .modal .modal__draw--parent .dropdown__handle a:hover {
+      text-decoration: none;
+      color: #1A6DFF; }
+    .modal .modal__draw--parent .dropdown__handle a.active {
+      color: #1A6DFF; }
+  .modal .modal__draw--child li {
+    position: relative; }
+    .modal .modal__draw--child li:hover .drag {
+      display: block; }
+    .modal .modal__draw--child li:active {
       background-color: #eee; }
+    .modal .modal__draw--child li .drag {
+      display: none;
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      background: url("../images/drag_pointer.png") no-repeat scroll 0 0/50% auto rgba(0, 0, 0, 0);
+      width: 12px;
+      height: 20px;
+      opacity: 0.33;
+      cursor: -webkit-grab; }
+      .modal .modal__draw--child li .drag:hover {
+        opacity: 0.9; }
+    .modal .modal__draw--child li a {
+      display: flex;
+      padding: 7px 25px;
+      color: #888;
+      border-radius: 4px;
+      font-size: 13px; }
+      .modal .modal__draw--child li a:hover {
+        background-color: #eee; }
+      .modal .modal__draw--child li a .active {
+        background-color: #eee; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com

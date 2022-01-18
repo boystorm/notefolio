@@ -39,5 +39,5 @@ function fnLayerOpenInit(set) {
 
 $(function($){
     /* 초기 세팅 함수 실행 */
-    fnLayerOpenInit(); // 공통 팝업 오픈 이벤트 함수
+    //fnLayerOpenInit(); // 공통 팝업 오픈 이벤트 함수
 });
