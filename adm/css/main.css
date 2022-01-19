@@ -974,11 +974,14 @@ main {
       .modal .modal__draw--child li .del:hover {
         opacity: 0.9; }
     .modal .modal__draw--child li .del__btn {
-      color: #333; }
+      font-size: 14px;
+      color: #333;
+      background-color: transparent;
+      border-color: transparent; }
       .modal .modal__draw--child li .del__btn:hover {
         color: #333;
-        background-color: #eee;
-        border-color: #eee; }
+        background-color: transparent;
+        border-color: transparent; }
     .modal .modal__draw--child li a {
       display: flex;
       padding: 7px 25px;

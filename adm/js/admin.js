@@ -130,21 +130,22 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 카테고리 아이템 삭제 (id 값 중복 확인 필요 이후)
+     * 설  명 : 카테고리 아이템 삭제
      * =======================================
      */
      $(document).on("click", ".del__btn", function(e){
-        // 2022 01 18
-        // Category mod data-value // text del work ***
-
-
-        // 지우는 순간 카테고리 숫자 변경
+        // category number reset
         if($(this).parent().parent("ul").attr("id") === "categoryProjectSoltable") {
             $(this).closest("li").remove();
             let projectItem = $("#categoryProjectSoltable li a");
             $(projectItem).each(function( index, element ) {
                 $(element).attr('data-value', "project" + index);
             });
+            // categoryModForm data-value reset
+            $("#categoryModForm").attr('data-value', "");
+            // categoryModForm Text reset
+            $("#categoryModForm").val("");
+
             projectNum--;
         } else if($(this).parent().parent("ul").attr("id") === "categoryArtworkSoltable") {
             $(this).closest("li").remove();
@@ -154,6 +155,12 @@ $(function() {
                 console.log(element);
                 $(element).attr('data-value', "artwork" + index);
             });
+
+            // categoryModForm data-value reset
+            $("#categoryModForm").attr('data-value', "");
+            // categoryModForm Text reset
+            $("#categoryModForm").val("");
+
             artworkNum--;
         }
      });

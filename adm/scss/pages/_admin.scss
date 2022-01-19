@@ -500,11 +500,14 @@ main{
                 }
             }
             .del__btn{
+                font-size: 14px;
                 color: #333;
+                background-color: transparent;
+                border-color: transparent;
                 &:hover{
                     color: #333;
-                    background-color: #eee;
-                    border-color: #eee;
+                    background-color: transparent;
+                    border-color: transparent;
                 }
             }
             a {
