@@ -164,4 +164,39 @@ $(function() {
             artworkNum--;
         }
      });
+
+     /**
+     * =======================================
+     * 설  명 : 카테고리 매니저 클릭 이벤트
+     * =======================================
+     */
+     $(".mng-category a").on("click", function(){
+         $(".mng-category a").removeClass("active");
+         $(this).addClass("active");
+     });
+
+     /**
+     * =======================================
+     * 설  명 : 카테고리 테이블 셀렉트 박스
+     * =======================================
+     */
+    $(document).on("click", "#cateAllChk", function(){
+        let chkAll = $("#cateAllChk").is(":checked");
+        if(chkAll){
+            $("input[name=cateChk]").prop('checked', true);
+        } else {
+            $("input[name=cateChk]").prop('checked', false);
+        }
+    });
+
+    $(document).on("click", "input[name=cateChk]", function(){
+        let cateCheckedLength = $("input[name=cateChk]:checked").length; // 카테고리 클릭되어있는 개수와 input name =cateChk 개수와 다르면
+        let cateChkLength = $("input[name=cateChk]").length;
+        if(cateCheckedLength != cateChkLength){
+            $("#cateAllChk").prop('checked', false);
+        } else {
+            $("#cateAllChk").prop('checked', true);
+        }
+    });
+
 });

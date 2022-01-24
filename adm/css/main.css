@@ -803,6 +803,11 @@ main {
                 border-radius: 4px;
                 width: 50px;
                 height: 50px; }
+          main .content .mng .mng__data .mng__table input[type=checkbox] {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle; }
           main .content .mng .mng__data .mng__table .mng__pagination {
             width: 100%;
             margin-top: 20px; }

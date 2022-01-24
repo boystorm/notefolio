@@ -268,6 +268,12 @@ main{
                             }
                         }
                     }
+                    input[type=checkbox]{
+                        cursor: pointer;
+                        width: 20px;
+                        height: 20px;
+                        vertical-align: middle;
+                    }
                     /* pagination */
                     .mng__pagination {
                         width: 100%;
