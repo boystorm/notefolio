@@ -17,10 +17,18 @@ li<!DOCTYPE html>
     <script src="../../lib/jqueryUi/jquery-ui.min.js"></script>
 
     <!-- common -->
-    <script src="../js/common/common.js"></script>
+    <!-- <script src="../js/common/common.js"></script> -->
 
     <!-- admin -->
     <script src="../js/admin.js"></script>
+
+    <!-- ssi-uploader file uploader library -->
+    <link href="../../lib/ssiuploader/ssi-uploader.min.css" rel="stylesheet" type="text/css" />
+    <script src="../../lib/ssiuploader/ssi-uploader.min.js"></script>
+
+    <!-- smart editor -->
+    <script src="../../lib/smarteditor2/js/service/HuskyEZCreator.js" ></script>
+
 
     <title>ADD</title>
 </head>
@@ -101,35 +109,36 @@ li<!DOCTYPE html>
                                     <span>카테고리4</span>
                                 </label>
                             </div>
-                            <!-- https://fineuploader.com/demos.html -->
+
+                            <!-- dropzone 파일 업로더 -->
                             <div class="card register__act02">
                                 <h2>썸네일 이미지</h2>
                                 <div class="form__groups">
-                                    썸네일 파일업로드
+                                    <input type="file" multiple id="ssi-upload"/>
                                 </div>
-
-                                <!-- 선택해서 올리게 (라디오 박스) -->
-                                <!-- 또는 edit 라이브러리로 끝낼 수 있는지 확인 필요 || *** 우선 팝업 먼저 -->
-                                <h2>팝업 이미지</h2>
+                                
+                                <!-- 스마트 에디터 NAVER 
+                                     : 아래 팝업안에 이미지 or 영상을 생각해서 저런 라디오 버튼 생각이 나온듯
+                                -->
+                                <!-- <h2>팝업 이미지</h2>
                                 <div class="">
                                     <input id="" type="radio" name="detailContent" value="팝업 이미지">
                                     <input id="" type="radio" name="detailContent">
-                                </div>                                
-                                
-                                
+                                </div>                       -->
+                                <!-- 스마트 에디터 2 -->
+                                <textarea name="ir1" id="ir1" rows="10" cols="100">
+                                    에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.
+                                </textarea>
+
                                 <h2>상세입력</h2>
                                 <div class="form__groups">
                                     <label for="registerTitle">제목</label>
                                     <input id="registerTitle" type="text">
                                 </div>
-                                <!-- edit 라이브러리 -->
-                                <!-- http://ckeditor.com/ -->
-                                <div class="form__groups">
-                                    <label for="registerText">설명</label>
-                                </div>
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </main>
