@@ -110,31 +110,25 @@ li<!DOCTYPE html>
                                 </label>
                             </div>
 
-                            <!-- dropzone 파일 업로더 -->
+                            <!--  파일 업로더 -->
                             <div class="card register__act02">
-                                <h2>썸네일 이미지</h2>
                                 <div class="form__groups">
+                                    <label for="registerTitle"><span class="color__important">* </span>제목</label>
+                                    <input id="registerTitle" type="text">
+                                </div>
+
+                                <div class="form__groups">
+                                    <p><span class="color__important">* </span>썸네일 이미지</p>
                                     <input type="file" multiple id="ssi-upload"/>
                                 </div>
                                 
-                                <!-- 스마트 에디터 NAVER 
-                                     : 아래 팝업안에 이미지 or 영상을 생각해서 저런 라디오 버튼 생각이 나온듯
-                                -->
-                                <!-- <h2>팝업 이미지</h2>
-                                <div class="">
-                                    <input id="" type="radio" name="detailContent" value="팝업 이미지">
-                                    <input id="" type="radio" name="detailContent">
-                                </div>                       -->
                                 <!-- 스마트 에디터 2 -->
-                                <textarea name="ir1" id="ir1" rows="10" cols="100">
-                                    에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.
-                                </textarea>
-
-                                <h2>상세입력</h2>
                                 <div class="form__groups">
-                                    <label for="registerTitle">제목</label>
-                                    <input id="registerTitle" type="text">
+                                    <p>세부내용</p>
+                                    <textarea name="ir1" id="ir1" rows="10" cols="100"></textarea>
                                 </div>
+
+                                
                             </div>
                         </div>
                     </form>

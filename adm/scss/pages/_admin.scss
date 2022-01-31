@@ -341,6 +341,28 @@ main{
                     width: 79%;
                     padding: 20px;
                 }
+                .form__groups {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 20px;
+                    p {
+                        font-weight: bold;
+                        font-size: 16px;
+                        margin-bottom: 10px;
+                    }
+                    label {
+                        font-weight: bold;
+                        font-size: 16px;
+                        margin-bottom: 10px;
+                    }
+                    input {
+                        border-radius: 4px;
+                        color: #888;
+                        height: 35px;
+                        border: 1px solid #ddd;
+                        padding: 0 15px;
+                    }
+                }
             }
         }
     }
@@ -535,5 +557,14 @@ main{
         }
     }
 }
-
-
+.color__important {
+    color: red;
+}
+// ssi uploader
+.ssi-uploader {
+    display: flex;
+    flex-direction: column;
+}
+.ssi-buttonWrapper {
+    margin-left :auto;
+}

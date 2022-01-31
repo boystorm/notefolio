@@ -853,6 +853,24 @@ main {
       main .content .register .register__action .register__act02 {
         width: 79%;
         padding: 20px; }
+      main .content .register .register__action .form__groups {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px; }
+        main .content .register .register__action .form__groups p {
+          font-weight: bold;
+          font-size: 16px;
+          margin-bottom: 10px; }
+        main .content .register .register__action .form__groups label {
+          font-weight: bold;
+          font-size: 16px;
+          margin-bottom: 10px; }
+        main .content .register .register__action .form__groups input {
+          border-radius: 4px;
+          color: #888;
+          height: 35px;
+          border: 1px solid #ddd;
+          padding: 0 15px; }
 
 /* Pop up Common */
 /* Category Manager Pop up */
@@ -998,6 +1016,16 @@ main {
       .modal .modal__draw--child li a.active {
         color: #fff;
         background-color: #1A6DFF; }
+
+.color__important {
+  color: red; }
+
+.ssi-uploader {
+  display: flex;
+  flex-direction: column; }
+
+.ssi-buttonWrapper {
+  margin-left: auto; }
 
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
