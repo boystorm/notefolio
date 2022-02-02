@@ -17,7 +17,7 @@
     <script src="../../lib/jqueryUi/jquery-ui.min.js"></script>
 
     <!-- common -->
-    <script src="../js/common/common.js"></script>
+    <script src="../js/common.js"></script>
 
     <!-- admin -->
     <script src="../js/admin.js"></script>
@@ -90,10 +90,10 @@
                             </fieldset>
                         </form>
 
-                        <form id="addMember" action="/create" method="get">
+                        <form id="addMember" action="/create_process" method="post">
                             <div class="form-box">
-                                <input type="text" value="" >
-                                <input type="password" placeholder="새 비밀번호">
+                                <input type="text" name="id">
+                                <input type="password" name="password" placeholder="새 비밀번호">
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">아이디 생성</button>
                         </form>
