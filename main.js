@@ -14,9 +14,43 @@ app.use("/lib",express.static(__dirname + "/lib"));
 db_config.connect(conn);
 
 // 로그인 화면 첫 로딩
-app.get('', (req, res) => {
+app.get('/adm', (req, res) => {
   return res.sendFile(__dirname + '/adm/templates/login.html');
 })
+
+// 로그인 아이디 패스워드 입력
+app.post('/login_process', function (req, res) {
+      let body = '';
+      req.on('data', function(data){
+          body = body + data;
+      });
+  
+      req.on('end', function(){
+          let post = qs.parse(body);
+          conn.query("SELECT * FROM AUTHOR", function (err, result, fields) {
+            if (err) {
+              throw err
+            } else {
+              if(result[0].id === post.id && parseInt(result[0].password) === parseInt(post.password)){
+                console.log("success");
+                // 쿠키 세션 ? 주면서 넘기기 확인
+                res.redirect("/manage");
+              } else {
+                console.log("fail");
+                res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+                res.write("<script>alert('아이디 패스워드를 확인해 주세요')</script>");
+                res.write("<script>window.location=\"/adm\"</script>");
+              }
+            }
+          });
+      })
+  });
+
+// 로그인 화면 첫 로딩
+app.get('/manage', (req, res) => {
+  return res.sendFile(__dirname + '/adm/templates/manage.html');
+})
+
 
 // 등록, 수정 페이지
 // app.get('', (req, res) => {
