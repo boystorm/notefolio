@@ -2,16 +2,37 @@ const { response } = require('express');
 const express = require('express');
 const app = express();
 const port = 3000;
+
+ /**
+ * =======================================
+ * 설  명 : 모듈 
+ * =======================================
+ */
+// 데이터베이스 연결
 const db_config = require(__dirname + '/config/database.js');
 const conn = db_config.init();
-// 모듈
-let qs = require('querystring'); // 쿼리 
+db_config.connect(conn);
+// url 쿼리 문자열 
+let qs = require('querystring');
 
-//adm 폴더의 클라이언트 접근 허용 (미들웨어) : 추가되어야 불러온 html 에서 css/javasciprt 경로를 제대로 잡음
+/**
+ * =======================================
+ * 설  명 : app.use() 미들웨이 기능 마운트
+ * =======================================
+ */
+// 정적 파일
 app.use(express.static(__dirname + "/adm"));
 app.use("/lib",express.static(__dirname + "/lib"));
 
-db_config.connect(conn);
+/**
+ * =======================================
+ * 설  명 : 서버 어플리케이션
+ * =======================================
+ */
+// 임시 경로 설정 
+app.get('/', (req, res) => {
+  return res.sendFile(__dirname + '/adm/templates/login.html');
+})
 
 // 로그인 화면 첫 로딩
 app.get('/adm', (req, res) => {
@@ -33,7 +54,6 @@ app.post('/login_process', function (req, res) {
       } else {
         if(result[0].id === post.id && parseInt(result[0].password) === parseInt(post.password)){
           console.log("success");
-          // 쿠키 세션 ? 주면서 넘기기 확인
           res.redirect("/manage");
         } else {
           console.log("fail");

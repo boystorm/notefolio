@@ -20,7 +20,7 @@ $(function() {
             } else {
                 console.log(json.flag);
                 alert("비밀번호가 틀렸습니다.");
-                $(".password-check").text("비밀번호 재입력");
+                $(".password-check").text("비밀번호 힌트 재입력");
             }
         })
 

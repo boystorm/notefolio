@@ -190,7 +190,7 @@ $(function() {
     });
 
     $(document).on("click", "input[name=cateChk]", function(){
-        let cateCheckedLength = $("input[name=cateChk]:checked").length; // 카테고리 클릭되어있는 개수와 input name =cateChk 개수와 다르면
+        let cateCheckedLength = $("input[name=cateChk]:checked").length;    // 카테고리 클릭되어있는 개수와 input name =cateChk 개수와 다르면
         let cateChkLength = $("input[name=cateChk]").length;
         if(cateCheckedLength != cateChkLength){
             $("#cateAllChk").prop('checked', false);
