@@ -1,11 +1,11 @@
+const { response } = require('express');
 const express = require('express');
 const app = express();
 const port = 3000;
 const db_config = require(__dirname + '/config/database.js');
 const conn = db_config.init();
-
-let qs = require('querystring');
-
+// 모듈
+let qs = require('querystring'); // 쿼리 
 
 //adm 폴더의 클라이언트 접근 허용 (미들웨어) : 추가되어야 불러온 html 에서 css/javasciprt 경로를 제대로 잡음
 app.use(express.static(__dirname + "/adm"));
@@ -64,24 +64,23 @@ app.post('/password_process', function (req, res) {
   });
   req.on('end', function(){
     let post = qs.parse(body);
+    let responseData = {};
+
     if(post.passwordHint === "yangbankim"){
         conn.query("SELECT * FROM AUTHOR", function (err, result, fields) {
           if (err) {
             throw err
           } else {
             console.log("success")
-            // ajax 찾아보기
-            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});           
-            res.write("<script>window.location=\"/password\"</script>");
-            res.write("<script>alert('아이디 패스워드를 확인해 주세요')</script>");
-            console.log(result[0].password);
+            responseData.passHint = result[0].password;
+            responseData.flag = true;
+            res.json(responseData);
           }
         });
     } else {
       console.log("fail");
-      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-      res.write("<script>alert('힌트가 맞지 않습니다.')</script>");
-      res.write("<script>window.location=\"/password\"</script>");
+      responseData.flag = false;
+      res.json(responseData);
     }
   });
 });
