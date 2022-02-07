@@ -66,17 +66,12 @@ app.post('/login_process', function (req, res) {
   })
 });
 
-// 매니지 페이지
-app.get('/manage', (req, res) => {
-  return res.sendFile(__dirname + '/adm/templates/manage.html');
-})
-
-// 패스워드 찾기
+// 패스워드 찾기 페이지
 app.get('/password', (req, res) => {
   return res.sendFile(__dirname + '/adm/templates/password.html');
 })
 
-// 로그인 아이디 패스워드 입력
+// 패스워드 찾기 아이디 패스워드 입력
 app.post('/password_process', function (req, res) {
   let body = '';
   req.on('data', function(data){
@@ -105,6 +100,15 @@ app.post('/password_process', function (req, res) {
   });
 });
 
+// 매니지 페이지
+app.get('/manage', (req, res) => {
+  return res.sendFile(__dirname + '/adm/templates/manage.html');
+})
+
+// 비밀번호 변경 페이지
+app.get('/member', (req, res) => {
+  return res.sendFile(__dirname + '/adm/templates/memberEdit.html');
+})
 
 
 // 등록, 수정 페이지
