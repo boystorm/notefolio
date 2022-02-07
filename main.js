@@ -56,7 +56,6 @@ app.post('/login_process', function (req, res) {
           console.log("success");
           res.redirect("/manage");
         } else {
-          // ajax 해야됨
           console.log("fail");
           res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
           res.write("<script>alert('아이디 패스워드를 확인해 주세요')</script>");
