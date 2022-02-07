@@ -3,6 +3,19 @@
 // 	  AJAX_SUCCESS_CODE = "success",
 // 	  AJAX_FAIL_CODE = "fail";
 
+
+/**
+ * =======================================
+ * 범 주 : 초기 세팅 함수
+ * 설  명 : 셀렉트 디자인 커스텀
+ * =======================================
+ */
+function fnValidateInit() {
+    $.validator.addMethod("password", function(value, element) {
+        return this.optional(element) || /[0-9]{1,6}$/.test(value);
+    }, "숫자 1~6자리를 입력해주세요.");
+}
+
 /**
  * =======================================
  * 범 주 : 초기 세팅 함수
@@ -40,4 +53,5 @@ function fnLayerOpenInit(set) {
 $(function($){
     /* 초기 세팅 함수 실행 */
     //fnLayerOpenInit(); // 공통 팝업 오픈 이벤트 함수
+    fnValidateInit(); // 유효성 검사
 });

@@ -15,6 +15,10 @@
     <!-- jQuery UI(sortDrag) -->
     <script src="../../lib/jqueryUi/jquery-ui.min.js"></script>
 
+    <!-- Validate -->
+    <script src="../../lib/jqueryValidate/jquery.validate.min.js"></script>
+    <script src="../../lib/jqueryValidate/additional-methods.min.js"></script>
+
     <!-- common -->
     <script src="../js/common.js"></script> 
 
@@ -36,9 +40,9 @@
                     <legend class="visually-hidden">로그인</legend>
                     <div class="form-box">
                         <input type="text" name="id" placeholder="아이디">
-                        <input type="password" name="password" placeholder="패스워드">
+                        <input type="password" name="password" placeholder="패스워드" maxlength="6">
                     </div>
-                    <a href="javascript:;" id="loginBtn" class="btn btn-primary btn-block">로그인</a>
+                    <button type="submit" id="loginBtn" class="btn btn-primary btn-block">로그인</button>
                 </fieldset>
             </form>
             <div class="login-txt">
