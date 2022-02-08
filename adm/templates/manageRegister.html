@@ -17,7 +17,11 @@ li<!DOCTYPE html>
     <script src="../../lib/jqueryUi/jquery-ui.min.js"></script>
 
     <!-- common -->
-    <!-- <script src="../js/common/common.js"></script> -->
+    <script src="../js/common/common.js"></script>
+
+    <!-- Validate -->
+    <script src="../../lib/jqueryValidate/jquery.validate.min.js"></script>
+    <script src="../../lib/jqueryValidate/additional-methods.min.js"></script>
 
     <!-- admin -->
     <script src="../js/manageRegister.js"></script>
@@ -47,15 +51,15 @@ li<!DOCTYPE html>
                 </div>
                 <ul class="nav__content--list">
                     <li class="nav__content--item">
-                        <a href="./memberEdit.html">
-                            <i class="fas fa-unlock-alt"></i>
-                            <span>회원정보 수정</span>
+                        <a href="/manage" class="active">
+                            <i class="fab fa-flipboard"></i>
+                            <span>카테고리 관리</span>
                         </a>
                     </li>
                     <li class="nav__content--item">
-                        <a href="./manage.html" class="active">
-                            <i class="fab fa-flipboard"></i>
-                            <span>카테고리 관리</span>
+                        <a href="/memberEdit">
+                            <i class="fas fa-unlock-alt"></i>
+                            <span>회원정보 수정</span>
                         </a>
                     </li>
                 </ul>

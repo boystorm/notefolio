@@ -106,7 +106,7 @@ app.get('/manage', (req, res) => {
 })
 
 // 비밀번호 변경 페이지
-app.get('/member', (req, res) => {
+app.get('/memberEdit', (req, res) => {
   return res.sendFile(__dirname + '/adm/templates/memberEdit.html');
 })
 
