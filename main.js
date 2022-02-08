@@ -113,7 +113,16 @@ app.post('/memberEdit_process', (req, res) => {
     body = body + data;   // 요청받은 데이터 저장
   }),
   req.on('end', function(){
-    console.log(body);
+    let post = qs.parse(body);    // 데이터를 객체로 받음
+    conn.query("SELECT * FROM AUTHOR", function (err, result, fields) {
+      if (err) {
+        throw err
+      } else {
+        responseData.passHint = result[0].password;
+        responseData.flag = true;
+        res.json(responseData);
+      }
+    });
   })
 })
 
