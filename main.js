@@ -53,10 +53,8 @@ app.post('/login_process', function (req, res) {
         throw err
       } else {
         if(result[0].id === post.id && parseInt(result[0].password) === parseInt(post.password)){
-          console.log("success");
           res.redirect("/manage");
         } else {
-          console.log("fail");
           res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
           res.write("<script>alert('아이디 패스워드를 확인해 주세요')</script>");
           res.write("<script>window.location=\"/adm\"</script>");
@@ -86,14 +84,12 @@ app.post('/password_process', function (req, res) {
           if (err) {
             throw err
           } else {
-            console.log("success")
             responseData.passHint = result[0].password;
             responseData.flag = true;
             res.json(responseData);
           }
         });
     } else {
-      console.log("fail");
       responseData.flag = false;
       res.json(responseData);
     }
@@ -111,13 +107,13 @@ app.get('/memberEdit', (req, res) => {
 })
 
 // 비밀번호 변경 버튼 클릭
-app.get('/memberEdit_process', (req, res) => {
+app.post('/memberEdit_process', (req, res) => {
   let body = '';      // 요청 데이터를 담을 변수
   req.on('data', function(data){    //요청
     body = body + data;   // 요청받은 데이터 저장
   }),
   req.on('end', function(){
-    
+    console.log(body);
   })
 })
 
