@@ -78,13 +78,13 @@
                 <div class="member-modify">
                     <div class="card member-modify--area">
                         <h1>회원정보 수정</h1>
-                        <form id="modifyForm" action="" method="post">
+                        <form id="modifyForm" action="/memberEdit_process" method="post">
                             <fieldset>
                                 <legend class="visually-hidden">비밀번호 변경</legend>
                                 <div class="form-box">
                                     <input type="text" value="admin" readonly>
-                                    <input type="password" placeholder="새 비밀번호">
-                                    <input type="password" placeholder="새 비밀번호 확인">
+                                    <input type="password" id="newPasswordInput" name="newPassword" maxlength="9" placeholder="새 비밀번호">
+                                    <input type="password" id="newPasswordConfirmInput" name="newPasswordConfirm" placeholder="새 비밀번호 확인">
                                 </div>
                                 <p>
                                     <i class="fas fa-exclamation"></i>

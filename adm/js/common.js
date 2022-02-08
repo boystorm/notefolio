@@ -11,6 +11,7 @@
  * =======================================
  */
 function fnValidateInit() {
+    // 패스워드
     $.validator.addMethod("password", function(value, element) {
         return this.optional(element) || /[0-9]{1,6}$/.test(value);
     }, "숫자 1~6자리를 입력해주세요.");

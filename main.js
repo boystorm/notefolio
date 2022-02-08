@@ -110,6 +110,17 @@ app.get('/memberEdit', (req, res) => {
   return res.sendFile(__dirname + '/adm/templates/memberEdit.html');
 })
 
+// 비밀번호 변경 버튼 클릭
+app.get('/memberEdit_process', (req, res) => {
+  let body = '';      // 요청 데이터를 담을 변수
+  req.on('data', function(data){    //요청
+    body = body + data;   // 요청받은 데이터 저장
+  }),
+  req.on('end', function(){
+    
+  })
+})
+
 
 // 등록, 수정 페이지
 // app.get('', (req, res) => {
