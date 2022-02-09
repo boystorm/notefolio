@@ -71,7 +71,7 @@ app.post('/login_process', function (req, res) {
         throw err
       } else { 
         if(result.length > 0){    // id check
-          // session fill
+          // session 
           res.redirect("/manage");
         } else {
           res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
@@ -117,7 +117,7 @@ app.post('/password_process', function (req, res) {
 
 // 매니지 페이지
 app.get('/manage', (req, res) => {
-    return res.sendFile(__dirname + '/adm/templates/manage.html');
+    res.sendFile(__dirname + '/adm/templates/manage.html');
 })
 
 // 비밀번호 변경 페이지
