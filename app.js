@@ -14,6 +14,11 @@ const conn = db_config.init();
 db_config.connect(conn);
 // url 쿼리 문자열 
 let qs = require('querystring');
+var cookieParser = require('cookie-parser')
+app.use(cookieParser())
+
+// cookie-paser 호출도 안했는데 가능한지
+// session 호출없이도 가능할지
 
 /**
  * =======================================
@@ -39,7 +44,7 @@ app.get('/adm', (req, res) => {
   return res.sendFile(__dirname + '/adm/templates/login.html');
 })
 
-// 로그인 아이디 패스워드 입력
+// 로그인
 app.post('/login_process', function (req, res) {
   let body = '';
   req.on('data', function(data){
@@ -51,8 +56,14 @@ app.post('/login_process', function (req, res) {
      conn.query("SELECT * FROM AUTHOR", function (err, result, fields) {
       if (err) {
         throw err
-      } else {
+      } else { // id 전체 확인 작업 필요--- result.forEach     result[1]
         if(result[0].id === post.id && parseInt(result[0].password) === parseInt(post.password)){
+          // cookie insert
+          res.cookie('user', {
+              id: post.id,
+              name: post.password
+          });
+
           res.redirect("/manage");
         } else {
           res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
@@ -98,7 +109,13 @@ app.post('/password_process', function (req, res) {
 
 // 매니지 페이지
 app.get('/manage', (req, res) => {
-  return res.sendFile(__dirname + '/adm/templates/manage.html');
+  console.log('Cookies: ', req.cookies)
+
+  if(req.headers.cookie != undefined){
+    return res.sendFile(__dirname + '/adm/templates/manage.html');
+  }else{
+    res.redirect("/adm");
+  }
 })
 
 // 비밀번호 변경 페이지
@@ -125,7 +142,6 @@ app.post('/memberEdit_process', (req, res) => {
     });
   })
 })
-
 
 // 등록, 수정 페이지
 // app.get('', (req, res) => {
