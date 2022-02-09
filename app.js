@@ -39,20 +39,13 @@ app.use(expressSession({
 
 /**
  * =======================================
- * 설  명 : 어플리케이션
+ * 설  명 : 로그인
  * =======================================
  */
-// 임시 경로 설정 
-app.get('/', (req, res) => {
-  return res.sendFile(__dirname + '/adm/templates/login.html');
-})
-
-// 로그인 화면 첫 로딩
 app.get('/adm', (req, res) => {
   return res.sendFile(__dirname + '/adm/templates/login.html');
 })
 
-// 로그인
 app.post('/login_process', function (req, res) {
   let body = '';
   req.on('data', function(data){
@@ -72,6 +65,7 @@ app.post('/login_process', function (req, res) {
       } else { 
         if(result.length > 0){    // id check
           // session 
+          req.session.user = userid;
           res.redirect("/manage");
         } else {
           res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
@@ -83,12 +77,15 @@ app.post('/login_process', function (req, res) {
   })
 });
 
-// 패스워드 찾기 페이지
+/**
+ * =======================================
+ * 설  명 : 비밀번호 찾기
+ * =======================================
+ */
 app.get('/password', (req, res) => {
   return res.sendFile(__dirname + '/adm/templates/password.html');
 })
 
-// 패스워드 찾기 아이디 패스워드 입력
 app.post('/password_process', function (req, res) {
   let body = '';
   req.on('data', function(data){
@@ -115,18 +112,31 @@ app.post('/password_process', function (req, res) {
   });
 });
 
-// 매니지 페이지
+/**
+ * =======================================
+ * 설  명 : 카테고리 관리
+ * =======================================
+ */
 app.get('/manage', (req, res) => {
-    res.sendFile(__dirname + '/adm/templates/manage.html');
+  if(req.session.user == undefined){res.redirect('/');} 
+    
+  return res.sendFile(__dirname + '/adm/templates/manage.html');
 })
 
-// 비밀번호 변경 페이지
+/**
+ * =======================================
+ * 설  명 : 비밀번호 변경
+ * =======================================
+ */
 app.get('/memberEdit', (req, res) => {
+  if(req.session.user == undefined){res.redirect('/');} 
+
   return res.sendFile(__dirname + '/adm/templates/memberEdit.html');
 })
 
-// 비밀번호 변경 버튼 클릭
 app.post('/memberEdit_process', (req, res) => {
+  if(req.session.user == undefined){res.redirect('/');} 
+
   let body = '';      // 요청 데이터를 담을 변수
   req.on('data', function(data){    //요청
     body = body + data;   // 요청받은 데이터 저장
@@ -144,30 +154,6 @@ app.post('/memberEdit_process', (req, res) => {
     });
   })
 })
-
-// 등록, 수정 페이지
-// app.get('', (req, res) => {
-//   return res.sendFile(__dirname + '/adm/templates/manageRegister.html');
-// })
-
-// app.post('/create_process', function (req, res) {
-//     let body = '';
-//     req.on('data', function(data){
-//         body = body + data;
-//     });
-
-//     req.on('end', function(){
-//         let post = qs.parse(body);
-//          console.log(post)
-//         let sql = 'INSERT INTO AUTHOR (id, password) VALUES(?, ?)';
-//         let params = [post.id, post.password];
-//         conn.query(sql, params, function(err) {
-//             if(err) console.log('query is not excuted. insert fail...\n' + err);
-//             else res.redirect('/');
-//         });
-        
-//     })
-// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
