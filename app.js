@@ -42,6 +42,10 @@ app.use(expressSession({
  * 설  명 : 로그인
  * =======================================
  */
+app.get('/', (req, res) => {
+  return res.sendFile(__dirname + '/adm/templates/login.html');
+})
+
 app.get('/adm', (req, res) => {
   return res.sendFile(__dirname + '/adm/templates/login.html');
 })
@@ -76,6 +80,29 @@ app.post('/login_process', function (req, res) {
     });
   })
 });
+
+/**
+ * =======================================
+ * 설  명 : 로그아웃
+ * =======================================
+ */
+app.get('/logout', (req, res) => {
+  if(req.session.user == undefined){
+    console.log("로그인 안되어 있음");
+    res.redirect('/');
+  } else {
+    req.session.destroy(
+      function(err) {
+        if(err) {
+          console.log("세션 삭제 에러");
+          return;
+        }
+        console.log("세션 삭제 성공");
+        res.redirect('/');
+      }
+    );
+  }
+})
 
 /**
  * =======================================
