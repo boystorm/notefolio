@@ -27,8 +27,10 @@ let expressSession = require('express-session');    // 세션 파서
  * 설  명 : ejs 템플릿 설정
  * =======================================
  */
-app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
 
 /**
  * =======================================
@@ -39,15 +41,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /**
  * =======================================
- * 설  명 : 라우팅
+ * 설  명 : 라우팅(routes)
  * =======================================
  */
-let pages = require('./routes/pages.js');   // 포트폴리오 메인
-let adminPages = require('./routes/admin_pages.js');    // 관리자 메인
+let adminPages = require('./routes/admin/admin_pages.js');    // 관리자 메인
 
-app.use('/', pages);
-app.use('/admin', adminPages);
+//app.use('/', pages);
+app.use('/', adminPages);
+//app.use('/admin', adminPages);
 
+/**
+ * =======================================
+ * 설  명 : 서버 실행(포트 : 3000)
+ * =======================================
+ */
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 })
