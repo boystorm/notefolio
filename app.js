@@ -22,22 +22,25 @@
  const conn = db_config.init();
  db_config.connect(conn);
  
+
+/**
+* =======================================
+* 설  명 : app.use() 미들웨이 기능 마운트
+* =======================================
+*/
+  app.use(express.static(path.join(__dirname, 'public')));
+  
  /**
   * =======================================
   * 설  명 : ejs 템플릿 설정
   * =======================================
   */
  app.set('views', path.join(__dirname, 'views'));
- app.set('view engine', 'ejs');
  app.engine('html', require('ejs').renderFile);
+ app.set('view engine', 'html');
  
- /**
-  * =======================================
-  * 설  명 : app.use() 미들웨이 기능 마운트
-  * =======================================
-  */
- app.use(express.static(path.join(__dirname, 'public')));
  
+
  /**
   * =======================================
   * 설  명 : 라우팅(routes)
