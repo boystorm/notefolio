@@ -1,35 +1,36 @@
+// 1) 서버킴 : notefolio 폴더에서 npm run dev : 3000
+// 2) 사스 : admin 폴더에서 node-sass --watch scss/main.scss css/main.css
+
 /**
  * =======================================
  * 설  명 : 모듈 
  * =======================================
  */
- const { response } = require('express');
- const express = require('express');
- const app = express();
- const port = 3000;
- const path = require("path");   // 유연한 디렉토리 
- const qs = require('querystring');    // url 쿼리 문자열 
- const cookieParser = require('cookie-parser')   // 쿠키 파서
- const expressSession = require('express-session');    // 세션 파서
- const ejs = require('ejs');  // ejs 템플릿
+const { response } = require('express');
+const express = require('express');
+const app = express();
+const port = 3000;
+const path = require("path");   // 유연한 디렉토리 
+const cookieParser = require('cookie-parser')   // 쿠키 파서
+const expressSession = require('express-session');    // 세션 파서
+const ejs = require('ejs');  // ejs 템플릿
  
- /**
-  * =======================================
-  * 설  명 : 데이터베이스 Mysql
-  * =======================================
-  */
- const db_config = require(__dirname + '/config/database.js');
- const conn = db_config.init();
- db_config.connect(conn);
- 
-
 /**
 * =======================================
 * 설  명 : app.use() 미들웨이 기능 마운트
 * =======================================
 */
-  app.use(express.static(path.join(__dirname, 'public')));
-  
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use(cookieParser());
+// app.use(expressSession({
+//     secret: 'my key',   
+//     resave: false,      
+//     saveUninitialized: false    
+// }));
+
+// req.body 사용하기 위한 미들웨어
+app.use(express.json())
+app.use(express.urlencoded({ extends: true}))
  /**
   * =======================================
   * 설  명 : ejs 템플릿 설정
@@ -39,19 +40,19 @@
  app.engine('html', require('ejs').renderFile);
  app.set('view engine', 'html');
  
- 
 
  /**
   * =======================================
   * 설  명 : 라우팅(routes)
   * =======================================
   */
- let adminPages = require('./routes/admin/auth.js');    // 관리자 로그인
+ let adminPages = require('./routes/admin/authorRouters.js');    // 관리자 로그인
  
  //app.use('/', pages);
  app.use('/', adminPages);
- //app.use('/admin', adminPages);
  
+
+
  /**
   * =======================================
   * 설  명 : 서버 실행(포트 : 3000)
