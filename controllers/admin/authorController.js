@@ -5,29 +5,10 @@ exports.login = function(req, res){
   let id = req.body.id;
   let password = req.body.password;
 
-  Author.login(id, password, function(err, author){
-    if(err) res.send(err);
-    res.send(author);
-  })
-};
-
-
-
-/*
-router.post('/login_process', function(req, res, next){
-  let body = '';
-  req.on('data', function(data){
-    body = body + data;
-  });
-  
-  req.on('end', function(){
-    let post = qs.parse(body);
-
-    let userid = post.id;
-    let password = post.password;
-
+  Author.login(id, password, function(err, result){
+    // 폴더 model/author.js 에서에서 처리 후 쿼리 데이터를 넘겨받는 받음
     if (err) {
-      throw err
+      res.send(err);
     } else { 
       if(result.length > 0){   
         res.render('admin/manage.html');
@@ -38,6 +19,4 @@ router.post('/login_process', function(req, res, next){
       }
     }
   })
-});
-*/
-
+};
