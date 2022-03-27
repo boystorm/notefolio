@@ -15,12 +15,10 @@ $(function() {
 
         .done(function(json){
             if(json.flag){
-                console.log(json.flag);
-                $(".password-check").text(json.passHint);
+                $(".password-check").text(json.password);
             } else {
-                console.log(json.flag);
-                alert("비밀번호가 틀렸습니다.");
-                $(".password-check").text("비밀번호 힌트 재입력");
+                alert("비밀번호 힌트의 값이 틀렸습니다.");
+                $(".password-check").text("비밀번호 힌트를 재입력 하세요");
             }
         })
 

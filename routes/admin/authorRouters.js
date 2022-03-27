@@ -20,5 +20,11 @@ router.post('/login_process', AuthorController.login);
 
 /* 패스워드 찾기 */
 router.get('/password', function(req, res, next){res.render('admin/password.html');});
+router.post('/password_process', AuthorController.password);
+
+
+
+
+
 
 module.exports = router;

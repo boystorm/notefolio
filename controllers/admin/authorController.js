@@ -20,3 +20,23 @@ exports.login = function(req, res){
     }
   })
 };
+
+exports.password = function(req, res){
+  let passwordHint = req.body.passwordHint;
+  let responseData = {};
+
+  if(passwordHint === "yangbankim"){
+    Author.password(function(err, result){
+      if(err){
+        res.send(err);
+      } else {
+        responseData.password = result[0].password;
+        responseData.flag = true;
+        res.json(responseData);
+      }
+    });
+  } else {
+    responseData.flag = false;
+    res.json(responseData);
+  }
+};

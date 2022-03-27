@@ -11,13 +11,21 @@ let Author = function (){}; // 생성자
 
 // 로그인
 Author.login = function(id, password, result){
- 
   conn.query("SELECT * FROM author WHERE id = ? AND password = ?", [id, password], function (err, res) {
     if(err){
-      console.log("error:", err);
       result(null, err);
     } else {
-      console.log("Author(작가) :", id,"- Author(비번) :", password);
+      result(null, res);
+    }
+  });
+};
+
+// 비밀번호 찾기
+Author.password = function(result){
+  conn.query("SELECT * FROM AUTHOR", function (err, res) {
+    if(err){
+      result(null, err);
+    } else {
       result(null, res);
     }
   });
