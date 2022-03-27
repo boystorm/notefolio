@@ -9,7 +9,7 @@ db_config.connect(conn);
 
 let Author = function (){}; // 생성자
 
-// 로그인
+// 로그인 쿼리
 Author.login = function(id, password, result){
   conn.query("SELECT * FROM author WHERE id = ? AND password = ?", [id, password], function (err, res) {
     if(err){
@@ -20,7 +20,7 @@ Author.login = function(id, password, result){
   });
 };
 
-// 비밀번호 찾기
+// 비밀번호 찾기 쿼리
 Author.password = function(result){
   conn.query("SELECT * FROM AUTHOR", function (err, res) {
     if(err){
@@ -30,5 +30,15 @@ Author.password = function(result){
     }
   });
 };
+
+// 카테고리 관리 쿼리
+Author.manage = function(result){
+
+};
+
+// 회원정보 수정 쿼리
+Author.memberEdit = function(result){
+  
+}
 
 module.exports = Author;
