@@ -12,6 +12,8 @@ exports.login = function(req, res){
       res.send(err);
     } else { 
       if(result.length > 0){   
+        // session 
+        req.session.author = id;
         res.redirect('/manage'); 
       } else {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
@@ -50,5 +52,23 @@ exports.manage = function(req, res){
 
 // 회원정보 수정 컨트롤러
 exports.memberEdit = function(req, res){
+  let id = req.session.author;
+  let newPassword = req.body.newPassword;
 
+  if(req.session.author == undefined){
+    res.redirect('/');
+  } else {
+    Author.memberEdit(id, newPassword, function(err, result){
+      if(err){
+        res.send(err);
+      } else {
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+        res.write(`<script>
+            alert('비밀번호가 변경되었습니다.');
+            document.location = '/manage';
+          </script>`
+        );
+      }
+    });
+  }
 };

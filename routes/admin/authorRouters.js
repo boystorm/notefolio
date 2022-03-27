@@ -28,6 +28,6 @@ router.get('/manage', function(req, res, next){ res.render('admin/manage.html');
 
 /* 회원정보 수정 관리 라우터 */
 router.get('/memberEdit', function(req, res, next){ res.render('admin/memberEdit.html'); });
-router.post('/member_')
+router.post('/memberEditProcess', AuthorController.memberEdit);
 
 module.exports = router;

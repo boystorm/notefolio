@@ -21,12 +21,12 @@ const ejs = require('ejs');  // ejs 템플릿
 * =======================================
 */
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(cookieParser());
-// app.use(expressSession({
-//     secret: 'my key',   
-//     resave: false,      
-//     saveUninitialized: false    
-// }));
+app.use(cookieParser());
+app.use(expressSession({
+    secret: 'my key',   
+    resave: false,
+    saveUninitialized: false
+}));
 
 // req.body 사용하기 위한 미들웨어
 app.use(express.json())

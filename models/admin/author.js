@@ -33,12 +33,18 @@ Author.password = function(result){
 
 // 카테고리 관리 쿼리
 Author.manage = function(result){
-
+  // 게시판 구현
 };
 
 // 회원정보 수정 쿼리
-Author.memberEdit = function(result){
-  
+Author.memberEdit = function(id, newPassword, result){
+  conn.query("UPDATE author SET password = ? WHERE id= ?", [newPassword, id],function (err, res, fields) {
+    if (err) {
+      throw err
+    } else {
+      result(null, res);
+    }
+  });
 }
 
 module.exports = Author;
