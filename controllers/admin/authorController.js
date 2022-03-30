@@ -50,6 +50,11 @@ exports.manage = function(req, res){
 
 };
 
+// 카테고리 등록 컨트롤러
+exports.categoryManage = function(req, res){
+  
+};
+
 // 회원정보 수정 컨트롤러
 exports.memberEdit = function(req, res){
   let id = req.session.author;
@@ -72,3 +77,5 @@ exports.memberEdit = function(req, res){
     });
   }
 };
+
+// 게시판 등록 컨트롤러

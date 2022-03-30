@@ -4,7 +4,7 @@ $(function() {
      * 설  명 : 카테고리 팝업 오픈
      * =======================================
      */
-    $("#btn").on("click", function(){
+    $("#categoryBtn").on("click", function(){
         $(".modal").css("display","block");
         $("#categoryProjectRadio").trigger("click");
     });

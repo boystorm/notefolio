@@ -37,10 +37,11 @@ app.use(express.urlencoded({ extends: true}))
   * =======================================
   */
  app.set('views', path.join(__dirname, 'views'));
- app.engine('html', require('ejs').renderFile);
- app.set('view engine', 'html');
- 
+ app.set('view engine', 'ejs');
+ app.engine('ejs', require('ejs').__express);
 
+
+ 
  /**
   * =======================================
   * 설  명 : 라우팅(routes)
