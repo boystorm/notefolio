@@ -33,7 +33,7 @@ router.post('/memberEditProcess', AuthorController.memberEdit);
 router.post('/categoryProcess', AuthorController.categoryManage); // 등록
 
 /* 게시판 글 등록, 수정, 삭제 */
-router.get('/boardAdd/:id', function(req, res, next){ res.render('admin/manageRegister.ejs'); });
+router.get('/boardAdd/:id', function(req, res, next){ res.render('admin/manageRegister'); });
 router.get('/boardMod/:id/:idx', function(req, res, next){ res.render('admin/manageRegister.ejs'); });
 
 
