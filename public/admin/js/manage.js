@@ -8,6 +8,15 @@ $(function() {
         $(".modal").css("display","block");
         $("#categoryProjectRadio").trigger("click");
     });
+
+     /**
+     * =======================================
+     * 설  명 : 카테고리 팝업 닫기
+     * =======================================
+     */
+    $("#cancelBtn").on("click", function(){
+        $(".modal").css("display","none");
+    });
     
     /**
      * =======================================
