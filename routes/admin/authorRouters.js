@@ -18,6 +18,9 @@ const qs = require('querystring');
 router.get('/', function(req, res, next){ res.render('admin/login.ejs'); });
 router.post('/loginProcess', AuthorController.login);
 
+/* 로그아웃 라우터 */
+router.get('/logout', AuthorController.logout);
+
 /* 패스워드 찾기 라우터 */
 router.get('/password', function(req, res, next){ res.render('admin/password.ejs'); });
 router.post('/passwordProcess', AuthorController.password);

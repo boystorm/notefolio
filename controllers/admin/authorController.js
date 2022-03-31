@@ -24,6 +24,25 @@ exports.login = function(req, res){
   })
 };
 
+// 로그아웃 컨트롤러
+exports.logout = function(req, res){
+  if(req.session.author == undefined){
+    console.log("로그인 에러");
+    res.redirect('/');
+  } else {
+    req.session.destroy(
+      function(err) {
+        if(err) {
+          console.log("세션 삭제 에러");
+          return;
+        }
+        console.log("세션 삭제 성공");
+        res.redirect('/');
+      }
+    );
+  }
+}
+
 // 패스워드 찾기 컨트롤러
 exports.password = function(req, res){
   let passwordHint = req.body.passwordHint;
