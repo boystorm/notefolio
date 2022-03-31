@@ -1,5 +1,5 @@
-/* node-sass --watch scss/main.scss css/main.css */
-/* node-sass --output-style compact scss --output css */
+/* directory admin     node-sass --watch scss/main.scss css/main.css */
+/* directory admin     node-sass --output-style compact scss --output css */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -981,7 +981,7 @@ main {
       position: absolute;
       left: 5px;
       top: 5px;
-      background: url("../images/drag_pointer.png") no-repeat scroll 0 0/50% auto rgba(0, 0, 0, 0);
+      background: url("/images/drag_pointer.png") no-repeat scroll 0 0/50% auto rgba(0, 0, 0, 0);
       width: 12px;
       height: 20px;
       opacity: 0.33;
