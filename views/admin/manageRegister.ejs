@@ -7,8 +7,11 @@
     <!-- ssi-uploader file uploader library -->
     <link href="/lib/ssiuploader/ssi-uploader.min.css" rel="stylesheet" type="text/css" />
     <script src="/lib/ssiuploader/ssi-uploader.min.js"></script>
-    <!-- smart editor -->
-    <script src="/lib/smarteditor2/js/service/HuskyEZCreator.js" ></script>
+    
+    <!-- summernote edit lib -->
+    <link href="/lib/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
+    <script src="/lib/summernote/summernote-lite.min.js"></script>
+
 </head>
 <body>
     <div class="wrap">
@@ -68,7 +71,7 @@
                     </div>
                     <form action="registerForm" method="post"><!-- 파일 넘길때 속성 필요 -->
                         <div class="register__action">
-                            <div class="card register__act01">
+                            <!-- <div class="card register__act01">
                                 <h2>카테고리 선택</h2>
                                 <label class="register__act01--label">
                                     <input type="radio" name="category">
@@ -86,7 +89,7 @@
                                     <input type="radio" name="category">
                                     <span>카테고리4</span>
                                 </label>
-                            </div>
+                            </div> -->
 
                             <!--  파일 업로더 -->
                             <div class="card register__act02">
@@ -103,7 +106,7 @@
                                 <!-- 스마트 에디터 2 -->
                                 <div class="form__groups">
                                     <p>세부내용</p>
-                                    <textarea name="ir1" id="ir1" rows="10" cols="100"></textarea>
+                                    <div id="summernote"></div>
                                 </div>
                             </div>
                         </div>
@@ -111,6 +114,7 @@
                 </div>
             </div>
         </main>
+
     </div>
 </body>
 </html>
