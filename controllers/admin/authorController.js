@@ -14,7 +14,7 @@ exports.login = function(req, res){
       if(result.length > 0){   
         // session 
         req.session.author = id;
-        res.redirect('/manage'); 
+        res.redirect('/admin/manage');
       } else {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
         res.write("<script>alert('아이디 패스워드를 확인해 주세요')</script>");
@@ -64,16 +64,6 @@ exports.password = function(req, res){
   }
 };
 
-// 카테고리 관리 컨트롤러
-exports.manage = function(req, res){
-
-};
-
-// 카테고리 등록 컨트롤러
-exports.categoryManage = function(req, res){
-  
-};
-
 // 회원정보 수정 컨트롤러
 exports.memberEdit = function(req, res){
   let id = req.session.author;
@@ -96,5 +86,3 @@ exports.memberEdit = function(req, res){
     });
   }
 };
-
-// 게시판 등록 컨트롤러

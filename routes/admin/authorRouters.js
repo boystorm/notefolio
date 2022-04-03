@@ -11,7 +11,7 @@ const qs = require('querystring');
 
 /**
 * =======================================
-* 설  명 : 관리자 라우터
+* 설  명 : 작가 라우터
 * =======================================
 */
 /* 로그인 라우터 */
@@ -25,19 +25,8 @@ router.get('/logout', AuthorController.logout);
 router.get('/password', function(req, res, next){ res.render('admin/password.ejs'); });
 router.post('/passwordProcess', AuthorController.password);
 
-/* 카테고리 관리 라우터 */
-router.get('/manage', function(req, res, next){ res.render('admin/manage.ejs'); });
-
 /* 회원정보 수정 관리 라우터 */
 router.get('/memberEdit', function(req, res, next){ res.render('admin/memberEdit.ejs'); });
 router.post('/memberEditProcess', AuthorController.memberEdit);
-
-/* 카테고리 매니저 */
-router.post('/categoryProcess', AuthorController.categoryManage); // 등록
-
-/* 게시판 글 등록, 수정, 삭제 */
-router.get('/boardAdd/:id', function(req, res, next){ res.render('admin/manageRegister'); });
-router.get('/boardMod/:id/:idx', function(req, res, next){ res.render('admin/manageRegister.ejs'); });
-
 
 module.exports = router;
