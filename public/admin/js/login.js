@@ -68,7 +68,8 @@ $(function() {
                 required: true
             },
             password: {
-                required: true            
+                required: true,
+                password: true
             }
         },
         messages: {

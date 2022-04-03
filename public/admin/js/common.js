@@ -1,8 +1,6 @@
 /* 전역 상수 */
 // const AJAX_MULTIPART_ENC_TYPE = "multipart/form-data",
 // 	  AJAX_SUCCESS_CODE = "success",
-// 	  AJAX_FAIL_CODE = "fail";
-
 
 /**
  * =======================================
@@ -45,11 +43,11 @@ function fnValidateInit() {
  * 설  명 : jQuery Ajax 기본 설정
  * =======================================
  */
-function fnLayerOpenInit(set) {
-    $("#btn").on("click", function(){
-        $(".modal").css("display","block");
-    });
-}
+// function fnLayerOpenInit(set) {
+//     $("#btn").on("click", function(){
+//         $(".modal").css("display","block");
+//     });
+// }
 
 $(function($){
     /* 초기 세팅 함수 실행 */

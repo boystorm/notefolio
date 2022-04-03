@@ -64,8 +64,15 @@ exports.password = function(req, res){
   }
 };
 
-// 회원정보 수정 컨트롤러
+// 회원정보 페이지
 exports.memberEdit = function(req, res){
+  let authorId = req.session.author;
+  res.render("admin/memberEdit", {id : authorId});
+};
+
+
+// 회원정보 수정 컨트롤러
+exports.memberEditUpdate = function(req, res){
   let id = req.session.author;
   let newPassword = req.body.newPassword;
 
