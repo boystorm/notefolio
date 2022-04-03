@@ -7,7 +7,7 @@ $(function() {
     $("#hintBtn").on("click", function(e){
         let passHint = $("input[name=passwordHint]").val();
         $.ajax({
-            url : "/passwordProcess",
+            url : "/admin/passwordProcess",
             type : "POST",
             dataType : "JSON",
             data : {"passwordHint" : passHint}

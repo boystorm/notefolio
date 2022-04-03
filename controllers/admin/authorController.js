@@ -18,7 +18,7 @@ exports.login = function(req, res){
       } else {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
         res.write("<script>alert('아이디 패스워드를 확인해 주세요')</script>");
-        res.write("<script>window.location=\"/\"</script>");
+        res.write("<script>window.location=\"/admin\"</script>");
       }
     }
   })
@@ -28,7 +28,7 @@ exports.login = function(req, res){
 exports.logout = function(req, res){
   if(req.session.author == undefined){
     console.log("로그인 에러");
-    res.redirect('/');
+    res.redirect('/admin');
   } else {
     req.session.destroy(
       function(err) {
@@ -37,7 +37,7 @@ exports.logout = function(req, res){
           return;
         }
         console.log("세션 삭제 성공");
-        res.redirect('/');
+        res.redirect('/admin');
       }
     );
   }
@@ -70,7 +70,12 @@ exports.memberEdit = function(req, res){
   let newPassword = req.body.newPassword;
 
   if(req.session.author == undefined){
-    res.redirect('/');
+    res.write(`<script>
+        alert('세션이 만료되었습니다..');
+        document.location = '/admin';
+      </script>`
+    );
+    
   } else {
     Author.memberEdit(id, newPassword, function(err, result){
       if(err){
@@ -79,7 +84,7 @@ exports.memberEdit = function(req, res){
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
         res.write(`<script>
             alert('비밀번호가 변경되었습니다.');
-            document.location = '/manage';
+            document.location = '/admin/manage';
           </script>`
         );
       }
