@@ -13,7 +13,7 @@ router.get('/', ManageController.manage ); // 화면
 
 
 /* 카테고리 매니저 */
-//router.post('/manageCategoryProcess', ManageController.manageCategory); // 등록
+router.post('/manageCategoryProcess', ManageController.manageCategory); 
 
 
 module.exports = router;

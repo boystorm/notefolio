@@ -186,9 +186,9 @@
         </main>
 
         <!-- Category Manager Pop Up -->
-        <!-- <form id="categoryForm" action="/admin/categoryProcess" method="post" onsubmit="return false">
+        <form id="categoryForm" action="/admin/categoryProcess" method="post" onsubmit="return false">
             <fieldset>
-                <legend>Choose your Category</legend> -->
+                <legend>Choose your Category</legend>
                 <div class="modal fade display-none"><!-- display-none -->
                     <div class="modal__dialog modal__dialog--centered">
                         <div class="modal__content modal__category">
@@ -207,17 +207,20 @@
 
 
                                     <ul class="modal__draw">
-                                        <% 
-                                            for(let i=0; i < rows.length; i++) {
-                                                let data = rows[i];
-                                        %>
-                                            <li class="modal__draw--parent">
-                                                <div class="dropdown__handle">
-                                                    <a href="javascript:;" id="" class="" data-id="<%= data.main_id %>" data-value="<%= data.main_title + 'sss'%>"><%= data.main_title %></a>
-                                                </div>
-                                                <ul id="" class="modal__draw--child"></ul>
-                                            </li>
-                                        <% } %>
+                                        <li class="modal__draw--parent">
+                                            <div class="dropdown__handle">
+                                                <a href="javascript:;" id="categoryProjectRadio" class="active" data-value="largeMenuProject">Project</a>
+                                            </div>
+                                            
+                                            <ul id="categoryProjectSoltable" class="modal__draw--child"></ul>
+                                        </li>
+                                        <li class="modal__draw--parent">
+                                            <div class="dropdown__handle">
+                                                <a href="javascript:;" id="categoryArtworkRadio"  data-value="largeMenuArtwork">Artwork</a>
+                                            </div>
+                                            
+                                            <ul id="categoryArtworkSoltable" class="modal__draw--child"></ul>
+                                        </li>
                                     </ul>
 
                                 </div>
@@ -229,8 +232,8 @@
                         </div>
                     </div>
                 </div>
-            <!-- </fieldset>
-        </form> -->
+            </fieldset>
+        </form>
         <!-- Category Manager Pop Up -->
     </div>
 </body>

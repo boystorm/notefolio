@@ -6,7 +6,6 @@ exports.manage = function(req, res){
         if(err){
             res.send(err);
         } else {
-            console.log(result);
             res.render('admin/manage', {
                 rows : result
             }); 
@@ -16,8 +15,9 @@ exports.manage = function(req, res){
 };
 
 // 카테고리 등록 컨트롤러
-// exports.manageCategory = function(req, res){
-//     res.render('admin/manage.ejs'); 
-// };
+exports.manageCategory = function(req, res){
+    let title = req.body.title;
+    console.log(title);
+};
 
 

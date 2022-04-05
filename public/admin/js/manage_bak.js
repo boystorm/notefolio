@@ -6,6 +6,7 @@ $(function() {
      */
     $("#categoryBtn").on("click", function(){
         $(".modal").css("display","block");
+        $("#categoryProjectRadio").trigger("click");
     });
 
      /**
@@ -16,35 +17,6 @@ $(function() {
     $("#cancelBtn").on("click", function(){
         $(".modal").css("display","none");
     });
-
-    /**
-     * =======================================
-     * 설  명 : 카테고리 팝업 아이템 추가(New)
-     * =======================================
-     */
-    $(".btn-confirm").on("click", function(){
-        let title = $(".dropdown__handle a").data('value');
-        console.log(title);
-        $.ajax({
-            url : "/admin/manage/manageCategoryProcess",
-            type : "POST",
-            dataType : "JSON",
-            data : {
-                "title" : title
-            }
-        })
-
-        .done(function(json){
-            alert("저장되었습니다.");
-        })
-
-        .fail(function(xhr, status, errorThrown){
-            console.log("Ajax failed")
-        })
-    })
-
-
-
     
     /**
      * =======================================
