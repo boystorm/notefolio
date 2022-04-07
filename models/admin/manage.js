@@ -15,4 +15,17 @@ Manage.manageCategory = function(result){
     })
 };
 
+// 카테고리 등록
+Manage.manageCategoryProcess = function(id, title, result){
+    conn.query("UPDATE main_category SET main_title = ? WHERE main_id = ?", [title, id], function(err, res){
+        if(err){
+            result(null, err);
+        } else {
+            result(null, res);
+        }
+    });
+};
+
+
+
 module.exports = Manage;

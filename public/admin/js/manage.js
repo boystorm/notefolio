@@ -25,7 +25,7 @@ $(function() {
     $(".btn-confirm").on("click", function(){
         let id = $(".dropdown__handle a").data('id');
         let title = $(".dropdown__handle a").data('value');
-        console.log(id, title);
+        
         $.ajax({
             url : "/admin/manage/manageCategoryProcess",
             type : "POST",
@@ -38,6 +38,7 @@ $(function() {
 
         .done(function(json){
             alert("저장되었습니다.");
+            console.log(result);
         })
 
         .fail(function(xhr, status, errorThrown){

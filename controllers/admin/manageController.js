@@ -18,8 +18,14 @@ exports.manage = function(req, res){
 exports.manageCategory = function(req, res){
     let id = req.body.id;
     let title = req.body.title;
-    console.log("controller :" + id + "|||||" + title);
-    
+
+    Manage.manageCategoryProcess(id, title, function(err, result){
+        if (err) {
+            res.send(err);
+        } else { 
+            res.json(result); // ajax 처리땐 json 으로 값 ajax 에 반환함
+        }
+    });
 };
 
 

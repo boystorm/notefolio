@@ -9,7 +9,7 @@ const ManageController = require('../../controllers/admin/manageController');
 * =======================================
 */
 /* 카테고리 관리 라우터 */
-router.get('/', ManageController.manage ); // 화면
+router.get('/', ManageController.manage); // 화면
 
 
 /* 카테고리 매니저 */
