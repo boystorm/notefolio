@@ -16,8 +16,10 @@ exports.manage = function(req, res){
 
 // 카테고리 등록 컨트롤러
 exports.manageCategory = function(req, res){
+    let id = req.body.id;
     let title = req.body.title;
-    console.log(title);
+    console.log("controller :" + id + "|||||" + title);
+    
 };
 
 

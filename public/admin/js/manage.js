@@ -23,13 +23,15 @@ $(function() {
      * =======================================
      */
     $(".btn-confirm").on("click", function(){
+        let id = $(".dropdown__handle a").data('id');
         let title = $(".dropdown__handle a").data('value');
-        console.log(title);
+        console.log(id, title);
         $.ajax({
             url : "/admin/manage/manageCategoryProcess",
             type : "POST",
             dataType : "JSON",
             data : {
+                "id" : id,
                 "title" : title
             }
         })
