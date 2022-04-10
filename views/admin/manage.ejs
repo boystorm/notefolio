@@ -46,7 +46,7 @@
                                     let data = rows[i];
                             %>
                                 <div class="mng-category__all">
-                                    <a href="javascript:;" class="<%= data.main_id == 1 ? 'active' : ''%>"><%= data.main_title %></a>
+                                    <a href="javascript:;" data-id="<%= data.main_id %>" class="<%= data.main_id == 1 ? 'active' : ''%>"><%= data.main_title %></a>
                                 </div>
                             <% } %>
                             </div>
@@ -186,9 +186,10 @@
         </main>
 
         <!-- Category Manager Pop Up -->
-        <!-- <form id="categoryForm" action="/admin/categoryProcess" method="post" onsubmit="return false">
+        <!-- <form id="categoryForm" action="/admin/manage/manageCategoryProcess" method="post" onsubmit="return false"> -->
+        <form id="categoryForm" action="/admin/manage/manageCategoryProcess" method="post" onsubmit="return false">
             <fieldset>
-                <legend>Choose your Category</legend> -->
+                <legend>Choose your Category</legend>
                 <div class="modal fade display-none"><!-- display-none -->
                     <div class="modal__dialog modal__dialog--centered">
                         <div class="modal__content modal__category">
@@ -205,32 +206,28 @@
                                         <button type="button" id="categoryNewBtn" class="btn btn-primary"><i class="fas fa-plus"></i></button>
                                     </div>
 
-
-                                    <ul class="modal__draw">
-                                        <% 
-                                            for(let i=0; i < rows.length; i++) {
-                                                let data = rows[i];
-                                        %>
-                                            <li class="modal__draw--parent">
-                                                <div class="dropdown__handle">
-                                                    <a href="javascript:;" id="" class="" data-id="<%= data.main_id %>" data-value="<%= data.main_title + 's'%>"><%= data.main_title %></a>
-                                                </div>
-                                                <ul id="" class="modal__draw--child"></ul>
-                                            </li>
-                                        <% } %>
+                                    <ul class="modal__tree--list">
+                                        <li class="modal__tree--item category1 on">
+                                            <span>Project 카테고리1</span>
+                                            <button type="button">X</button>
+                                        </li>
+                                        <li class="modal__tree--item category2 ">
+                                            <span>Artwork 카테고리2</span>
+                                            <button type="button">X</button>
+                                        </li>
                                     </ul>
 
                                 </div>
                                 <div class="modal__mod">
-                                    <label for="categoryModForm">Category Mod</label>
+                                    <label for="categoryModForm">카테고리 이름</label>
                                     <input type="text" id="categoryModForm">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <!-- </fieldset>
-        </form> -->
+            </fieldset>
+        </form>
         <!-- Category Manager Pop Up -->
     </div>
 </body>

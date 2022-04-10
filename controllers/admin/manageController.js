@@ -23,6 +23,8 @@ exports.manageCategory = function(req, res){
         if (err) {
             res.send(err);
         } else { 
+            result.id = id;
+            result.title = title;
             res.json(result); // ajax 처리땐 json 으로 값 ajax 에 반환함
         }
     });

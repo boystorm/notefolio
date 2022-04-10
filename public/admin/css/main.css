@@ -883,7 +883,100 @@ main {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.4); }
+  background: rgba(0, 0, 0, 0.4);
+  /*
+    .modal__draw--parent {
+        .dropdown__handle {
+            a {
+                display: flex;
+                align-items: center;
+                border-top: 1px dotted #ddd;
+                border-bottom: 1px dotted #ddd;
+                padding: 6px 10px;
+                background-color: #eee;
+                cursor: pointer;
+                margin: 5px 0;
+                text-decoration: none;
+                color: #333;
+                font: {
+                    size: 14px;
+                    weight: bold;
+                }
+                &:hover{
+                    text-decoration: none;
+                    color: #1A6DFF;
+                }
+                &.active {
+                    color: #1A6DFF;
+                }
+            }
+        }
+    }
+    .modal__draw--child {
+        li {
+            position: relative;
+            &:hover {
+                .drag {
+                    display: block;
+                }
+                .del {
+                    display: block;
+                }
+            }
+            .drag{
+                display: none;
+                position: absolute;
+                left: 5px;
+                top: 5px;
+                background: url('/images/drag_pointer.png') no-repeat scroll 0 0 / 50% auto rgba(0, 0, 0, 0);
+                width: 12px;
+                height: 20px;
+                opacity: 0.33;
+                cursor: -webkit-grab;
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+            .del{
+                display: none;
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                opacity: 0.33;
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+            .del__btn{
+                font-size: 14px;
+                color: #333;
+                background-color: transparent;
+                border-color: transparent;
+                &:hover{
+                    color: #333;
+                    background-color: transparent;
+                    border-color: transparent;
+                }
+            }
+            a {
+                display: flex;
+                padding: 7px 25px;
+                color: #888;
+                border-radius: 4px;
+                &:hover {
+                    background-color: #eee;
+                }
+                font: {
+                    size: 13px;
+                }
+                &.active {
+                    color: #fff;
+                    background-color: #1A6DFF;
+                }
+            }
+        }
+    }
+    */ }
   .modal.fade {
     transition: opacity .15s linear; }
   .modal .modal__dialog {
@@ -910,7 +1003,7 @@ main {
     border-radius: 0.3rem;
     outline: 0; }
   .modal .modal__category {
-    min-height: 400px; }
+    min-height: 500px; }
   .modal .modal__header {
     display: flex;
     flex-shrink: 0;
@@ -952,70 +1045,41 @@ main {
       border: 1px solid #ddd;
       border-radius: 4px;
       padding: 10px 10px; }
-  .modal .modal__draw--parent .dropdown__handle a {
-    display: flex;
-    align-items: center;
-    border-top: 1px dotted #ddd;
-    border-bottom: 1px dotted #ddd;
-    padding: 6px 10px;
-    background-color: #eee;
-    cursor: pointer;
-    margin: 5px 0;
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    font-weight: bold; }
-    .modal .modal__draw--parent .dropdown__handle a:hover {
-      text-decoration: none;
-      color: #1A6DFF; }
-    .modal .modal__draw--parent .dropdown__handle a.active {
-      color: #1A6DFF; }
-  .modal .modal__draw--child li {
-    position: relative; }
-    .modal .modal__draw--child li:hover .drag {
-      display: block; }
-    .modal .modal__draw--child li:hover .del {
-      display: block; }
-    .modal .modal__draw--child li .drag {
-      display: none;
-      position: absolute;
-      left: 5px;
-      top: 5px;
-      background: url("/images/drag_pointer.png") no-repeat scroll 0 0/50% auto rgba(0, 0, 0, 0);
-      width: 12px;
-      height: 20px;
-      opacity: 0.33;
-      cursor: -webkit-grab; }
-      .modal .modal__draw--child li .drag:hover {
-        opacity: 0.9; }
-    .modal .modal__draw--child li .del {
-      display: none;
-      position: absolute;
-      right: 5px;
-      top: 5px;
-      opacity: 0.33; }
-      .modal .modal__draw--child li .del:hover {
-        opacity: 0.9; }
-    .modal .modal__draw--child li .del__btn {
-      font-size: 14px;
-      color: #333;
-      background-color: transparent;
-      border-color: transparent; }
-      .modal .modal__draw--child li .del__btn:hover {
-        color: #333;
-        background-color: transparent;
-        border-color: transparent; }
-    .modal .modal__draw--child li a {
+  .modal .modal__tree--list {
+    font-size: 14px; }
+    .modal .modal__tree--list .modal__tree--item {
       display: flex;
-      padding: 7px 25px;
-      color: #888;
-      border-radius: 4px;
-      font-size: 13px; }
-      .modal .modal__draw--child li a:hover {
-        background-color: #eee; }
-      .modal .modal__draw--child li a.active {
-        color: #fff;
-        background-color: #1A6DFF; }
+      align-items: center;
+      padding: 8px 8px;
+      cursor: pointer;
+      margin: 5px 0;
+      border-radius: 4px; }
+      .modal .modal__tree--list .modal__tree--item.on {
+        background-color: #286090;
+        color: #fff; }
+        .modal .modal__tree--list .modal__tree--item.on button {
+          color: #fff; }
+      .modal .modal__tree--list .modal__tree--item button {
+        background: none;
+        border: 0;
+        margin-left: auto;
+        cursor: pointer; }
+      .modal .modal__tree--list .modal__tree--item.category1 span:before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 30px;
+        background-color: darkcyan;
+        display: inline-block;
+        margin-right: 10px; }
+      .modal .modal__tree--list .modal__tree--item.category2 span:before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 30px;
+        background-color: salmon;
+        display: inline-block;
+        margin-right: 10px; }
 
 .color__important {
   color: red; }
