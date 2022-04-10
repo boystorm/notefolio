@@ -456,13 +456,23 @@ main{
         padding: 1rem;
         font-size: 13px;
         label {
-            margin-bottom: 10px;
             font-weight: bold;
         }
         input {
             border: 1px solid #ddd;
             border-radius: 4px;
             padding: 10px 10px;
+        }
+        .modal__mod--kinds{
+            margin-top: 15px;
+            align-items: center;
+            display: flex;
+            input{
+                margin-right: 10px;
+            }
+            label{
+                margin-right: 10px;
+            }
         }
     }
     /*

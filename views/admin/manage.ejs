@@ -215,12 +215,28 @@
                                             <span>Artwork 카테고리2</span>
                                             <button type="button">X</button>
                                         </li>
+
+                                        <!-- <li class="modal__tree--item category1 on">
+                                            <span>Project 카테고리1</span>
+                                            <button type="button">X</button>
+                                        </li>
+                                        <li class="modal__tree--item category2 ">
+                                            <span>Artwork 카테고리2</span>
+                                            <button type="button">X</button>
+                                        </li> -->
                                     </ul>
 
                                 </div>
                                 <div class="modal__mod">
-                                    <label for="categoryModForm">카테고리 이름</label>
-                                    <input type="text" id="categoryModForm">
+                                    <label for="categoryNameInput">카테고리 이름</label>
+                                    <input type="text" id="categoryNameInput" name="categoryName">
+
+                                    <div class="modal__mod--kinds">
+                                        <input type="radio" id="categoryOwn" name="categoryKinds"  value="1">
+                                        <label for="categoryOwn">Poroject</label>
+                                        <input type="radio" id="categoryTwo" name="categoryKinds"  value="2">
+                                        <label for="categoryTwo">Artwork</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

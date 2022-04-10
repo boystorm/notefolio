@@ -12,7 +12,8 @@ Manage.manageCategory = function(result){
         } else {
             result(null, res);
         }
-    })
+    });
+    
 };
 
 // 카테고리 등록

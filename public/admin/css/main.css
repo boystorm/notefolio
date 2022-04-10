@@ -1039,12 +1039,19 @@ main {
     padding: 1rem;
     font-size: 13px; }
     .modal .modal__mod label {
-      margin-bottom: 10px;
       font-weight: bold; }
     .modal .modal__mod input {
       border: 1px solid #ddd;
       border-radius: 4px;
       padding: 10px 10px; }
+    .modal .modal__mod .modal__mod--kinds {
+      margin-top: 15px;
+      align-items: center;
+      display: flex; }
+      .modal .modal__mod .modal__mod--kinds input {
+        margin-right: 10px; }
+      .modal .modal__mod .modal__mod--kinds label {
+        margin-right: 10px; }
   .modal .modal__tree--list {
     font-size: 14px; }
     .modal .modal__tree--list .modal__tree--item {
