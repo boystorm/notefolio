@@ -1,3 +1,7 @@
+/* common*/
+input[readonly] {
+    background: #eee;
+}
 /* Navigation */
 nav {
     position: fixed;
@@ -580,6 +584,13 @@ main{
             cursor: pointer;
             margin: 5px 0;
             border-radius: 4px;
+            &:hover{
+                background-color: #286090;
+                color: #fff;
+                button {
+                    color: #fff;
+                }
+            }
             &.on{
                 background-color: #286090;
                 color: #fff;

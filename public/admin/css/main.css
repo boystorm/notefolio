@@ -598,6 +598,10 @@ body {
         margin-left: auto;
         color: #1A6DFF; }
 
+/* common*/
+input[readonly] {
+  background: #eee; }
+
 /* Navigation */
 nav {
   position: fixed;
@@ -1061,6 +1065,11 @@ main {
       cursor: pointer;
       margin: 5px 0;
       border-radius: 4px; }
+      .modal .modal__tree--list .modal__tree--item:hover {
+        background-color: #286090;
+        color: #fff; }
+        .modal .modal__tree--list .modal__tree--item:hover button {
+          color: #fff; }
       .modal .modal__tree--list .modal__tree--item.on {
         background-color: #286090;
         color: #fff; }
