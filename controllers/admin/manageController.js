@@ -16,16 +16,15 @@ exports.manage = function(req, res){
 
 // 카테고리 등록 컨트롤러
 exports.manageCategory = function(req, res){
-    let id = req.body.id;
-    let title = req.body.title;
+    let subTitle = req.body.categoryName;
+    let mainId = req.body.categoryKinds;
 
-    Manage.manageCategoryProcess(id, title, function(err, result){
+    Manage.manageCategoryProcess(subTitle, mainId, function(err, result){
         if (err) {
             res.send(err);
-        } else { 
-            result.id = id;
-            result.title = title;
-            res.json(result); // ajax 처리땐 json 으로 값 ajax 에 반환함
+        } else {
+            // data json 넘겼으니 result 결과를 던져야함
+            res.json(result);
         }
     });
 };

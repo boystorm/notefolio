@@ -33,6 +33,45 @@ function fnNavInit() {
 
 /**
  * =======================================
+ * 범 주 : 
+ * 설  명 :
+ * =======================================
+ */
+function fnGetInputTxtTrimForm(formVar) {
+	$(formVar).find("input:text").each(function() {
+        $(this).val($.trim($(this).val()));
+	});
+
+	return formVar;
+}
+
+/*
+ * =======================================
+ * 踰� 二� : 怨듯넻 - jQuery
+ * ��  紐� : Form Serialize Object(JSON)�뺥깭 蹂��� �⑥닔
+ * �묒꽦��/�묒꽦�� : 源��먮�/2021.01.19
+ * =======================================
+ */
+$.fn.serializeObject = function() {
+    let o = {};
+    let a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || "");
+        } else {
+            o[this.name] = this.value || "";
+        }
+    });
+    return o;
+};
+
+
+
+/**
+ * =======================================
  * 범 주 : 초기 세팅 함수
  * 설  명 : 셀렉트 디자인 커스텀
  * =======================================

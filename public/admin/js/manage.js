@@ -8,102 +8,86 @@ $(function() {
         $(".modal").css("display","block");
     });
 
-     /**
+    /**
      * =======================================
      * 설  명 : 카테고리 팝업 닫기
      * =======================================
-     */
+    */
     $("#cancelBtn").on("click", function(){
         $(".modal").css("display","none");
     });
 
     /**
      * =======================================
-     * 설  명 : 카테고리 팝업 아이템 추가(New)
+     * 설  명 : 카테고리 리스트 선택
      * =======================================
-     */
-    $(".btn-confirm").on("click", function(){
-        let id = $(".dropdown__handle a").data('id');
-        let title = $(".dropdown__handle a").data('value');
-        
-        $.ajax({
-            url : "/admin/manage/manageCategoryProcess",
-            type : "POST",
-            dataType : "JSON",
-            data : {
-                "id" : id,
-                "title" : title
-            }
-        })
+    */
+    $(".modal__tree--item").on("click", function(){
+        $(".modal__tree--item").removeClass("on");
+        $(this).addClass("on");
 
-        .done(function(json){
-            alert("저장되었습니다.");
-            
-            
+        $("#categoryNameInput").prop("readonly", false);
+    });
 
-        })
-
-        .fail(function(xhr, status, errorThrown){
-            console.log("Ajax failed")
-        })
-    })
-
-
-
-    
     /**
      * =======================================
-     * 설  명 : 카테고리 팝업 아이템 추가
+     * 설  명 : 새 카테고리
      * =======================================
-     */
-    let projectNum = 0;
-    let artworkNum = 0;
+    */
     $("#categoryNewBtn").on("click", function(){
-        // 카테고리 생성 버튼을 클릭시
-        let categoryItemVal = $('.dropdown__handle a.active').attr('data-value');
-        if(categoryItemVal === "largeMenuProject") {
-            if(projectNum < 3){
-                $("#categoryProjectSoltable").append(
-                    `<li><a href="javascript:;" data-value="project${projectNum}">새 카테고리</a><div class="drag"></div><button class="del del__btn">X</button></li>`
-                )
-                projectNum++;
-            } else {
-                alert("카테고리는 3개 이상 추가 하실 수 없습니다.");
-            }
-        } else if(categoryItemVal === "largeMenuArtwork") {
-            if(artworkNum < 2){
-                $("#categoryArtworkSoltable").append(
-                    `<li><a href="javascript:;" data-value="artwork${artworkNum}">새 카테고리</a><div class="drag"></div><button class="del del__btn">X</button></li>`
-                )
-                artworkNum++;
-            } else {
-                alert("카테고리는 2개 이상 추가 하실 수 없습니다.");
-            }
+        $(".modal__tree--item").removeClass("on");
+        if ($("#CategoryNewItem")[0] === undefined) {
+            $(".modal__tree--list")[0].innerHTML 
+                += '<li id="CategoryNewItem" class="modal__tree--item on">New Category</li>';
+
+            $("#categoryNewBtn").unbind("click");
+            $("#categoryNameInput").prop("readonly", false);
         }
     });
 
     /**
      * =======================================
-     * 설  명 : jQuery Ui Sortable
+     * 설  명 : 카테고리 팝업 아이템 추가 등록
      * =======================================
      */
-     $("#categoryProjectSoltable").sortable();
-     $("#categoryArtworkSoltable").sortable();
+    $(".btn-confirm").on("click", function(){
+        let categoryForm = $("#categoryForm").validate({
+            rules: {
+                categoryName: {
+                    required: true
+                },
+            },
+            messages: {
+                categoryName: {
+                    required: "필수 항목입니다."
+                }
+            },
+            submitHandler: function(form) {               
+                // let formValObj = $("#categoryForm").serializeObject(),
+                //     parameter = JSON.stringify(formValObj);
+                let parameter = $("#categoryForm").serializeObject();
 
-   
+                console.log(parameter);
 
-    
+                // ajax type parameter 가지고와서
+                //-> url -> route -> controller -> model -> ajax 
+                $.ajax({
+                    type : "POST",
+                    url : "/admin/manage/manageCategoryProcess",
+                    dataType : "JSON",
+                    data : parameter
+                })
+        
+                .done(function(json){
+                    alert("저장되었습니다.");
+                })
+        
+                .fail(function(xhr, status, errorThrown){
+                    console.log("Ajax failed")
+                })
+            }
+        });      
+    })
 
-     /**
-     * =======================================
-     * 설  명 : 카테고리 매니저 클릭 이벤트
-     * =======================================
-     */
-     $(".mng-category a").on("click", function(){
-         $(".mng-category a").removeClass("active");
-         $(this).addClass("active");
-     });
-
-    
 });
 

@@ -187,7 +187,7 @@
 
         <!-- Category Manager Pop Up -->
         <!-- <form id="categoryForm" action="/admin/manage/manageCategoryProcess" method="post" onsubmit="return false"> -->
-        <form id="categoryForm" action="/admin/manage/manageCategoryProcess" method="post" onsubmit="return false">
+        <form id="categoryForm"  onsubmit="return false" autocomplete="off">
             <fieldset>
                 <legend>Choose your Category</legend>
                 <div class="modal fade display-none"><!-- display-none -->
@@ -207,11 +207,6 @@
                                     </div>
 
                                     <ul class="modal__tree--list">
-                                        <li class="modal__tree--item category1">
-                                            <span>카테고리</span>
-                                            <button type="button">X</button>
-                                        </li>
-
                                         <!-- <li class="modal__tree--item category1 on">
                                             <span>Project 카테고리1</span>
                                             <button type="button">X</button>
@@ -228,7 +223,7 @@
                                     <input type="text" id="categoryNameInput" name="categoryName" readonly>
 
                                     <div class="modal__mod--kinds">
-                                        <input type="radio" id="categoryOwn" name="categoryKinds"  value="1">
+                                        <input type="radio" id="categoryOwn" name="categoryKinds"  value="1" checked>
                                         <label for="categoryOwn">Poroject</label>
                                         <input type="radio" id="categoryTwo" name="categoryKinds"  value="2">
                                         <label for="categoryTwo">Artwork</label>
