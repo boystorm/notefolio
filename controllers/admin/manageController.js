@@ -2,12 +2,13 @@ const Manage = require("../../models/admin/manage");
 
 // 카테고리 관리 컨트롤러
 exports.manage = function(req, res){
-    Manage.manageCategory(function(err, result){
+    Manage.manageCategory(function(err, result1, result2){
         if(err){
             res.send(err);
         } else {
             res.render('admin/manage', {
-                rows : result
+                rows1 : result1,
+                rows2 : result2
             }); 
         }
     });

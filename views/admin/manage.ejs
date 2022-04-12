@@ -42,45 +42,38 @@
                             <!-- category(project) -->
                             <div class="mng-category">
                             <% 
-                                for(let i=0; i < rows.length; i++) {
-                                    let data = rows[i];
+                                for(let i = 0; i < rows1.length; i++) {
+                                    let data = rows1[i]; 
                             %>
                                 <div class="mng-category__all">
                                     <a href="javascript:;" data-id="<%= data.main_id %>" class="<%= data.main_id == 1 ? 'active' : ''%>"><%= data.main_title %></a>
                                 </div>
+                                <ul class="mng-category__list">
+                                <%  
+                                    if(data.main_id === 1){
+                                    for(let j = 0; j < rows2.length; j++) {
+                                        let data2 = rows2[j];
+                                        if(data2.main_id === 1){
+                                %>
+                                            <li>
+                                                <a href="javascript:;" data-id="<%= data2.sub_id %>"><%= data2.sub_title %></a>
+                                            </li>
+                                        <% } %>
+                                    <% } %>
+                                </ul>
+                                <% } else { 
+                                    for(let k = 0; k < rows2.length; k++) {
+                                        let data3 = rows2[k];
+                                        if(data3.main_id === 2){
+                                %>
+                                            <li>
+                                                <a href="javascript:;" data-id="<%= data3.sub_id %>"><%= data3.sub_title %></a>
+                                            </li>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
                             <% } %>
                             </div>
-<!-- 참고
-                            <% 
-                            for(let i= 0 ; i < rows.length; i++){
-                                let data = rows[i];
-                        %>
-                        <tr>
-                            <td><%= data.idx %></td>
-                            <td>
-                                <a href='/board/read/<%= data.idx %>' target="_blank"><%= data.name %></a>
-                            </td>
-                            <td><%= data.title %></td>
-                            <td><%= data.hit %></td>
-                            <td><%= data.modidate %></td>
-                            <td><%= data.regdate %></td>
-                        </tr>
-                        <% }%> -->
-
-                            <!-- <div class="mng-category">
-                                <div class="mng-category__all">
-                                    <a href="javascript:;">Artwork</a>
-                                </div>
-                                <ul class="mng-category__list">
-                                    <li>
-                                        <a href="javascript:;">Category1</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Category2</a>
-                                    </li>
-                                </ul>
-                            </div> -->
-
                         </div>
                     </div>
 

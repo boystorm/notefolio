@@ -6,11 +6,17 @@ let Manage = function (){}; // 생성자
 
 // 카테고리 쿼리
 Manage.manageCategory = function(result){
-    conn.query("SELECT * FROM main_category", function(err, res){
+    let query1 = "SELECT * FROM main_category;" ;
+                
+    let query2 = "SELECT * FROM sub_category;";
+
+    conn.query(query1 + query2, function(err, res){
         if(err){
             result(null, err);
         } else {
-            result(null, res);
+            let res1 = res[0];
+            let res2 = res[1];
+            result(null, res1, res2);
         }
     });
     

@@ -4,7 +4,8 @@ var db_info = {
     port: '3306',
     user: 'root',
     password: '123456',
-    database: 'notefolio'
+    database: 'notefolio',
+    multipleStatements: true // 다중쿼리 사용    
 }
 
 module.exports = {
