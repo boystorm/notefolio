@@ -45,17 +45,19 @@ Manage.manageCategoryProcess = function(subTitle, mainId, result){
             result(null, res);
         }
     });
-
-
-    // conn.query("UPDATE main_category SET main_title = ? WHERE main_id = ?", [title, id], function(err, res){
-    //     if(err){
-    //         result(null, err);
-    //     } else {
-    //         result(null, res);
-    //     }
-    // });
 };
 
-
+// 카테고리 수정
+Manage.manageCategoryUpdateProcess = function(subTitle, mainId, subId, result){
+    conn.query("update sub_category set SUB_TITLE = ?, main_id = ? where sub_id = ?", [subTitle, mainId, subId], function(err, res){
+        if(err){
+            result(null, err);
+        } else {
+            console.log(res)
+            console.log("1111");
+            result(null, res);
+        }
+    });
+};
 
 module.exports = Manage;

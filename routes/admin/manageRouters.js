@@ -12,12 +12,13 @@ const ManageController = require('../../controllers/admin/manageController');
 /* 카테고리 관리 화면 */
 router.get('/', ManageController.manage);
 
-/* 카테고리 리스트 목록 */
+/* 카테고리 Select 목록 */
 router.get('/category/data', ManageController.manageCatgoryData);
 
-
-/* 카테고리 매니저 */
+/* 카테고리 Insert 매니저 */
 router.post('/manageCategoryProcess', ManageController.manageCategory); 
 
+/* 카테고리 Update 매니저 */
+router.post('/manageCategoryUpdateProcess', ManageController.manageCategoryUpdate); 
 
 module.exports = router;

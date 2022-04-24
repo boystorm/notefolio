@@ -47,4 +47,19 @@ exports.manageCategory = function(req, res){
     });
 };
 
+// 카테고리 수정 컨트롤러
+exports.manageCategoryUpdate = function(req, res){
+    let subId = req.body.categorySubId;
+    let subTitle = req.body.categoryName;
+    let mainId = req.body.categoryKinds;
+
+    Manage.manageCategoryUpdateProcess(subTitle, mainId, subId, function(err, result){
+        if (err) {
+            res.send(err);
+        } else {
+            // data json 넘겼으니 result 결과를 던져야함
+            res.json(result);
+        }
+    });
+};
 
