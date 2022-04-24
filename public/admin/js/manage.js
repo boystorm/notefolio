@@ -6,22 +6,11 @@ $(function() {
      */
     $("#categoryBtn").on("click", function(){
         $(".modal").css("display","block");
-        // 초기화
-        $("#CategoryNewItem").remove();
 
-         // 새 카테고리 추가
-         $("#categoryNewBtn").on("click", function(){
-            $(".modal__tree--item").removeClass("on");
-    
-            if ($("#CategoryNewItem")[0] === undefined) {
-                $("#categoryNewBtn").unbind("click");
-                
-                $(".modal__tree--list")[0].innerHTML 
-                    += '<li id="CategoryNewItem" class="modal__tree--item on">New Category</li>';
-                
-                $("#categoryNameInput").prop("readonly", false);
-            }
-        });
+        // 초기화
+        $(".modal__tree--item").removeClass("on");
+        $("#CategoryNewItem").remove();
+        $("#categoryNameInput").attr("readonly", true);
 
         $.ajax({
             type : "get",
@@ -29,11 +18,13 @@ $(function() {
             dataType : "JSON"
         })
         .done(function(json){
+            
+
             if($(".modal__tree--item").length === 0){
                 _.forEach(json.rows2, function (val, key) {
                     let info = '';
     
-                    info += "<li class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
+                    info += "<li data-value=" + val.sub_id + " class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
                     info += "<span>" + val.sub_title + "</span>";
                     info += "<button type='button'>X</button>";
                     info += "</li>";
@@ -44,10 +35,29 @@ $(function() {
             
             // 카테고리 리스트 선택
             $(".modal__tree--item").on("click", function(){
+                let subId = $(this).data('value');
+
                 $(".modal__tree--item").removeClass("on");
                 $(this).addClass("on");
-        
+                
+                // subID 텍스트 히든태그
+                $("#categorySubIdInput").val(subId);
                 $("#categoryNameInput").prop("readonly", false);
+            });
+
+            // 새 카테고리 추가
+            $("#categoryNewBtn").on("click", function(){
+                $(".modal__tree--item").removeClass("on");
+                
+                if ($("#CategoryNewItem")[0] === undefined) {
+                    $("#categorySubIdInput").val("");
+                    $("#categoryNewBtn").unbind("click");
+                    $(".modal__tree--item").unbind("click");
+                    $(".modal__generate")[0].innerHTML 
+                        += '<div id="CategoryNewItem" class="modal__generate--item">New Category</div>';
+
+                    $("#categoryNameInput").prop("readonly", false);
+                }
             });
             
         })
@@ -83,36 +93,21 @@ $(function() {
                 }
             },
             submitHandler: function(form) {               
+                let subIdVal = $("#categorySubIdInput").val();
                 let parameter = $("#categoryForm").serializeObject();                
-
+                
                 // ajax type parameter 가지고와서
                 //-> url -> route -> controller -> model -> ajax 
-                $.ajax({
-                    type : "POST",
-                    url : "/admin/manage/manageCategoryProcess",
-                    dataType : "JSON",
-                    data : parameter
-                })
-        
-                .done(function(json){
-                    // 등록 완료 후 결과
+                if(subIdVal !== ""){
+                    // update
                     $.ajax({
-                        type : "get",
-                        url : "/admin/manage",
-                        dataType : "JSON"
+                        type : "POST",
+                        url : "/admin/manage/manageCategoryUpdateProcess",
+                        dataType : "JSON",
+                        data : parameter
                     })
                     .done(function(json){
-                        console.log(json);
-
-                        // <li class="modal__tree--item category1 on">
-                    //                         <span>Project 카테고리1</span>
-                    //                         <button type="button">X</button>
-                    //                     </li>
-                    //                     <li class="modal__tree--item category2 ">
-                    //                         <span>Artwork 카테고리2</span>
-                    //                         <button type="button">X</button>
-                    //                     </li>
-
+                        alert("업데이트 완료")
 
 
                     })
@@ -120,11 +115,52 @@ $(function() {
                         console.log("Ajax failed")
                     })
 
-                })
-        
-                .fail(function(xhr, status, errorThrown){
-                    console.log("Ajax failed")
-                })
+                } else {
+                    // insert
+                    $.ajax({
+                        type : "POST",
+                        url : "/admin/manage/manageCategoryProcess",
+                        dataType : "JSON",
+                        data : parameter
+                    })
+            
+                    .done(function(json){
+                        // 등록 완료 후 결과
+                        $.ajax({
+                            type : "get",
+                            url : "/admin/manage/category/data",
+                            dataType : "JSON"
+                        })
+                        .done(function(json){
+                            alert("저장 되었습니다.")
+    
+                            $("#CategoryNewItem").remove();
+                            $(".modal__tree--item").remove();
+                            $("#categoryNameInput").attr("readonly", true);
+                            
+                            _.forEach(json.rows2, function (val, key) {
+                                let info = '';
+                
+                                info += "<li class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
+                                info += "<span>" + val.sub_title + "</span>";
+                                info += "<button type='button'>X</button>";
+                                info += "</li>";
+                
+                                $(".modal__tree--list").append(info);
+                            });
+    
+                            $(".modal").css("display","none");      
+                        })
+                        .fail(function(xhr, status, errorThrown){
+                            console.log("Ajax failed")
+                        })
+    
+                    })
+            
+                    .fail(function(xhr, status, errorThrown){
+                        console.log("Ajax failed")
+                    })
+                }
             }
         });      
     })

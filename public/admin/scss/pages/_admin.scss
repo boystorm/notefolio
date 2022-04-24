@@ -632,6 +632,17 @@ main{
             }
         }
     }
+    .modal__generate--item{
+        display: flex;
+        align-items: center;
+        padding: 8px 8px;
+        cursor: pointer;
+        margin: 5px 0;
+        border-radius: 4px;
+        background-color: #286090;
+        font-size: 15px;
+        color: #fff;
+    }
 }
 .color__important {
     color: red;

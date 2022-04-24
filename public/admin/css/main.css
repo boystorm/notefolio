@@ -1,5 +1,5 @@
-/* directory admin     node-sass --watch scss/main.scss css/main.css */
-/* directory admin     node-sass --output-style compact scss --output css */
+/* directory : public > admin     node-sass --watch scss/main.scss css/main.css */
+/* directory : public > admin     node-sass --output-style compact scss --output css */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -1096,6 +1096,16 @@ main {
         background-color: salmon;
         display: inline-block;
         margin-right: 10px; }
+  .modal .modal__generate--item {
+    display: flex;
+    align-items: center;
+    padding: 8px 8px;
+    cursor: pointer;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: #286090;
+    font-size: 15px;
+    color: #fff; }
 
 .color__important {
   color: red; }
