@@ -6,6 +6,28 @@ $(function() {
      */
     $("#categoryBtn").on("click", function(){
         $(".modal").css("display","block");
+
+        $.ajax({
+            type : "get",
+            url : "/admin/manage/category/data",
+            dataType : "JSON"
+        })
+        .done(function(json){
+            _.forEach(json.rows2, function (val, key) {
+                console.log(val.main_id);
+                let info = '';
+
+                info += "<li class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
+                info += "<span>" + val.sub_title + "</span>";
+                info += "<button type='button'>X</button>";
+                info += "</li>";
+
+                $(".modal__tree--list").append(info);
+            });
+        })
+        .fail(function(xhr, status, errorThrown){
+            console.log("Ajax failed")
+        })
     });
 
     /**
@@ -39,7 +61,6 @@ $(function() {
         if ($("#CategoryNewItem")[0] === undefined) {
             $(".modal__tree--list")[0].innerHTML 
                 += '<li id="CategoryNewItem" class="modal__tree--item on">New Category</li>';
-
             $("#categoryNewBtn").unbind("click");
             $("#categoryNameInput").prop("readonly", false);
         }
@@ -50,7 +71,7 @@ $(function() {
      * 설  명 : 카테고리 팝업 아이템 추가 등록
      * =======================================
      */
-    $(".btn-confirm").on("click", function(){
+    $("#confirmBtn").on("click", function(){
         let categoryForm = $("#categoryForm").validate({
             rules: {
                 categoryName: {
@@ -63,11 +84,7 @@ $(function() {
                 }
             },
             submitHandler: function(form) {               
-                // let formValObj = $("#categoryForm").serializeObject(),
-                //     parameter = JSON.stringify(formValObj);
-                let parameter = $("#categoryForm").serializeObject();
-
-                console.log(parameter);
+                let parameter = $("#categoryForm").serializeObject();                
 
                 // ajax type parameter 가지고와서
                 //-> url -> route -> controller -> model -> ajax 
@@ -79,7 +96,31 @@ $(function() {
                 })
         
                 .done(function(json){
-                    alert("저장되었습니다.");
+                    // 등록 완료 후 결과
+                    $.ajax({
+                        type : "get",
+                        url : "/admin/manage",
+                        dataType : "JSON"
+                    })
+                    .done(function(json){
+                        console.log(json);
+
+                        // <li class="modal__tree--item category1 on">
+                    //                         <span>Project 카테고리1</span>
+                    //                         <button type="button">X</button>
+                    //                     </li>
+                    //                     <li class="modal__tree--item category2 ">
+                    //                         <span>Artwork 카테고리2</span>
+                    //                         <button type="button">X</button>
+                    //                     </li>
+
+
+
+                    })
+                    .fail(function(xhr, status, errorThrown){
+                        console.log("Ajax failed")
+                    })
+
                 })
         
                 .fail(function(xhr, status, errorThrown){

@@ -1,7 +1,8 @@
 const Manage = require("../../models/admin/manage");
 
-// 카테고리 관리 컨트롤러
+// 카테고리 메인 컨트롤러
 exports.manage = function(req, res){
+    // 카테고리 리스트 및 게시판
     Manage.manageCategory(function(err, result1, result2){
         if(err){
             res.send(err);
@@ -10,6 +11,22 @@ exports.manage = function(req, res){
                 rows1 : result1,
                 rows2 : result2
             }); 
+        }
+    });
+    
+};
+
+// 카테고리 관리 컨트롤러
+exports.manageCatgoryData = function(req, res){
+    // 카테고리 리스트 및 게시판
+    Manage.manageCategoryData(function(err, result1, result2){
+        if(err){
+            res.send(err);
+        } else {
+            res.json({
+                rows1 : result1, 
+                rows2 : result2
+            });
         }
     });
     
