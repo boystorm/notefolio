@@ -6,6 +6,22 @@ $(function() {
      */
     $("#categoryBtn").on("click", function(){
         $(".modal").css("display","block");
+        // 초기화
+        $("#CategoryNewItem").remove();
+
+         // 새 카테고리 추가
+         $("#categoryNewBtn").on("click", function(){
+            $(".modal__tree--item").removeClass("on");
+    
+            if ($("#CategoryNewItem")[0] === undefined) {
+                $("#categoryNewBtn").unbind("click");
+                
+                $(".modal__tree--list")[0].innerHTML 
+                    += '<li id="CategoryNewItem" class="modal__tree--item on">New Category</li>';
+                
+                $("#categoryNameInput").prop("readonly", false);
+            }
+        });
 
         $.ajax({
             type : "get",
@@ -13,17 +29,27 @@ $(function() {
             dataType : "JSON"
         })
         .done(function(json){
-            _.forEach(json.rows2, function (val, key) {
-                console.log(val.main_id);
-                let info = '';
-
-                info += "<li class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
-                info += "<span>" + val.sub_title + "</span>";
-                info += "<button type='button'>X</button>";
-                info += "</li>";
-
-                $(".modal__tree--list").append(info);
+            if($(".modal__tree--item").length === 0){
+                _.forEach(json.rows2, function (val, key) {
+                    let info = '';
+    
+                    info += "<li class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
+                    info += "<span>" + val.sub_title + "</span>";
+                    info += "<button type='button'>X</button>";
+                    info += "</li>";
+    
+                    $(".modal__tree--list").append(info);
+                });
+            }
+            
+            // 카테고리 리스트 선택
+            $(".modal__tree--item").on("click", function(){
+                $(".modal__tree--item").removeClass("on");
+                $(this).addClass("on");
+        
+                $("#categoryNameInput").prop("readonly", false);
             });
+            
         })
         .fail(function(xhr, status, errorThrown){
             console.log("Ajax failed")
@@ -36,34 +62,7 @@ $(function() {
      * =======================================
     */
     $("#cancelBtn").on("click", function(){
-        $(".modal").css("display","none");
-    });
-
-    /**
-     * =======================================
-     * 설  명 : 카테고리 리스트 선택
-     * =======================================
-    */
-    $(".modal__tree--item").on("click", function(){
-        $(".modal__tree--item").removeClass("on");
-        $(this).addClass("on");
-
-        $("#categoryNameInput").prop("readonly", false);
-    });
-
-    /**
-     * =======================================
-     * 설  명 : 새 카테고리
-     * =======================================
-    */
-    $("#categoryNewBtn").on("click", function(){
-        $(".modal__tree--item").removeClass("on");
-        if ($("#CategoryNewItem")[0] === undefined) {
-            $(".modal__tree--list")[0].innerHTML 
-                += '<li id="CategoryNewItem" class="modal__tree--item on">New Category</li>';
-            $("#categoryNewBtn").unbind("click");
-            $("#categoryNameInput").prop("readonly", false);
-        }
+        $(".modal").css("display","none");        
     });
 
     /**
