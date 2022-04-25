@@ -57,8 +57,20 @@ exports.manageCategoryUpdate = function(req, res){
         if (err) {
             res.send(err);
         } else {
-            // data json 넘겼으니 result 결과를 던져야함
             res.json(result);
+        }
+    });
+};
+
+// 카테고리 삭제 컨트롤러
+exports.manageCategoryDelete = function(req, res){
+    let id = req.params.id;
+
+    Manage.manageCategoryDeleteProcess(id, function(err, result){
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
         }
     });
 };

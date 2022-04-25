@@ -21,4 +21,7 @@ router.post('/manageCategoryProcess', ManageController.manageCategory);
 /* 카테고리 Update 매니저 */
 router.post('/manageCategoryUpdateProcess', ManageController.manageCategoryUpdate); 
 
+/* 카테고리 Delete 매니저 */
+router.delete('/category/:id', ManageController.manageCategoryDelete); 
+
 module.exports = router;

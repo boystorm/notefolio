@@ -53,8 +53,17 @@ Manage.manageCategoryUpdateProcess = function(subTitle, mainId, subId, result){
         if(err){
             result(null, err);
         } else {
-            console.log(res)
-            console.log("1111");
+            result(null, res);
+        }
+    });
+};
+
+// 카테고리 삭제
+Manage.manageCategoryDeleteProcess =  function(id, result){
+    conn.query("delete from sub_category where sub_id = ?", id, function(err, res){
+        if(err){
+            result(null, err);
+        } else {
             result(null, res);
         }
     });

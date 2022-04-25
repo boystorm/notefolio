@@ -1,3 +1,88 @@
+/**
+ * =======================================
+ * 설  명 : 카테고리 팝업 리스트 함수
+ * =======================================
+ */
+function fnCategoryList(){
+    $.ajax({
+        type : "get",
+        url : "/admin/manage/category/data",
+        dataType : "JSON"
+    })
+    .done(function(json){
+        $("#categoryNewItem").remove();
+        $(".modal__tree--item").remove();
+        $("#categoryNameInput").attr("readonly", true);
+        $("#categoryNameInput").val("");
+
+        if($(".modal__tree--item").length === 0){
+            _.forEach(json.rows2, function (val, key) {
+                let info = '';
+
+                info += "<li data-value=" + val.sub_id + " class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
+                info += "<span>" + val.sub_title + "</span>";
+                info += "<button type='button' class='category-item-del'>X</button>";
+                info += "</li>";
+
+                $(".modal__tree--list").append(info);
+            });
+        }
+        
+        // 카테고리 리스트 선택
+        $(".modal__tree--item").on("click", function(){
+            let subId = $(this).data('value');
+
+            $(".modal__tree--item").removeClass("on");
+            $(this).addClass("on");
+            
+            // subID 텍스트 히든태그
+            $("#categorySubIdInput").val(subId);
+            $("#categoryNameInput").prop("readonly", false);
+
+            // 카테고리 이름
+            let = categoryName = $(this).find('span').text();
+            $("#categoryNameInput").val(categoryName);
+            $("#categoryNameInput").focus();
+        });
+
+        // 새 카테고리 추가
+        $("#categoryNewBtn").on("click", function(){
+            $(".modal__tree--item").removeClass("on");
+            
+            if ($("#categoryNewItem")[0] === undefined) {
+                $("#categorySubIdInput").val("");
+                $(".modal__generate")[0].innerHTML 
+                    += '<div id="categoryNewItem" class="modal__generate--item">New Category</div>';
+
+                $("#categoryNameInput").prop("readonly", false);
+                $("#categoryNameInput").val("");
+                $("#categoryNameInput").focus();
+            }
+        });
+
+         // 카테고리 삭제
+         $(".category-item-del").on("click", function(){
+            let subId = $(this).parent().data('value');
+            console.log(subId)
+            $.ajax({
+                type : "DELETE",
+                url : "/admin/manage/category/" + subId,
+            })
+            .done(function(result){
+                alert("삭제 되었습니다.");
+
+                fnCategoryList();
+            })
+            .fail(function(xhr, status, errorThrown){
+                console.log("Ajax failed")
+            })
+        });
+    })
+    .fail(function(xhr, status, errorThrown){
+        console.log("Ajax failed")
+    })
+}
+
 $(function() {
     /**
      * =======================================
@@ -9,61 +94,10 @@ $(function() {
 
         // 초기화
         $(".modal__tree--item").removeClass("on");
-        $("#CategoryNewItem").remove();
+        $("#categoryNewItem").remove();
         $("#categoryNameInput").attr("readonly", true);
 
-        $.ajax({
-            type : "get",
-            url : "/admin/manage/category/data",
-            dataType : "JSON"
-        })
-        .done(function(json){
-            
-
-            if($(".modal__tree--item").length === 0){
-                _.forEach(json.rows2, function (val, key) {
-                    let info = '';
-    
-                    info += "<li data-value=" + val.sub_id + " class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
-                    info += "<span>" + val.sub_title + "</span>";
-                    info += "<button type='button'>X</button>";
-                    info += "</li>";
-    
-                    $(".modal__tree--list").append(info);
-                });
-            }
-            
-            // 카테고리 리스트 선택
-            $(".modal__tree--item").on("click", function(){
-                let subId = $(this).data('value');
-
-                $(".modal__tree--item").removeClass("on");
-                $(this).addClass("on");
-                
-                // subID 텍스트 히든태그
-                $("#categorySubIdInput").val(subId);
-                $("#categoryNameInput").prop("readonly", false);
-            });
-
-            // 새 카테고리 추가
-            $("#categoryNewBtn").on("click", function(){
-                $(".modal__tree--item").removeClass("on");
-                
-                if ($("#CategoryNewItem")[0] === undefined) {
-                    $("#categorySubIdInput").val("");
-                    $("#categoryNewBtn").unbind("click");
-                    $(".modal__tree--item").unbind("click");
-                    $(".modal__generate")[0].innerHTML 
-                        += '<div id="CategoryNewItem" class="modal__generate--item">New Category</div>';
-
-                    $("#categoryNameInput").prop("readonly", false);
-                }
-            });
-            
-        })
-        .fail(function(xhr, status, errorThrown){
-            console.log("Ajax failed")
-        })
+        fnCategoryList();
     });
 
     /**
@@ -92,7 +126,7 @@ $(function() {
                     required: "필수 항목입니다."
                 }
             },
-            submitHandler: function(form) {               
+            submitHandler: function(form) {
                 let subIdVal = $("#categorySubIdInput").val();
                 let parameter = $("#categoryForm").serializeObject();                
                 
@@ -107,9 +141,10 @@ $(function() {
                         data : parameter
                     })
                     .done(function(json){
-                        alert("업데이트 완료")
+                        alert("수정되었습니다.");
 
-
+                        // 카테고리 리스트 호출
+                        fnCategoryList();
                     })
                     .fail(function(xhr, status, errorThrown){
                         console.log("Ajax failed")
@@ -123,47 +158,22 @@ $(function() {
                         dataType : "JSON",
                         data : parameter
                     })
-            
                     .done(function(json){
-                        // 등록 완료 후 결과
-                        $.ajax({
-                            type : "get",
-                            url : "/admin/manage/category/data",
-                            dataType : "JSON"
-                        })
-                        .done(function(json){
-                            alert("저장 되었습니다.")
-    
-                            $("#CategoryNewItem").remove();
-                            $(".modal__tree--item").remove();
-                            $("#categoryNameInput").attr("readonly", true);
-                            
-                            _.forEach(json.rows2, function (val, key) {
-                                let info = '';
-                
-                                info += "<li class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
-                                info += "<span>" + val.sub_title + "</span>";
-                                info += "<button type='button'>X</button>";
-                                info += "</li>";
-                
-                                $(".modal__tree--list").append(info);
-                            });
-    
-                            $(".modal").css("display","none");      
-                        })
-                        .fail(function(xhr, status, errorThrown){
-                            console.log("Ajax failed")
-                        })
-    
+                        alert("등록하였습니다.");
+
+                        // 카테고리 리스트 호출
+                        fnCategoryList();
                     })
-            
                     .fail(function(xhr, status, errorThrown){
                         console.log("Ajax failed")
                     })
                 }
             }
-        });      
-    })
+        });            
+    });
+
+    
+
 
 });
 
