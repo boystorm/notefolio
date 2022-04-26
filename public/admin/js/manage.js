@@ -1,9 +1,75 @@
 /**
  * =======================================
+ * 설  명 : 카테고리 매니저 카테고리 리스트 호출
+ * =======================================
+ */
+function fnCategoryInitList(){
+    // 카테고리 매니저 목록
+    $(".mng-category__all").remove();
+    $(".mng-category__list").remove();
+
+    if($(".mng-category__all").length === 0 && $(".mng-category__list").length === 0){
+        $.ajax({
+            type : "get",
+            url : "/admin/manage/category/data",
+            dataType : "JSON"
+        })
+        .done(function(json){
+            // 카테고리 매니저 리스트 호출
+            fnCategoryManageList(json);
+        })
+        .fail(function(xhr, status, errorThrown){
+            console.log("카테고리 매니저 Ajax failed")
+        });
+    }
+};
+
+
+
+/**
+ * =======================================
+ * 설  명 : 카테고리 매니저 카테고리 리스트 출력
+ * =======================================
+ */
+ function fnCategoryManageList(json){
+    let info = '';
+    for(i = 0; i < json.rows1.length ; i++){
+        let data = json.rows1[i];
+        info += "<div class='mng-category__all'>";
+        info += "<a href='javascript:;' data-id=" + data.main_id +" class=" + (data.main_id == 1 ? "active" : "") + ">" + data.main_title +"</a>";
+        info += "</div>"
+
+        info += "<ul class='mng-category__list'>"
+        if(data.main_id === 1){
+            for(let j = 0; j < json.rows2.length; j++) {
+                let data2 = json.rows2[j];
+                if(data2.main_id === 1){
+                    info += "<li>";
+                    info += "<a href='javascript:;' data-id=" + data2.sub_id + ">" + data2.sub_title + "</a>";
+                    info += "</li>";
+                }
+            }   
+            info += "</ul>"
+        }else{
+            for(let k = 0; k < json.rows2.length; k++) {
+                let data3 = json.rows2[k];
+                if(data3.main_id === 2){
+                    info += "<li>";
+                    info += "<a href='javascript:;' data-id=" + data3.sub_id + ">" + data3.sub_title + "</a>";
+                    info += "</li>";
+                }
+            }
+        }
+    };
+    $(".mng-category").append(info);
+};
+
+/**
+ * =======================================
  * 설  명 : 카테고리 팝업 리스트 함수
  * =======================================
  */
-function fnCategoryList(){
+function fnCategoryPopList(){
     $.ajax({
         type : "get",
         url : "/admin/manage/category/data",
@@ -71,17 +137,20 @@ function fnCategoryList(){
             .done(function(result){
                 alert("삭제 되었습니다.");
 
-                fnCategoryList();
+                fnCategoryPopList();
+                fnCategoryInitList();
             })
             .fail(function(xhr, status, errorThrown){
-                console.log("Ajax failed")
+                console.log("카테고리 삭제 Ajax failed")
             })
         });
     })
     .fail(function(xhr, status, errorThrown){
-        console.log("Ajax failed")
+        console.log("리스트 불러오기 Ajax failed")
     })
 }
+
+
 
 $(function() {
     /**
@@ -97,7 +166,7 @@ $(function() {
         $("#categoryNewItem").remove();
         $("#categoryNameInput").attr("readonly", true);
 
-        fnCategoryList();
+        fnCategoryPopList();
     });
 
     /**
@@ -144,10 +213,11 @@ $(function() {
                         alert("수정되었습니다.");
 
                         // 카테고리 리스트 호출
-                        fnCategoryList();
+                        fnCategoryPopList();
+                        fnCategoryInitList();
                     })
                     .fail(function(xhr, status, errorThrown){
-                        console.log("Ajax failed")
+                        console.log("카테고리 수정 Ajax failed")
                     })
 
                 } else {
@@ -162,18 +232,15 @@ $(function() {
                         alert("등록하였습니다.");
 
                         // 카테고리 리스트 호출
-                        fnCategoryList();
+                        fnCategoryPopList();
+                        fnCategoryInitList();
                     })
                     .fail(function(xhr, status, errorThrown){
-                        console.log("Ajax failed")
+                        console.log("카테고리 등록 Ajax failed")
                     })
                 }
             }
         });            
     });
-
-    
-
-
 });
 
