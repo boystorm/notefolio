@@ -39,9 +39,9 @@ Manage.manageCategoryData = function(result){
 // 카테고리 등록
 Manage.manageCategoryProcess = function(subTitle, mainId, result){
     let insert = "INSERT INTO sub_category (sub_title, main_id) VALUES(?,?);";
-    let setting = "ALTER TABLE sub_category auto_increment = 0; SET @COUNT = 0; UPDATE sub_category SET sub_id = @COUNT:=@COUNT+1;"; 
+    let autoIncrement = "ALTER TABLE sub_category auto_increment = 0; SET @COUNT = 0; UPDATE sub_category SET sub_id = @COUNT:=@COUNT+1;"; 
 
-    conn.query(insert + setting, [subTitle, mainId], function(err, res){
+    conn.query(insert + autoIncrement, [subTitle, mainId], function(err, res){
         if(err){
             result(null, err);
         } else {

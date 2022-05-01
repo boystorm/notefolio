@@ -21,11 +21,31 @@ CREATE TABLE `sub_category` (
     constraint `fk_main_id` foreign key(`main_id`) references `main_category`(`main_id`)
 );
 
-
--- 작가 생성
+-- 작가 아이템
 INSERT INTO `author` (id, password) VALUES ('admin', '123456');
 
--- 메인 카테고리 생성
+-- 메인 카테고리 아이템
 INSERT INTO `main_category` (main_title) VALUES ('project');
 INSERT INTO `main_category` (main_title) VALUES ('artwork');
 
+
+/* 게시판 */ 
+
+-- 메인 게시판
+CREATE TABLE `board`(
+    `idx` int(11) NOT NULL AUTO_INCREMENT,
+    `image` varchar(50) NOT NULL,
+    `title` varchar(50) NOT NULL,
+    `content` mediumtext,
+    `regdate` datetime NOT NULL,
+    `modidate` datetime NOT NULL,
+    `main_id` int(11) NOT NULL,
+    `sub_id` int(11) NOT NULL,
+    PRIMARY KEY(`IDX`),
+    constraint `fk_board_main_id` foreign key(`main_id`) references `main_category`(`main_id`),
+    constraint `fk_board_sub_id` foreign key(`sub_id`) references `sub_category`(`sub_id`)
+);
+
+-- 메인 게시판 아이템
+INSERT INTO `board`(`image`,`title`,`content`,`regdate`,`modidate`,`main_id`,`sub_id`)
+VALUES ('image.png','제목','내용','2022-05-01 15:42:00','2022-05-01 15:43:00','1','1');
