@@ -5,17 +5,20 @@ db_config.connect(conn);
 let Manage = function (){}; // 생성자
 
 // 카테고리 쿼리
-Manage.manageCategory = function(result){
+Manage.manageData = function(result){
     let query1 = "SELECT * FROM main_category;" ;
     let query2 = "SELECT * FROM sub_category;";
+    let query3 = "SELECT idx, image, title, content, date_format(regdate, '%Y-%m-%d %H:%i:%s') regdate," 
+                + "date_format(modidate, '%Y-%m-%d %H:%i:%s') modidate, main_id, sub_id FROM board";
 
-    conn.query(query1 + query2, function(err, res){
+    conn.query(query1 + query2 + query3, function(err, res){
         if(err){
             result(null, err);
         } else {
             let res1 = res[0];
             let res2 = res[1];
-            result(null, res1, res2);
+            let res3 = res[2];
+            result(null, res1, res2, res3);
         }
     });
 };

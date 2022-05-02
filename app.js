@@ -17,15 +17,6 @@ const ejs = require('ejs');  // ejs 템플릿
  
 /**
 * =======================================
-* 설  명 : 데이터베이스 Mysql(모듈화 가능한지 확인 필요)
-* =======================================
-*/
-// const db_config = require(path.join(__dirname, "config/mysql"));
-// const conn = db_config.init();
-// db_config.connect(conn);
-
-/**
-* =======================================
 * 설  명 : app.use() 미들웨이 기능 마운트
 * =======================================
 */
@@ -39,7 +30,7 @@ app.use(expressSession({
 
 // req.body 사용하기 위한 미들웨어
 app.use(express.json())
-app.use(express.urlencoded({ extends: true}))
+app.use(express.urlencoded({extends: true}))
  /**
   * =======================================
   * 설  명 : ejs 템플릿 설정

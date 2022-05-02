@@ -1,19 +1,21 @@
 const Manage = require("../../models/admin/manage");
 
 // 카테고리 메인 컨트롤러
-exports.manage = function(req, res){
+exports.manageData = function(req, res){
+    //let page = req.params.page;
+
     // 카테고리 리스트 및 게시판
-    Manage.manageCategory(function(err, result1, result2){
+    Manage.manageData(function(err, result1, result2, result3){
         if(err){
             res.send(err);
         } else {
             res.render('admin/manage', {
                 rows1 : result1,
-                rows2 : result2
+                rows2 : result2,
+                rows3 : result3
             }); 
         }
     });
-    
 };
 
 // 카테고리 관리 컨트롤러

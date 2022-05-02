@@ -31,7 +31,7 @@
                     <div class="mng__setting">
                         <div class="card">
                             <div class="mng__title">
-                                <span>Category Manager</span>
+                                <span>카테고리 관리</span>
                                 <a href="javascript:;" id="categoryBtn" class="mng__title--btn">
                                     <span>
                                         <i class="fas fa-cog"></i>
@@ -99,64 +99,55 @@
                             </div>
                         </div>
 
-                        <!-- bottom table -->
                         <div class="mng__empty display-none">등록된 프로젝트가 없습니다.</div>
+
                         <div class="mng__table">
                             <div class="card">
                                 <table>
-                                    <caption></caption>
                                     <colgroup> 
-                                        <col style="width:5%"> 
-                                        <col style="width:8%"> 
+                                        <col style="width:3%"> 
+                                        <col style="width:10%"> 
+                                        <col style="width:6%">
+                                        <col style="width:12%">
+                                        <col style="width:25%">
+                                        <col style="width:12%">
+                                        <col style="width:12%">
                                         <col style="width:10%">
-                                        <col style="width:22%">
-                                        <col style="width:20%">
-                                        <col style="width:20%">
-                                        <col style="width:15%">
+                                        <col style="width:10%">
                                     </colgroup>
                                     <thead>
                                         <tr>
                                             <th scope="col"><input type="checkbox" id="cateAllChk"></th>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Thumbnail</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">[Pop up] Image/Video File</th>
-                                            <th scope="col">Category Name</th>
-                                            <th scope="col">Date</th>
+                                            <th scope="col">순번</th>
+                                            <th scope="col">이미지</th>
+                                            <th scope="col">제목</th>
+                                            <th scope="col">내용</th>
+                                            <th scope="col">작성일</th>
+                                            <th scope="col">수정일</th>
+                                            <th scope="col">메인 카테고리</th>
+                                            <th scope="col">서브 카테고리</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% 
+                                            for(let i=0; i < rows3.length; i++){
+                                                let data = rows3[i];
+                                        %>
                                         <tr>
                                             <td class="mng__table--center"><input type="checkbox" name="cateChk"></td>
-                                            <td class="mng__table--center">1</td>
-                                            <td class="mng__table--center"><a href="./manageRegister.html"><img src="http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg" class="mng__table--thumb"></a></td>
-                                            <td class="mng__table--center">LG OLED TV KV, OOH</td>
-                                            <td class="mng__table--center">card16_thumbnail.jpg</td>
-                                            <td class="mng__table--center">category1</td>
-                                            <td class="mng__table--center">2022-01-05</td>
+                                            <td class="mng__table--center"><%= data.idx %></td>
+                                            <td class="mng__table--center"><a href="javascript:;"><img src="http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg" class="mng__table--thumb"></a></td>
+                                            <td class="mng__table--center"><%= data.title %></td>
+                                            <td class="mng__table--center"><%= data.content %></td>
+                                            <td class="mng__table--center"><%= data.regdate %></td>
+                                            <td class="mng__table--center"><%= data.modidate %></td>
+                                            <td class="mng__table--center"><%= data.main_id %></td>
+                                            <td class="mng__table--center"><%= data.sub_id %></td>
                                         </tr>
-                                        <tr>
-                                            <td class="mng__table--center"><input type="checkbox" name="cateChk"></td>
-                                            <td class="mng__table--center">2</td>
-                                            <td class="mng__table--center"><a href="javascript:;"><img src="http://www.jeong9-9.com/img/thumbnail/card18_thumbnail.jpg" class="mng__table--thumb"></a></td>
-                                            <td class="mng__table--center">LG.com PocketPhoto</td>
-                                            <td class="mng__table--center">card18_thumbnail.jpg</td>
-                                            <td class="mng__table--center">category1</td>
-                                            <td class="mng__table--center">2022-01-05</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="mng__table--center"><input type="checkbox" name="cateChk"></td>
-                                            <td class="mng__table--center">3</td>
-                                            <td class="mng__table--center"><a href="javascript:;"><img src="http://www.jeong9-9.com/img/thumbnail/card19_thumbnail.jpg" class="mng__table--thumb"></a></td>
-                                            <td class="mng__table--center">LG.com XBOOM OK99</td>
-                                            <td class="mng__table--center">card19_thumbnail.jpg</td>
-                                            <td class="mng__table--center">category1</td>
-                                            <td class="mng__table--center">2022-01-05</td>
-                                        </tr>
+                                        <% } %>
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- pagination -->
                             <div class="mng__pagination">
                                 <ul class="pagination">
                                     <li class="prev disabled">
@@ -171,6 +162,7 @@
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
