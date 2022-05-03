@@ -33,43 +33,25 @@
                 </div>
             </div>
         </header>
-        
-        <main>
-            <div class="content">
-                <div class="register">
-                    <div class="register__option">
-                        <div class="register__btn">
-                            <a href="./manage.html" class="btn btn-cancel">취소</a>
-                            <a href="./manage.html" class="btn btn-confirm">확인</a>
+        <form action="/admin/board/boardAddProcess" method="post">
+            <main>
+                <div class="content">
+                    <div class="register">
+                        <div class="register__option">
+                            <div class="register__btn">
+                                <button type="button" class="btn btn-cancel">취소</button>
+                                <button type="submit" class="btn btn-confirm">확인</button>
+                            </div>
                         </div>
-                    </div>
-                    <form action="registerForm" method="post"><!-- 파일 넘길때 속성 필요 -->
+                        
                         <div class="register__action">
-                            <!-- <div class="card register__act01">
-                                <h2>카테고리 선택</h2>
-                                <label class="register__act01--label">
-                                    <input type="radio" name="category">
-                                    <span>카테고리1</span>
-                                </label>
-                                <label class="register__act01--label">
-                                    <input type="radio" name="category">
-                                    <span>카테고리2</span>
-                                </label>
-                                <label class="register__act01--label">
-                                    <input type="radio" name="category">
-                                    <span>카테고리3</span>
-                                </label>
-                                <label class="register__act01--label">
-                                    <input type="radio" name="category">
-                                    <span>카테고리4</span>
-                                </label>
-                            </div> -->
+                            <div class="card register__act">
+                                <input type="text" name="mainId" value="<%= mainId %>">
+                                <input type="text" name="subId" value="<%= subId %>">
 
-                            <!--  파일 업로더 -->
-                            <div class="card register__act02">
                                 <div class="form__groups">
                                     <label for="registerTitle"><span class="color__important">* </span>제목</label>
-                                    <input id="registerTitle" type="text">
+                                    <input id="registerTitle" type="text" name="title">
                                 </div>
 
                                 <div class="form__groups">
@@ -79,16 +61,15 @@
                                 
                                 <!-- 스마트 에디터 2 -->
                                 <div class="form__groups">
-                                    <p>세부내용</p>
+                                    <p>내용</p>
                                     <div id="summernote"></div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </main>
-
+            </main>
+        </form>
     </div>
 </body>
 </html>

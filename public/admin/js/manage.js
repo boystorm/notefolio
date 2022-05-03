@@ -24,8 +24,6 @@ function fnCategoryInitList(){
     }
 };
 
-
-
 /**
  * =======================================
  * 설  명 : 카테고리 매니저 카테고리 리스트 출력
@@ -36,7 +34,7 @@ function fnCategoryInitList(){
     for(i = 0; i < json.rows1.length ; i++){
         let data = json.rows1[i];
         info += "<div class='mng-category__all'>";
-        info += "<a href='javascript:;' data-id=" + data.main_id +" class=" + (data.main_id == 1 ? "active" : "") + ">" + data.main_title +"</a>";
+        info += "<a href='javascript:;' data-main-id=" + data.main_id +" class=" + (data.main_id == 1 ? "active" : "") + ">" + data.main_title +"</a>";
         info += "</div>"
 
         info += "<ul class='mng-category__list'>"
@@ -45,7 +43,7 @@ function fnCategoryInitList(){
                 let data2 = json.rows2[j];
                 if(data2.main_id === 1){
                     info += "<li>";
-                    info += "<a href='javascript:;' data-id=" + data2.sub_id + ">" + data2.sub_title + "</a>";
+                    info += "<a href='javascript:;' data-sub-id=" + data2.sub_id + ">" + data2.sub_title + "</a>";
                     info += "</li>";
                 }
             }   
@@ -55,7 +53,7 @@ function fnCategoryInitList(){
                 let data3 = json.rows2[k];
                 if(data3.main_id === 2){
                     info += "<li>";
-                    info += "<a href='javascript:;' data-id=" + data3.sub_id + ">" + data3.sub_title + "</a>";
+                    info += "<a href='javascript:;' data-sub-id=" + data3.sub_id + ">" + data3.sub_title + "</a>";
                     info += "</li>";
                 }
             }
@@ -150,9 +148,48 @@ function fnCategoryPopList(){
     })
 }
 
-
-
 $(function() {
+    /**
+     * =======================================
+     * 설  명 : 메인 카테고리 클릭
+     * =======================================
+     */
+    $(".mng-category__all a").on("click", function(){
+        let self = $(this).hasClass("active");
+        let element = $(".mng-category__all a");
+        let elementAnother = $(".mng-category__list li a");
+        let manageBtn = $(".mng__btn");
+
+        if(!self){
+            manageBtn.addClass("display-none");
+            elementAnother.removeClass("active");
+            element.removeClass("active");
+            $(this).addClass("active");
+        }
+    });
+
+    /**
+     * =======================================
+     * 설  명 : 서브 카테고리 클릭
+     * =======================================
+     */
+    $(".mng-category__list li a").on("click", function(){
+        let self = $(this).hasClass("active");
+        let element = $(".mng-category__all a");
+        let elementAnother = $(".mng-category__list li a");
+        let manageBtn = $(".mng__btn");
+        let mainId = $(this).data("mainId");
+        let subId = $(this).data("subId");
+
+        if(!self){
+            manageBtn.removeClass("display-none");
+            elementAnother.removeClass("active");
+            element.removeClass("active");
+            $(this).addClass("active");
+            $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
+        }
+    });
+    
     /**
      * =======================================
      * 설  명 : 카테고리 팝업 오픈

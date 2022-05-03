@@ -845,16 +845,7 @@ main {
         font-weight: bold;
         font-size: 16px;
         margin-bottom: 15px; }
-      main .content .register .register__action .register__act01 {
-        width: 19%;
-        height: 100%;
-        padding: 20px;
-        display: flex;
-        flex-direction: column; }
-        main .content .register .register__action .register__act01 .register__act01--label {
-          margin-bottom: 10px;
-          cursor: pointer; }
-      main .content .register .register__action .register__act02 {
+      main .content .register .register__action .register__act {
         width: 79%;
         padding: 20px; }
       main .content .register .register__action .form__groups {

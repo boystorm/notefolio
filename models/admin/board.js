@@ -9,13 +9,17 @@ db_config.connect(conn);
 
 let Board = function (){}; // 생성자
 
-// 카테고리 쿼리
-// Author.mainCategory = function(id, password, result){
-//     conn.query("SELECT * FROM author WHERE id = ? AND password = ?", [id, password], function (err, res) {
-//       if(err){
-//         result(null, err);
-//       } else {
-//         result(null, res);
-//       }
-//     });
-//   };
+// 게시판 글 등록
+Board.boardAddProcess = function(mainId, subId, title, result){
+    let insert = "INSERT INTO board (image, title, content, regdate, modidate, main_id, sub_id) values(1,?,1,now(),now(),?,?);";
+
+    conn.query(insert, [title, mainId, subId], function(err, res){
+        if(err){
+            result(null, err);
+        } else {
+            result(null, res);
+        }
+    });
+};
+
+module.exports = Board;

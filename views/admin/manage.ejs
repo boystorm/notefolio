@@ -46,7 +46,7 @@
                                     let data = rows1[i]; 
                             %>
                                 <div class="mng-category__all">
-                                    <a href="javascript:;" data-id="<%= data.main_id %>" class="<%= data.main_id == 1 ? 'active' : ''%>"><%= data.main_title %></a>
+                                    <a href="javascript:;" data-main-id="<%= data.main_id %>" class="<%= data.main_id == 1 ? 'active' : ''%>"><%= data.main_title %></a>
                                 </div>
                                 <ul class="mng-category__list">
                                 <%  
@@ -56,7 +56,7 @@
                                         if(data2.main_id === 1){
                                 %>
                                             <li>
-                                                <a href="javascript:;" data-id="<%= data2.sub_id %>"><%= data2.sub_title %></a>
+                                                <a href="javascript:;" data-main-id="<%= data2.main_id %>" data-sub-id="<%= data2.sub_id %>"><%= data2.sub_title %></a>
                                             </li>
                                         <% } %>
                                     <% } %>
@@ -67,7 +67,7 @@
                                         if(data3.main_id === 2){
                                 %>
                                             <li>
-                                                <a href="javascript:;" data-id="<%= data3.sub_id %>"><%= data3.sub_title %></a>
+                                                <a href="javascript:;" data-main-id="<%= data3.main_id %>" data-sub-id="<%= data3.sub_id %>"><%= data3.sub_title %></a>
                                             </li>
                                         <% } %>
                                     <% } %>
@@ -92,9 +92,9 @@
                                     </div>
                                 </fieldset>
                             </form>
-                            <div class="mng__btn">
-                                <a href="/admin/board/boardAdd/1" class="btn btn-simple"><i class="fas fa-plus"></i></a>
-                                <a href="/admin/board/boardMod/1/1" class="btn btn-simple"><i class="fas fa-edit"></i></a>
+                            <div class="mng__btn display-none">
+                                <a href="javascript:;" id="boardAddBtn" class="btn btn-simple"><i class="fas fa-plus"></i></a>
+                                <a href="javascript:;" id="boardModBtn" class="btn btn-simple"><i class="fas fa-edit"></i></a>
                                 <a href="javascript:;" class="btn btn-simple"><i class="fas fa-trash"></i></a>
                             </div>
                         </div>
