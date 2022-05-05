@@ -22,4 +22,16 @@ Board.boardAddProcess = function(mainId, subId, title, result){
     });
 };
 
+// 게시판 읽기
+Board.boardRead = function(idx, mainId, subId, result){
+    let select = "SELECT * FROM board WHERE idx = ? AND main_id = ? AND sub_id = ?;";
+    conn.query(select, [idx, mainId, subId], function(err, res){
+        if(err){
+            result(null, err);
+        } else {
+            result(null, res)
+        }
+    });
+}
+
 module.exports = Board;

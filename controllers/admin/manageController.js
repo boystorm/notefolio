@@ -2,8 +2,6 @@ const Manage = require("../../models/admin/manage");
 
 // 카테고리 메인 컨트롤러
 exports.manageData = function(req, res){
-    //let page = req.params.page;
-
     // 카테고리 리스트 및 게시판
     Manage.manageData(function(err, result1, result2, result3){
         if(err){

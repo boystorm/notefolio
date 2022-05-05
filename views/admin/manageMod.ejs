@@ -33,25 +33,30 @@
                 </div>
             </div>
         </header>
-        <form action="/admin/board/boardAddProcess" method="post">
+        <form action="/admin/board/boardUpdateProcess" method="post">
             <main>
                 <div class="content">
                     <div class="register">
                         <div class="register__option">
                             <div class="register__btn">
-                                <button type="button" class="btn btn-cancel">취소</button>
-                                <button type="submit" class="btn btn-confirm">확인</button>
+                                <a href="/admin/manage/1" class="btn btn-cancel">취소</a>
+                                <button type="submit" class="btn btn-confirm">수정</button>
                             </div>
                         </div>
                         
                         <div class="register__action">
                             <div class="card register__act">
+                                <input type="text" name="idx" value="<%= idx %>">
                                 <input type="text" name="mainId" value="<%= mainId %>">
                                 <input type="text" name="subId" value="<%= subId %>">
 
+                                <% 
+                                for(let i = 0; i < rows.length; i++) {
+                                    let data = rows[i]; 
+                                %>
                                 <div class="form__groups">
                                     <label for="registerTitle"><span class="color__important">* </span>제목</label>
-                                    <input id="registerTitle" type="text" name="title">
+                                    <input id="registerTitle" type="text" name="title" value="<%= data.title %>">
                                 </div>
 
                                 <div class="form__groups">
@@ -59,11 +64,12 @@
                                     <input type="file" multiple id="ssi-upload"/>
                                 </div>
                                 
-                                <!-- 스마트 에디터 2 -->
                                 <div class="form__groups">
                                     <p>내용</p>
                                     <div id="summernote"></div>
                                 </div>
+                                <% } %>
+
                             </div>
                         </div>
                     </div>
