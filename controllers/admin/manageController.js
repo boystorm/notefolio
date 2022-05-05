@@ -51,9 +51,8 @@ exports.manageCategory = function(req, res){
 exports.manageCategoryUpdate = function(req, res){
     let subId = req.body.categorySubId;
     let subTitle = req.body.categoryName;
-    let mainId = req.body.categoryKinds;
 
-    Manage.manageCategoryUpdateProcess(subTitle, mainId, subId, function(err, result){
+    Manage.manageCategoryUpdateProcess(subTitle, subId, function(err, result){
         if (err) {
             res.send(err);
         } else {

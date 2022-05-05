@@ -621,16 +621,30 @@ main{
             }
         }
     }
-    .modal__generate--item{
-        display: flex;
-        align-items: center;
-        padding: 8px 8px;
-        cursor: pointer;
-        margin: 5px 0;
-        border-radius: 4px;
-        background-color: #286090;
-        font-size: 15px;
-        color: #fff;
+    .modal__generate{
+        .modal__generate_new{
+            display: flex;
+            border-top: 1px solid #ddd;
+            cursor:pointer;
+            .modal__generate--item{
+                padding: 8px 8px;
+                cursor: pointer;
+                margin: 5px 0;
+                font-size: 14px;
+                color: #333;
+                &.on{
+                    color: #286090;
+                    font-weight: bold;
+                }
+            }
+            .generate-item-del{
+                background: none;
+                border: 0;
+                margin-left: auto;
+                cursor: pointer;
+                font-size: 13px;
+            }
+        }
     }
 }
 .color__important {

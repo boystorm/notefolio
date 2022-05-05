@@ -388,7 +388,7 @@ a {
 
 /* display none */
 .display-none {
-  display: none; }
+  display: none !important; }
 
 /**
  * Basic typography style for copy text
@@ -1087,16 +1087,25 @@ main {
         background-color: salmon;
         display: inline-block;
         margin-right: 10px; }
-  .modal .modal__generate--item {
+  .modal .modal__generate .modal__generate_new {
     display: flex;
-    align-items: center;
-    padding: 8px 8px;
-    cursor: pointer;
-    margin: 5px 0;
-    border-radius: 4px;
-    background-color: #286090;
-    font-size: 15px;
-    color: #fff; }
+    border-top: 1px solid #ddd;
+    cursor: pointer; }
+    .modal .modal__generate .modal__generate_new .modal__generate--item {
+      padding: 8px 8px;
+      cursor: pointer;
+      margin: 5px 0;
+      font-size: 14px;
+      color: #333; }
+      .modal .modal__generate .modal__generate_new .modal__generate--item.on {
+        color: #286090;
+        font-weight: bold; }
+    .modal .modal__generate .modal__generate_new .generate-item-del {
+      background: none;
+      border: 0;
+      margin-left: auto;
+      cursor: pointer;
+      font-size: 13px; }
 
 .color__important {
   color: red; }

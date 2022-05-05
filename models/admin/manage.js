@@ -54,8 +54,8 @@ Manage.manageCategoryProcess = function(subTitle, mainId, result){
 };
 
 // 카테고리 수정
-Manage.manageCategoryUpdateProcess = function(subTitle, mainId, subId, result){
-    conn.query("update sub_category set SUB_TITLE = ?, main_id = ? where sub_id = ?", [subTitle, mainId, subId], function(err, res){
+Manage.manageCategoryUpdateProcess = function(subTitle, subId, result){
+    conn.query("update sub_category set SUB_TITLE = ? where sub_id = ?", [subTitle, subId], function(err, res){
         if(err){
             result(null, err);
         } else {

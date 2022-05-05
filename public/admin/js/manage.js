@@ -76,7 +76,7 @@ function fnCategoryPopList(){
         dataType : "JSON"
     })
     .done(function(json){
-        $("#categoryNewItem").remove();
+        $(".modal__generate_new").remove();
         $(".modal__tree--item").remove();
         $("#categoryNameInput").attr("readonly", true);
         $("#categoryNameInput").val("");
@@ -100,10 +100,12 @@ function fnCategoryPopList(){
 
             $(".modal__tree--item").removeClass("on");
             $(this).addClass("on");
+            $(".modal__generate--item").removeClass("on");
             
             // subID 텍스트 히든태그
             $("#categorySubIdInput").val(subId);
             $("#categoryNameInput").prop("readonly", false);
+            $(".modal__mod--kinds").addClass("display-none");
 
             // 카테고리 이름
             let = categoryName = $(this).find('span').text();
@@ -114,16 +116,36 @@ function fnCategoryPopList(){
         // 새 카테고리 추가
         $("#categoryNewBtn").on("click", function(){
             $(".modal__tree--item").removeClass("on");
-            
-            if ($("#categoryNewItem")[0] === undefined) {
-                $("#categorySubIdInput").val("");
+            $(".modal__mod--kinds").removeClass("display-none");
+            $(".modal__generate--item").addClass("on");
+            $("#categoryNameInput").focus();
+            $("#categorySubIdInput").val("");
+            $("#categoryNameInput").val("");
+
+            if ($("#categoryNewItem")[0] === undefined) {                
                 $(".modal__generate")[0].innerHTML 
-                    += '<div id="categoryNewItem" class="modal__generate--item">New Category</div>';
+                    += '<div class="modal__generate_new"><span id="categoryNewItem" class="modal__generate--item on">New Category</span><button type="button" class="generate-item-del">X</button></div>'
 
                 $("#categoryNameInput").prop("readonly", false);
                 $("#categoryNameInput").val("");
                 $("#categoryNameInput").focus();
             }
+
+            // 새 카테고리 클릭
+            $(".modal__generate_new").on("click", function(){
+                $(".modal__generate--item").addClass("on");
+                $(".modal__mod--kinds").removeClass("display-none");
+                $(".modal__tree--item").removeClass("on");
+
+                $("#categorySubIdInput").val("");
+                $("#categoryNameInput").val("");
+                $("#categoryNameInput").focus();
+            })
+
+            // 새 카테고리 삭제
+            $(".generate-item-del").on("click", function(){
+                $(".modal__generate_new").remove();
+            })
         });
 
          // 카테고리 삭제
@@ -215,7 +237,7 @@ $(function() {
      * =======================================
      */
     $("#categoryBtn").on("click", function(){
-        $(".modal").css("display","block");
+        $(".modal").removeClass("display-none");
 
         // 초기화
         $(".modal__tree--item").removeClass("on");
@@ -231,7 +253,7 @@ $(function() {
      * =======================================
     */
     $("#cancelBtn").on("click", function(){
-        $(".modal").css("display","none");        
+        $(".modal").addClass("display-none");        
     });
 
     /**
