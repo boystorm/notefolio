@@ -17,6 +17,8 @@ function fnCategoryInitList(){
         .done(function(json){
             // 카테고리 매니저 리스트 호출
             fnCategoryManageList(json);
+            mainCategory();
+            subCategory();
         })
         .fail(function(xhr, status, errorThrown){
             console.log("카테고리 매니저 Ajax failed")
@@ -43,7 +45,7 @@ function fnCategoryInitList(){
                 let data2 = json.rows2[j];
                 if(data2.main_id === 1){
                     info += "<li>";
-                    info += "<a href='javascript:;' data-sub-id=" + data2.sub_id + ">" + data2.sub_title + "</a>";
+                    info += "<a href='javascript:;' data-main-id=" + data2.main_id +" data-sub-id=" + data2.sub_id + ">" + data2.sub_title + "</a>";
                     info += "</li>";
                 }
             }   
@@ -53,7 +55,7 @@ function fnCategoryInitList(){
                 let data3 = json.rows2[k];
                 if(data3.main_id === 2){
                     info += "<li>";
-                    info += "<a href='javascript:;' data-sub-id=" + data3.sub_id + ">" + data3.sub_title + "</a>";
+                    info += "<a href='javascript:;' data-main-id=" + data3.main_id +" data-sub-id=" + data3.sub_id + ">" + data3.sub_title + "</a>";
                     info += "</li>";
                 }
             }
@@ -148,12 +150,12 @@ function fnCategoryPopList(){
     })
 }
 
-$(function() {
-    /**
-     * =======================================
-     * 설  명 : 메인 카테고리 클릭
-     * =======================================
-     */
+/**
+ * =======================================
+ * 설  명 : 메인 카테고리 클릭 함수
+ * =======================================
+ */
+function mainCategory(){
     $(".mng-category__all a").on("click", function(){
         let self = $(this).hasClass("active");
         let element = $(".mng-category__all a");
@@ -167,12 +169,13 @@ $(function() {
             $(this).addClass("active");
         }
     });
-
-    /**
-     * =======================================
-     * 설  명 : 서브 카테고리 클릭
-     * =======================================
-     */
+}
+/**
+ * =======================================
+ * 설  명 : 서브 카테고리 클릭 함수
+ * =======================================
+ */
+function subCategory(){
     $(".mng-category__list li a").on("click", function(){
         let self = $(this).hasClass("active");
         let element = $(".mng-category__all a");
@@ -189,6 +192,22 @@ $(function() {
             $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
         }
     });
+}
+
+
+$(function() {
+    /**
+     * =======================================
+     * 설  명 : 메인 카테고리 클릭 호출
+     * =======================================
+     */
+    mainCategory();
+    /**
+     * =======================================
+     * 설  명 : 서브 카테고리 클릭 호출
+     * =======================================
+     */
+    subCategory();
     
     /**
      * =======================================

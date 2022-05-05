@@ -65,11 +65,11 @@ exports.manageCategoryUpdate = function(req, res){
 // 카테고리 삭제 컨트롤러
 exports.manageCategoryDelete = function(req, res){
     let id = req.params.id;
-
     Manage.manageCategoryDeleteProcess(id, function(err, result){
         if (err) {
             res.send(err);
         } else {
+            console.log(result);
             res.send(result);
         }
     });
