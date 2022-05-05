@@ -14,13 +14,16 @@ router.get('/boardAdd/:mainId/:subId', function(req, res, next){
     });
 });
 
-/* 게시판 글쓰기 등록 */
+/* 게시판 글 등록 */
 router.post('/boardAddProcess', BoardController.boardAddProcess);
 
-/* 게시판 글상세페이지 */
+/* 게시판 글 읽기 */
 router.get('/boardRead/:idx/:mainId/:subId', BoardController.boardRead);
 
+/* 게시판 글 수정 */
+router.post('/boardUpdateProcess', BoardController.boardUpdateProcess);
 
-//router.get('/boardMod/:id/:idx', function(req, res, next){ res.render('admin/manageRegister'); });
+/* 게시판 글 삭제 */
+router.delete('/boardDeleteProcess/:idx/:main/:subId', BoardController.boardDeleteProcess);
 
 module.exports = router;

@@ -25,7 +25,6 @@ exports.boardRead = function(req, res){
         if(err){
             res.send(err);
         } else {
-            console.log(result);
             res.render("admin/manageMod", {
                 idx : idx,
                 mainId : mainId,
@@ -34,4 +33,23 @@ exports.boardRead = function(req, res){
             })
         }
     });
+};
+
+exports.boardUpdateProcess = function(req, res){
+    let idx = req.body.idx;
+    let mainId = req.body.mainId;
+    let subId = req.body.subId;
+    let title = req.body.title;
+    
+    Board.boardUpdateProcess(idx, mainId, subId, title, function(err, result){
+        if(err){
+            res.send(err);
+        } else {
+            res.redirect("/admin/manage/1")
+        }
+    });
+};
+
+exports.boardDeleteProcess = function(req, res){
+    
 };

@@ -22,7 +22,7 @@ Board.boardAddProcess = function(mainId, subId, title, result){
     });
 };
 
-// 게시판 읽기
+// 게시판 글 읽기
 Board.boardRead = function(idx, mainId, subId, result){
     let select = "SELECT * FROM board WHERE idx = ? AND main_id = ? AND sub_id = ?;";
     conn.query(select, [idx, mainId, subId], function(err, res){
@@ -33,5 +33,23 @@ Board.boardRead = function(idx, mainId, subId, result){
         }
     });
 }
+
+// 게시판 글 수정
+Board.boardUpdateProcess = function(idx, mainId, subId, title, result){
+    let datas = [title, idx, mainId, subId];
+    let update = "UPDATE board set title=?, modidate=now() where idx=? and main_Id=? and sub_Id=?;";
+    
+    conn.query(update, datas, function(err, res){
+        if(err){
+            result(null, err);
+        } else {
+            console.log(res)
+            result(null, res);
+        }
+    })
+}
+
+// 게시판 글 삭제
+
 
 module.exports = Board;
