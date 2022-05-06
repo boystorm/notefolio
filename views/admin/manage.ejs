@@ -94,73 +94,75 @@
                             </form>
                             <div class="mng__btn display-none">
                                 <a href="javascript:;" id="boardAddBtn" class="btn btn-simple"><i class="fas fa-plus"></i></a>
-                                <a href="javascript:;" id="boardDelBtn" class="btn btn-simple"><i class="fas fa-trash"></i></a>
+                                <button type="submit" form="boardForm" id="boardDelBtn" class="btn btn-simple"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>
 
                         <div class="mng__empty display-none">등록된 프로젝트가 없습니다.</div>
 
-                        <div class="mng__table">
-                            <div class="card">
-                                <table>
-                                    <colgroup> 
-                                        <col style="width:3%"> 
-                                        <col style="width:10%"> 
-                                        <col style="width:6%">
-                                        <col style="width:12%">
-                                        <col style="width:25%">
-                                        <col style="width:12%">
-                                        <col style="width:12%">
-                                        <col style="width:10%">
-                                        <col style="width:10%">
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="item-box-chk"><input type="checkbox" id="itemAllChk"></th>
-                                            <th scope="col">순번</th>
-                                            <th scope="col">이미지</th>
-                                            <th scope="col">제목</th>
-                                            <th scope="col">내용</th>
-                                            <th scope="col">작성일</th>
-                                            <th scope="col">수정일</th>
-                                            <th scope="col">메인 카테고리</th>
-                                            <th scope="col">서브 카테고리</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% 
-                                            for(let i=0; i < rows3.length; i++){
-                                                let data = rows3[i];
-                                        %>
-                                        <tr>
-                                            <td class="mng__table--center" class="item-box-chk"><input type="checkbox" name="cateChk" class="itemChk"></td>
-                                            <td class="mng__table--center"><%= data.idx %></td>
-                                            <td class="mng__table--center"><a href="/admin/board/boardRead/<%= data.idx %>/<%= data.main_id %>/<%= data.sub_id %>"><img src="http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg" class="mng__table--thumb"></a></td>
-                                            <td class="mng__table--center"><%= data.title %></td>
-                                            <td class="mng__table--center"><%= data.content %></td>
-                                            <td class="mng__table--center"><%= data.regdate %></td>
-                                            <td class="mng__table--center"><%= data.modidate %></td>
-                                            <td class="mng__table--center"><%= data.main_id %></td>
-                                            <td class="mng__table--center"><%= data.sub_id %></td>
-                                        </tr>
-                                        <% } %>
-                                    </tbody>
-                                </table>
+                        <form action="" method="post" id="boardForm">
+                            <div class="mng__table">
+                                <div class="card">
+                                    <table>
+                                        <colgroup> 
+                                            <col style="width:3%"> 
+                                            <col style="width:10%"> 
+                                            <col style="width:6%">
+                                            <col style="width:12%">
+                                            <col style="width:25%">
+                                            <col style="width:12%">
+                                            <col style="width:12%">
+                                            <col style="width:10%">
+                                            <col style="width:10%">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="item-box-chk"><input type="checkbox" id="boardAllChk" name="boardAllChk"></th>
+                                                <th scope="col">순번</th>
+                                                <th scope="col">이미지</th>
+                                                <th scope="col">제목</th>
+                                                <th scope="col">내용</th>
+                                                <th scope="col">작성일</th>
+                                                <th scope="col">수정일</th>
+                                                <th scope="col">메인 카테고리</th>
+                                                <th scope="col">서브 카테고리</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% 
+                                                for(let i=0; i < rows3.length; i++){
+                                                    let data = rows3[i];
+                                            %>
+                                            <tr>
+                                                <td class="mng__table--center" class="item-box-chk"><input type="checkbox" name="boardChk" class="itemChk"></td>
+                                                <td class="mng__table--center"><%= data.idx %></td>
+                                                <td class="mng__table--center"><a href="/admin/board/boardRead/<%= data.idx %>/<%= data.main_id %>/<%= data.sub_id %>"><img src="http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg" class="mng__table--thumb"></a></td>
+                                                <td class="mng__table--center"><%= data.title %></td>
+                                                <td class="mng__table--center"><%= data.content %></td>
+                                                <td class="mng__table--center"><%= data.regdate %></td>
+                                                <td class="mng__table--center"><%= data.modidate %></td>
+                                                <td class="mng__table--center"><%= data.main_id %></td>
+                                                <td class="mng__table--center"><%= data.sub_id %></td>
+                                            </tr>
+                                            <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mng__pagination">
+                                    <ul class="pagination">
+                                        <li class="prev disabled">
+                                            <a href="javascript:;"><i class="fas fa-chevron-left"></i></a>
+                                        </li>
+                                        <li class="active"><a href="javascript:;">1</a></li>
+                                        <li><a href="javascript:;">2</a></li>
+                                        <li><a href="javascript:;">3</a></li>
+                                        <li class="next disabled">
+                                            <a href="javascript:;"><i class="fas fa-chevron-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="mng__pagination">
-                                <ul class="pagination">
-                                    <li class="prev disabled">
-                                        <a href="javascript:;"><i class="fas fa-chevron-left"></i></a>
-                                    </li>
-                                    <li class="active"><a href="javascript:;">1</a></li>
-                                    <li><a href="javascript:;">2</a></li>
-                                    <li><a href="javascript:;">3</a></li>
-                                    <li class="next disabled">
-                                        <a href="javascript:;"><i class="fas fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

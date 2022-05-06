@@ -325,9 +325,21 @@ $(function() {
      * 설  명 : All 체크
      * =======================================
      */
-    $("#itemAllChk").on("click", function(){
-       
+    let boardAllChk = $("#boardAllChk");
+    boardAllChk.change(function(){
+        let self = $(this);
         
+        let checked = self.prop("checked");
+        $("input[name='boardChk']").prop('checked', checked);
+    });
+
+    let boardChk = $('input[name="boardChk"]');
+    boardChk.change(function () {
+        let boardChkLength = boardChk.length;
+        let checkedLength = $('input[name="boardChk"]:checked').length;
+        let selectAll = (boardChkLength == checkedLength);
+
+        boardAllChk.prop('checked', selectAll);
     });
 });
 
