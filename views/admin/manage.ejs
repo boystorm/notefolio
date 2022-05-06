@@ -116,7 +116,7 @@
                                     </colgroup>
                                     <thead>
                                         <tr>
-                                            <th scope="col"><input type="checkbox" id="cateAllChk"></th>
+                                            <th scope="col" class="item-box-chk"><input type="checkbox" id="itemAllChk"></th>
                                             <th scope="col">순번</th>
                                             <th scope="col">이미지</th>
                                             <th scope="col">제목</th>
@@ -133,7 +133,7 @@
                                                 let data = rows3[i];
                                         %>
                                         <tr>
-                                            <td class="mng__table--center"><input type="checkbox" name="cateChk"></td>
+                                            <td class="mng__table--center" class="item-box-chk"><input type="checkbox" name="cateChk" class="itemChk"></td>
                                             <td class="mng__table--center"><%= data.idx %></td>
                                             <td class="mng__table--center"><a href="/admin/board/boardRead/<%= data.idx %>/<%= data.main_id %>/<%= data.sub_id %>"><img src="http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg" class="mng__table--thumb"></a></td>
                                             <td class="mng__table--center"><%= data.title %></td>
@@ -161,7 +161,6 @@
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
