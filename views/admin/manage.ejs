@@ -100,7 +100,7 @@
 
                         <div class="mng__empty display-none">등록된 프로젝트가 없습니다.</div>
 
-                        <form action="" method="post" id="boardForm">
+                        <form action="/admin/board/boardDelete" method="post" id="boardForm">
                             <div class="mng__table">
                                 <div class="card">
                                     <table>
@@ -117,7 +117,7 @@
                                         </colgroup>
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="item-box-chk"><input type="checkbox" id="boardAllChk" name="boardAllChk"></th>
+                                                <th scope="col" class="item-box-chk"><input type="checkbox" id="boardAllChk"></th>
                                                 <th scope="col">순번</th>
                                                 <th scope="col">이미지</th>
                                                 <th scope="col">제목</th>
@@ -134,7 +134,7 @@
                                                     let data = rows3[i];
                                             %>
                                             <tr>
-                                                <td class="mng__table--center" class="item-box-chk"><input type="checkbox" name="boardChk" class="itemChk"></td>
+                                                <td class="mng__table--center" class="item-box-chk"><input type="checkbox" name="boardChk" class="itemChk" value="<%= data.idx%>"></td>
                                                 <td class="mng__table--center"><%= data.idx %></td>
                                                 <td class="mng__table--center"><a href="/admin/board/boardRead/<%= data.idx %>/<%= data.main_id %>/<%= data.sub_id %>"><img src="http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg" class="mng__table--thumb"></a></td>
                                                 <td class="mng__table--center"><%= data.title %></td>

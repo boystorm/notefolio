@@ -40,6 +40,7 @@ Board.boardUpdateProcess = function(idx, mainId, subId, title, result){
     let update = "UPDATE board set title=?, modidate=now() where idx=? and main_Id=? and sub_Id=?;";
     
     conn.query(update, datas, function(err, res){
+        console.log(datas);
         if(err){
             result(null, err);
         } else {
@@ -50,6 +51,21 @@ Board.boardUpdateProcess = function(idx, mainId, subId, title, result){
 }
 
 // 게시판 글 삭제
+Board.boardDelete = function(idx, help, result){
+    let datas = idx;
+    let datasHelp = help;
 
+    let del = "DELETE FROM board where idx in (" + datasHelp + ");";
+    //console.log("query: " + del);
+    //console.log("data: " + datas);
+    // conn.query(del, idx, function(err, res){
+    //     if(err){
+    //         result(null, err);
+    //     } else {
+    //         console.log(res);
+    //         result(null, res);
+    //     }
+    // })
+}
 
 module.exports = Board;

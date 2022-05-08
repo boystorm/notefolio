@@ -24,6 +24,6 @@ router.get('/boardRead/:idx/:mainId/:subId', BoardController.boardRead);
 router.post('/boardUpdateProcess', BoardController.boardUpdateProcess);
 
 /* 게시판 글 삭제 */
-router.delete('/boardDeleteProcess/:idx/:main/:subId', BoardController.boardDeleteProcess);
+router.post('/boardDelete', BoardController.boardDelete);
 
 module.exports = router;
