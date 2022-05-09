@@ -27,11 +27,12 @@ Manage.manageData = function(mainId,result){
 Manage.manageCategoryData = function(result){
     let query1 = "SELECT * FROM main_category;";
     let query2 = "SELECT * FROM sub_category;";
-
+    
     conn.query(query1 + query2, function(err, res){
         if(err){
             result(null, err);
         } else {
+            console.log(res1);
             let res1 = res[0];
             let res2 = res[1];
             result(null, res1, res2);

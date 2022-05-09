@@ -73,7 +73,7 @@ function fnCategoryPopList(){
     $.ajax({
         type : "get",
         url : "/admin/manage/category/data",
-        dataType : "JSON"
+        dataType : "JSON",
     })
     .done(function(json){
         $(".modal__generate_new").remove();
@@ -167,9 +167,8 @@ function fnCategoryPopList(){
             })
         });
     })
-    .fail(function(request, error){
-        alert("code:" + request.status+"\n"+"message:" + request.responseText+ "\n" + "error:"+error);
-        //console.log("카테고리 매니저 Ajax failed")
+    .fail(function(request,status,error){
+        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
     });
 }
 
