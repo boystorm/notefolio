@@ -168,7 +168,9 @@ function fnCategoryPopList(){
         });
     })
     .fail(function(xhr, status, errorThrown){
-        console.log("요기:리스트 불러오기 Ajax failed")
+        console.warn(xhr.responseText)
+        console.log(xhr, status, errorThrown)
+        console.log("리스트 불러오기 Ajax failed")
     })
 }
 
