@@ -383,7 +383,7 @@ $(function() {
      * 설  명 : 페이지 클릭
      * =======================================
      */
-    $("#pagination li").on("click", function(){
+    $(".pagination li").on("click", function(){
         alert("111");
     });
 });

@@ -166,7 +166,8 @@
                                         <%
                                             for(var j = 0; j < rows3.length / page_num; j++){
                                         %>
-                                            <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="/admin/manage/<%= j + 1 %>"><%= j + 1 %></a></li>
+                                            <!-- <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="/admin/manage/<%= j + 1 %>"><%= j + 1 %></a></li> -->
+                                            <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="javascript:;"><%= j + 1 %></a></li>
                                         <%
                                             }
                                         %>

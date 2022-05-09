@@ -27,7 +27,7 @@ exports.manageData = function(req, res){
 
 // 카테고리 관리 컨트롤러
 exports.manageCatgoryData = function(req, res){
-    // 카테고리 리스트 및 게시판
+    // 카테고리 리스트
     Manage.manageCategoryData(function(err, result1, result2){
         if(err){
             res.send(err);
