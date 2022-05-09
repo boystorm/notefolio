@@ -44,7 +44,6 @@ Board.boardUpdateProcess = function(idx, mainId, subId, title, result){
         if(err){
             result(null, err);
         } else {
-            console.log(res)
             result(null, res);
         }
     })
@@ -54,7 +53,7 @@ Board.boardUpdateProcess = function(idx, mainId, subId, title, result){
 Board.boardDelete = function(idxArr, queryStr, result){
     let datas = idxArr;
     let questionMark = queryStr;
-    
+
     let del = "DELETE FROM board where idx in (" + questionMark + ");";
 
     conn.query(del, datas, function(err, res){
