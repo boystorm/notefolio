@@ -168,6 +168,7 @@ function fnCategoryPopList(){
         });
     })
     .fail(function(xhr, status, errorThrown){
+        console.log(xhr, status, errorThrown)
         console.log("리스트 불러오기 Ajax failed")
     })
 }
@@ -238,7 +239,6 @@ $(function() {
      */
     $("#categoryBtn").on("click", function(){
         $(".modal").removeClass("display-none");
-
         // 초기화
         $(".modal__tree--item").removeClass("on");
         $("#categoryNewItem").remove();

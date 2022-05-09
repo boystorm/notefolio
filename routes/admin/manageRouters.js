@@ -13,9 +13,6 @@ const ManageController = require('../../controllers/admin/manageController');
 router.get('/', function(req, res, next){ res.redirect('manage/1/1'); });
 router.get('/:mainId/:page', ManageController.manageData);
 
-
-
-
 /* 카테고리 Select 목록 */
 router.get('/category/data', ManageController.manageCatgoryData);
 
