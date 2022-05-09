@@ -1,0 +1,9 @@
+diff a/controllers/admin/manageController.js b/controllers/admin/manageController.js	(rejected hunks)
+@@ -5,7 +5,6 @@
+     let mainId = req.params.mainId;
+     let page = req.params.page;
+     
+-    // 카테고리 메인 리스트 및 메인 게시판
+     Manage.manageData(mainId, function(err, result1, result2, result3){
+         if(err){
+             res.send(err);

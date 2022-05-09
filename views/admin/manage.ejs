@@ -71,7 +71,6 @@
                                             </li>
                                         <% } %>
                                     <% } %>
-                                </ul>
                                 <% } %>
                             <% } %>
                             </div>
@@ -128,6 +127,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <!-- 게시판 수정                                            
+                                                rows3 : result3,
+                                                page : page, // page 번호
+                                                length : result3.length - 1, // 페이지 넘어갈때를 대비한 수
+                                                page_num : 10, // 페이지 행 수
+                                            -->
+
                                             <% 
                                                 for(var i = (page * page_num) - page_num; i < (page * page_num); i++) {
                                                     if(i > length){
@@ -158,6 +164,7 @@
                                         <%
                                             for(var j = 0; j < rows3.length / page_num; j++){
                                         %>
+                                            <!-- <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="/admin/manage/<%= j + 1 %>"><%= j + 1 %></a></li> -->
                                             <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="javascript:;"><%= j + 1 %></a></li>
                                         <%
                                             }

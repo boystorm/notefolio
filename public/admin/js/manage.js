@@ -168,7 +168,7 @@ function fnCategoryPopList(){
         });
     })
     .fail(function(request,status,error){
-        console.log(request);
+        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
     });
 }
 
