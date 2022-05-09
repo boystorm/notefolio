@@ -51,21 +51,19 @@ Board.boardUpdateProcess = function(idx, mainId, subId, title, result){
 }
 
 // 게시판 글 삭제
-Board.boardDelete = function(idx, help, result){
-    let datas = idx;
-    let datasHelp = help;
+Board.boardDelete = function(idxArr, queryStr, result){
+    let datas = idxArr;
+    let questionMark = queryStr;
+    
+    let del = "DELETE FROM board where idx in (" + questionMark + ");";
 
-    let del = "DELETE FROM board where idx in (" + datasHelp + ");";
-    //console.log("query: " + del);
-    //console.log("data: " + datas);
-    // conn.query(del, idx, function(err, res){
-    //     if(err){
-    //         result(null, err);
-    //     } else {
-    //         console.log(res);
-    //         result(null, res);
-    //     }
-    // })
+    conn.query(del, datas, function(err, res){
+        if(err){
+            result(null, err);
+        } else {
+            result(null, res);
+        }
+    })
 }
 
 module.exports = Board;

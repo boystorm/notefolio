@@ -94,7 +94,7 @@
                             </form>
                             <div class="mng__btn display-none">
                                 <a href="javascript:;" id="boardAddBtn" class="btn btn-simple"><i class="fas fa-plus"></i></a>
-                                <button type="submit" form="boardForm" id="boardDelBtn" class="btn btn-simple"><i class="fas fa-trash"></i></button>
+                                <button type="button" form="boardForm" id="boardDelBtn" class="btn btn-simple"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>
 
@@ -134,7 +134,7 @@
                                                     let data = rows3[i];
                                             %>
                                             <tr>
-                                                <td class="mng__table--center" class="item-box-chk"><input type="checkbox" name="boardChk" class="itemChk" value="<%= data.idx%>"></td>
+                                                <td class="mng__table--center" class="item-box-chk"><input type="checkbox" name="boardChk[]" class="itemChk" value="<%= data.idx%>"></td>
                                                 <td class="mng__table--center"><%= data.idx %></td>
                                                 <td class="mng__table--center"><a href="/admin/board/boardRead/<%= data.idx %>/<%= data.main_id %>/<%= data.sub_id %>"><img src="http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg" class="mng__table--thumb"></a></td>
                                                 <td class="mng__table--center"><%= data.title %></td>

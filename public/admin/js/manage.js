@@ -330,16 +330,40 @@ $(function() {
         let self = $(this);
         
         let checked = self.prop("checked");
-        $("input[name='boardChk']").prop('checked', checked);
+        $("input[name='boardChk[]']").prop('checked', checked);
     });
 
-    let boardChk = $('input[name="boardChk"]');
+    let boardChk = $('input[name="boardChk[]"]');
     boardChk.change(function () {
         let boardChkLength = boardChk.length;
-        let checkedLength = $('input[name="boardChk"]:checked').length;
+        let checkedLength = $('input[name="boardChk[]"]:checked').length;
         let selectAll = (boardChkLength == checkedLength);
 
         boardAllChk.prop('checked', selectAll);
+    });
+
+    /**
+     * =======================================
+     * 설  명 : 그리드 삭제
+     * =======================================
+     */
+    $("#boardDelBtn").on("click", function(){
+        if($("input[name='boardChk[]']:checked").is(':checked')){
+            let chkArray = new Array();
+            let chkCount = $("input[name='boardChk[]']:checked").length;
+            let flag = window.confirm(chkCount + "건이 삭제됩니다. 확인해주세요.");
+
+            if(flag){
+                $("input[name='boardChk[]']:checked").each(function(){
+                    let tmpVal = $(this).val();
+                    chkArray.push(tmpVal);
+                });
+                let url = location.origin + "/admin/board/boardDelete/" + chkArray;    
+                $(location).attr('href',url);
+            }
+        }else{
+            alert("항목을 선택해주세요.");
+        }
     });
 });
 

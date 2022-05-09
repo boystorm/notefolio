@@ -53,30 +53,18 @@ exports.boardUpdateProcess = function(req, res){
 
 // 글 삭제 컨트롤러
 exports.boardDelete = function(req, res){
-    let idx = toString(req.body.boardChk);
-    // 갯수만 배열로 만들면될듯
+    let paramsIdx = req.params.idx;
 
-    // ajax 로 태울거니까 del버튼 클릭하면 js 한번 작업 거쳐야될듯
-    console.log(idx);
-    console.log(idx.length);
-    // let pu = [];
-    // for(let j = 0; j < idx.lenght; j++){
-    //     console.log(j);
-    //     pu.push(idx);
-    //     console.log("pu: "+ pu);
-    // }
-    
-    
-    
-    let cnt = idx.length;
-    let help = "";
-    //console.log("카운트가??:"+cnt);
-    for(let i = 0; i < cnt; i++){
-        if(help) help += ",";
-        help += "?";
+    var idxArr = new Array();
+    idxArr = paramsIdx.split(",");
+
+    let queryStr = "";
+    for(let i = 0; i < idxArr.length; i++){
+        if(queryStr) queryStr += ",";
+        queryStr += "?";
     }
-    //console.log(help);
-    Board.boardDelete(idx, help, function(err, result){
+
+    Board.boardDelete(idxArr, queryStr, function(err, result){
         if(err){
             res.send(err);
         } else {
@@ -84,3 +72,4 @@ exports.boardDelete = function(req, res){
         }
     });
 };
+
