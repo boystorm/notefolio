@@ -6,7 +6,7 @@ let Manage = function (){}; // 생성자
 
 // 카테고리 쿼리
 Manage.manageData = function(mainId,result){
-    let query1 = "SELECT * FROM main_category;" ;
+    let query1 = "SELECT * FROM main_category;";
     let query2 = "SELECT * FROM sub_category;";
     let query3 = "SELECT idx, image, title, content, date_format(regdate, '%Y-%m-%d %H:%i:%s') regdate," 
                 + "date_format(modidate, '%Y-%m-%d %H:%i:%s') modidate, main_id, sub_id FROM board WHERE main_id = ?";
@@ -25,7 +25,7 @@ Manage.manageData = function(mainId,result){
 
 // 카테고리 쿼리
 Manage.manageCategoryData = function(result){
-    let query1 = "SELECT * FROM main_category;" ;
+    let query1 = "SELECT * FROM main_category;";
     let query2 = "SELECT * FROM sub_category;";
 
     conn.query(query1 + query2, function(err, res){
