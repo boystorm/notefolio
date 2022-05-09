@@ -167,9 +167,10 @@ function fnCategoryPopList(){
             })
         });
     })
-    .fail(function(xhr, status, errorThrown){
-        console.log("요기:리스트 불러오기 Ajax failed")
-    })
+    .fail(function(request, error){
+        alert("code:" + request.status+"\n"+"message:" + request.responseText+ "\n" + "error:"+error);
+        //console.log("카테고리 매니저 Ajax failed")
+    });
 }
 
 /**
