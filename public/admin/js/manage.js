@@ -358,8 +358,20 @@ $(function() {
                     let tmpVal = $(this).val();
                     chkArray.push(tmpVal);
                 });
-                let url = location.origin + "/admin/board/boardDelete/" + chkArray;    
-                $(location).attr('href',url);
+
+                $.ajax({
+                    type : "get",
+                    url : "/admin/board/boardDelete/" + chkArray,
+                })
+                .done(function(result){
+                    alert("삭제 되었습니다.");
+                })
+                .fail(function(xhr, status, errorThrown){
+                    console.log("게시판 삭제 Ajax failed")
+                })
+
+                // let url = location.origin + "/admin/board/boardDelete/" + chkArray;    
+                // $(location).attr('href',url);
             }
         }else{
             alert("항목을 선택해주세요.");

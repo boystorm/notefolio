@@ -68,7 +68,8 @@ exports.boardDelete = function(req, res){
         if(err){
             res.send(err);
         } else {
-            res.redirect("/admin/manage/1");
+            console.log("result:" + result);
+            res.send(result);
         }
     });
 };
