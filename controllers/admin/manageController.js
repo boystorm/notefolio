@@ -1,15 +1,15 @@
 const Manage = require("../../models/admin/manage");
 
-// 카테고리 메인 컨트롤러
+// 카테고리 메인 리스트 및 게시판 컨트롤러
 exports.manageData = function(req, res){
+    let mainId = req.params.mainId;
     let page = req.params.page;
-
-    // 카테고리 리스트 및 게시판
-    Manage.manageData(function(err, result1, result2, result3){
+    
+    // 카테고리 메인 리스트 및 메인 게시판
+    Manage.manageData(mainId, function(err, result1, result2, result3){
         if(err){
             res.send(err);
         } else {
-            
             res.render('admin/manage', {
                 // 카테고리
                 rows1 : result1,
