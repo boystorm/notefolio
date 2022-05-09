@@ -68,7 +68,6 @@ exports.boardDelete = function(req, res){
         if(err){
             res.send(err);
         } else {
-            console.log("result:" + result);
             res.send(result);
         }
     });

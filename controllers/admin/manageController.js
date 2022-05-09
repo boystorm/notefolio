@@ -2,15 +2,24 @@ const Manage = require("../../models/admin/manage");
 
 // 카테고리 메인 컨트롤러
 exports.manageData = function(req, res){
+    let page = req.params.page;
+
     // 카테고리 리스트 및 게시판
     Manage.manageData(function(err, result1, result2, result3){
         if(err){
             res.send(err);
         } else {
+            
             res.render('admin/manage', {
+                // 카테고리
                 rows1 : result1,
                 rows2 : result2,
-                rows3 : result3
+                // 게시판
+                rows3 : result3,
+                page : page, // page 번호
+                length : result3.length - 1, // 페이지 넘어갈때를 대비한 수
+                page_num : 10, // 페이지 행 수
+                //pass : true
             }); 
         }
     });
