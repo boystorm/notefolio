@@ -137,8 +137,11 @@
                                             -->
 
                                             <% 
-                                                for(let i=0; i < rows3.length; i++){
-                                                    let data = rows3[i];
+                                                for(var i = (page * page_num) - page_num; i < (page * page_num); i++) {
+                                                    if(i > length){
+                                                        i++;
+                                                    }else{
+                                                        let data = rows3[i];
                                             %>
                                             <tr>
                                                 <td class="mng__table--center" class="item-box-chk"><input type="checkbox" name="boardChk[]" class="itemChk" value="<%= data.idx%>"></td>
@@ -151,19 +154,23 @@
                                                 <td class="mng__table--center"><%= data.main_id %></td>
                                                 <td class="mng__table--center"><%= data.sub_id %></td>
                                             </tr>
-                                            <% } %>
+                                            <% }
+                                            } 
+                                            %>
                                             <div class="mng__empty display-none">등록된 프로젝트가 없습니다.</div>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="mng__pagination">
                                     <ul class="pagination">
-
-                                        <li class="active"><a href="javascript:;">1</a></li>
-                                        <li><a href="javascript:;">2</a></li>
-                                        <li><a href="javascript:;">3</a></li>
+                                        <%
+                                            for(var j = 0; j < rows3.length / page_num; j++){
+                                        %>
+                                            <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="/admin/manage/<%= j + 1 %>"><%= j + 1 %></a></li>
+                                        <%
+                                            }
+                                        %>
                                     </ul>
-
 
                                     <!-- <ul class="pagination">
                                         <li class="prev disabled">
