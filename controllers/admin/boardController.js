@@ -46,7 +46,7 @@ exports.boardUpdateProcess = function(req, res){
         if(err){
             res.send(err);
         } else {
-            res.redirect("/admin/manage/1/1")
+            res.redirect("/admin/manage/1")
         }
     });
 };
