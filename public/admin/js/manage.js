@@ -168,7 +168,7 @@ function fnCategoryPopList(){
         });
     })
     .fail(function(request,status,error){
-        console.log(request);
+        console.log(request, status, error);
     });
 }
 
