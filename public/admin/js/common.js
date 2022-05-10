@@ -8,7 +8,7 @@
  * 설  명 : 셀렉트 디자인 커스텀
  * =======================================
  */
-function fnValidateInit() {
+ function fnValidateInit() {
     // 패스워드
     $.validator.addMethod("password", function(value, element) {
         return this.optional(element) || /[0-9]{1,6}$/.test(value);

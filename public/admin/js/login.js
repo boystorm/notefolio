@@ -3,7 +3,7 @@
  * 설  명 : 쿠키 함수
  * =======================================
  */
-function setCookie(cookieName, value, exdays){
+  function setCookie(cookieName, value, exdays){
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + exdays);
     var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
