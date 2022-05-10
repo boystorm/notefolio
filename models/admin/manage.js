@@ -32,7 +32,6 @@ Manage.manageCategoryData = function(result){
         if(err){
             result(null, err);
         } else {
-            console.log(res1);
             let res1 = res[0];
             let res2 = res[1];
             result(null, res1, res2);
