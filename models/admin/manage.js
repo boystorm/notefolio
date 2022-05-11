@@ -68,6 +68,7 @@ Manage.manageCategoryUpdateProcess = function(subTitle, subId, result){
 Manage.manageCategoryDeleteProcess =  function(id, result){
     conn.query("delete from sub_category where sub_id = ?", id, function(err, res){
         if(err){
+            //console.log(err);
             result(null, err);
         } else {
             result(null, res);

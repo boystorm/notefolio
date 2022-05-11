@@ -73,7 +73,8 @@ exports.manageCategoryDelete = function(req, res){
         if (err) {
             res.send(err);
         } else {
-            console.log(result);
+            // 에러 결과를 result로 줌 여기서 로직 처리
+            console.log(result)
             res.send(result);
         }
     });

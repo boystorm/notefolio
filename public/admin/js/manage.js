@@ -151,20 +151,27 @@ function fnCategoryPopList(){
          // 카테고리 삭제
          $(".category-item-del").on("click", function(){
             let subId = $(this).parent().data('value');
-            console.log(subId)
-            $.ajax({
-                type : "DELETE",
-                url : "/admin/manage/category/" + subId,
-            })
-            .done(function(result){
-                alert("삭제 되었습니다.");
+            let flag = window.confirm("삭제 하시겠습니까?");
 
-                fnCategoryPopList();
-                fnCategoryInitList();
-            })
-            .fail(function(xhr, status, errorThrown){
-                console.log("카테고리 삭제 Ajax failed")
-            })
+            if(flag){
+                $.ajax({
+                    type : "DELETE",
+                    url : "/admin/manage/category/" + subId,
+                })
+                .done(function(result){
+                    console.log("결과값 : "+ result);
+                    //console.log("결과 : " + result.success);
+                    //if (result.success === true)
+
+                    alert("삭제 하였습니다.");
+
+                    fnCategoryPopList();
+                    fnCategoryInitList();
+                })
+                .fail(function(xhr, status, errorThrown){
+                    console.log("카테고리 삭제 Ajax failed")
+                })
+            }
         });
     })
     .fail(function(request,status,error){
