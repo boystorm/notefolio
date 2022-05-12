@@ -160,7 +160,7 @@ function fnCategoryPopList(){
                 })
                 .done(function(result){
                     
-                    if(JSON.stringify(result.errno) == "1451"){ 
+                    if(JSON.stringify(result.errno) == "1451"){ // 에러 메시지 외래키 삭제시 에러 코드
                         alert("카테고리 안에 게시글 먼저 삭제해 주세요.");
                     } else {
                         alert("삭제 하였습니다.");
@@ -168,6 +168,7 @@ function fnCategoryPopList(){
                         fnCategoryPopList();
                         fnCategoryInitList();
                     }
+
                 })
                 .fail(function(xhr, status, errorThrown){
                     console.log("카테고리 삭제 Ajax failed")
