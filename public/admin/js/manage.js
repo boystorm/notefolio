@@ -159,14 +159,15 @@ function fnCategoryPopList(){
                     url : "/admin/manage/category/" + subId,
                 })
                 .done(function(result){
-                    console.log("결과값 : "+ result);
-                    //console.log("결과 : " + result.success);
-                    //if (result.success === true)
+                    
+                    if(JSON.stringify(result.errno) == "1451"){ 
+                        alert("카테고리 안에 게시글 먼저 삭제해 주세요.");
+                    } else {
+                        alert("삭제 하였습니다.");
 
-                    alert("삭제 하였습니다.");
-
-                    fnCategoryPopList();
-                    fnCategoryInitList();
+                        fnCategoryPopList();
+                        fnCategoryInitList();
+                    }
                 })
                 .fail(function(xhr, status, errorThrown){
                     console.log("카테고리 삭제 Ajax failed")
