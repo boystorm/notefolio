@@ -199,6 +199,8 @@ function mainCategory(){
             element.removeClass("active");
             $(this).addClass("active");
         }
+
+
     });
 }
 /**
@@ -208,18 +210,26 @@ function mainCategory(){
  */
 function subCategory(){
     $(".mng-category__list li a").on("click", function(){
-        let self = $(this).hasClass("active");
+        let selfAcive = $(this).hasClass("active");
         let element = $(".mng-category__all a");
         let elementAnother = $(".mng-category__list li a");
         let manageBtn = $(".mng__btn");
         let mainId = $(this).data("mainId");
         let subId = $(this).data("subId");
+        let chkAllBox = "";
+        let chkBox = "";
 
-        if(!self){
+        if(!selfAcive){
             manageBtn.removeClass("display-none");
             elementAnother.removeClass("active");
             element.removeClass("active");
             $(this).addClass("active");
+
+            chkAllBox += "<th scope='col' class='item-box-chk'><input type='checkbox' id='boardAllChk'></th>";
+            if(!$("#boardAllChk").is("#boardAllChk")){
+                $(".mng__table--box thead tr").prepend(chkAllBox);
+            }
+            
             $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
         }
 
@@ -229,7 +239,6 @@ function subCategory(){
             dataType : "JSON",
         })
         .done(function(json){
-            
             // 테이블 초기화
             $(".mng__table table tbody").empty();
             // 페이징 초기화
@@ -237,18 +246,18 @@ function subCategory(){
 
             _.forEach(json.rows, function (val, key) {
                 let listHtml = "";
-                console.log(val);
 
                 listHtml += "<tr>";
-                listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' class='itemChk' value='" + val.idx + "'/></td>";
+                listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' id='itemChk' value='" + val.idx + "'/></td>";
                 listHtml += "<td class='mng__table--center'>" + val.idx + "</td>";
-                listHtml += "<td class='mng__table--center'><a href='/admin/board/boardRead/'><img src='http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg' class='mng__table--thumb'/></a></td>";
-                listHtml += "<td class='mng__table--center'></td>";
-                listHtml += "<td class='mng__table--center'></td>";
-                listHtml += "<td class='mng__table--center'></td>";
-                listHtml += "<td class='mng__table--center'></td>";
-                listHtml += "<td class='mng__table--center'></td>";
-                listHtml += "<td class='mng__table--center'></td>";
+                listHtml += "<td class='mng__table--center'><a href='/admin/board/boardRead/" + val.idx + "/" + val.main_id + "/" + val.sub_id +"'>";
+                listHtml += "<img src='http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg' class='mng__table--thumb'/></a></td>";
+                listHtml += "<td class='mng__table--center'>" + val.title + "</td>";
+                listHtml += "<td class='mng__table--center'>" + val.content + "</td>";
+                listHtml += "<td class='mng__table--center'>"+ val.regdate +"</td>";
+                listHtml += "<td class='mng__table--center'>"+ val.modidate +"</td>";
+                listHtml += "<td class='mng__table--center'>"+ val.main_id +"</td>";
+                listHtml += "<td class='mng__table--center'>"+ val.sub_id +"</td>";
                 listHtml += "</tr>"
 
                 $(".mng__table table tbody").append(listHtml);
@@ -257,17 +266,33 @@ function subCategory(){
             // 페이징
             let pageHtml = "";
             for(let i = 0; i < json.rows.length / json.page_num; i++){
-                pageHtml += "<li class=''><a href='javascript:;'>1111</a></li>"
+                // 수정 필요
+                // pageHtml += "<li class='"+ json.page == (i + 1) ? "active" : "" + "'>";
+                pageHtml += "<li class='"+ (json.page == i + 1) ? 'active' : '' +"'>";
+                pageHtml += "<a href='javascript:;'>" + (i + 1) + "</a>";
+                pageHtml += "</li>";
 
                 $(".pagination").append(pageHtml);
             }
             
+            /* 전체 선택 */
+            let boardAllChk = $("#boardAllChk");
+            boardAllChk.change(function(){
+                let self = $(this);
+                
+                let checked = self.prop("checked");
+                $("input[name='boardChk[]']").prop('checked', checked);
+            });
 
-            // alrHtml += "<div class='event-box'>";
-            // alrHtml += "<div class='event-info-order'>" + (((page-1) * nPageLength) + (key+1)) + "</div>";
-            // alrHtml += "<div class='event-info-icon " + fnGetAlrIcon(val.eventCode) + "'>";
-            
+            let boardChk = $('input[name="boardChk[]"]');
+            boardChk.change(function () {
+                let boardChkLength = boardChk.length;
+                let checkedLength = $('input[name="boardChk[]"]:checked').length;
+                let selectAll = (boardChkLength == checkedLength);
 
+                boardAllChk.prop('checked', selectAll);
+            });
+           
         })
         .fail(function(request, status, error){
             console.log("서브 카테고리 게시판 목록 불러오기 Ajax failed");
@@ -378,27 +403,7 @@ $(function() {
             }
         });            
     });
-    /**
-     * =======================================
-     * 설  명 : All 체크
-     * =======================================
-     */
-    let boardAllChk = $("#boardAllChk");
-    boardAllChk.change(function(){
-        let self = $(this);
-        
-        let checked = self.prop("checked");
-        $("input[name='boardChk[]']").prop('checked', checked);
-    });
-
-    let boardChk = $('input[name="boardChk[]"]');
-    boardChk.change(function () {
-        let boardChkLength = boardChk.length;
-        let checkedLength = $('input[name="boardChk[]"]:checked').length;
-        let selectAll = (boardChkLength == checkedLength);
-
-        boardAllChk.prop('checked', selectAll);
-    });
+    
 
     /**
      * =======================================

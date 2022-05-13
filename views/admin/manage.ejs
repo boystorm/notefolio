@@ -102,8 +102,8 @@
                         <form action="" method="get" id="boardForm" >
                             <div class="mng__table">
                                 <div class="card">
-                                    <table>
-                                        <colgroup> 
+                                    <table class="mng__table--box">
+                                        <!-- <colgroup> 
                                             <col style="width:3%"> 
                                             <col style="width:10%"> 
                                             <col style="width:6%">
@@ -113,10 +113,10 @@
                                             <col style="width:12%">
                                             <col style="width:10%">
                                             <col style="width:10%">
-                                        </colgroup>
+                                        </colgroup> -->
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="item-box-chk"><input type="checkbox" id="boardAllChk"></th>
+                                                <!-- <th scope="col" class="item-box-chk"><input type="checkbox" id="boardAllChk"></th> -->
                                                 <th scope="col">순번</th>
                                                 <th scope="col">이미지</th>
                                                 <th scope="col">제목</th>
@@ -136,7 +136,7 @@
                                                         let data = rows3[i];
                                             %>
                                             <tr>
-                                                <td class="mng__table--center item-box-chk"><input type="checkbox" name="boardChk[]" class="itemChk" value="<%= data.idx%>"></td>
+                                                <!-- <td class="mng__table--center item-box-chk"><input type="checkbox" name="boardChk[]" id="itemChk" value="<%= data.idx%>"></td> -->
                                                 <td class="mng__table--center"><%= data.idx %></td>
                                                 <td class="mng__table--center"><a href="/admin/board/boardRead/<%= data.idx %>/<%= data.main_id %>/<%= data.sub_id %>"><img src="http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg" class="mng__table--thumb"></a></td>
                                                 <td class="mng__table--center"><%= data.title %></td>
@@ -156,7 +156,7 @@
                                 <div class="mng__pagination">
                                     <ul class="pagination">
                                         <%
-                                            for(var j = 0; j < rows3.length / page_num; j++){
+                                            for(let j = 0; j < rows3.length / page_num; j++){
                                         %>
                                             <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="javascript:;"><%= j + 1 %></a></li>
                                         <%
@@ -207,7 +207,7 @@
                                     <div class="modal__generate"></div>
                                 </div>
                                 <div class="modal__mod">
-                                    <input type="text" id="categorySubIdInput" name="categorySubId">
+                                    <input type="hidden" id="categorySubIdInput" name="categorySubId">
 
                                     <label for="categoryNameInput">카테고리 이름</label>
                                     <input type="text" id="categoryNameInput" name="categoryName" readonly>
