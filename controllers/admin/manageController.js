@@ -89,7 +89,7 @@ exports.manageBoardData = function(req, res){
             res.send(err);
         } else {
             res.send({
-                result : result,
+                rows : result,
                 page : page, 
                 length : result.length - 1,
                 page_num : 10,

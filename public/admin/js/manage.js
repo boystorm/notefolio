@@ -84,7 +84,7 @@ function fnCategoryPopList(){
         if($(".modal__tree--item").length === 0){
             _.forEach(json.rows2, function (val, key) {
                 let info = '';
-
+                
                 info += "<li data-value=" + val.sub_id + " class='modal__tree--item " + (val.main_id === 1 ? "category1" : "category2") + "'>";
                 info += "<span>" + val.sub_title + "</span>";
                 info += "<button type='button' class='category-item-del'>X</button>";
@@ -208,7 +208,6 @@ function mainCategory(){
  */
 function subCategory(){
     $(".mng-category__list li a").on("click", function(){
-        alert("111");
         let self = $(this).hasClass("active");
         let element = $(".mng-category__all a");
         let elementAnother = $(".mng-category__list li a");
@@ -230,28 +229,34 @@ function subCategory(){
             dataType : "JSON",
         })
         .done(function(json){
-            console.log(json);
+            
             // 테이블 초기화
             $(".mng__table table tbody").empty();
             // 페이징 초기화
             $(".pagination").empty();
 
-            _.forEach(json.result, function (val, key) {
+            _.forEach(json.rows, function (val, key) {
                 let listHtml = "";
-                
-                console.log("key:" + key);
+                console.log(val);
 
-                // listHtml += "1111";
-                // listHtml += "";
-                // listHtml += "";
-                // listHtml += "";
+                listHtml += "<tr>";
+                listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' class='itemChk' value='" + val.idx + "'/></td>";
+                listHtml += "<td class='mng__table--center'>" + val.idx + "</td>";
+                listHtml += "<td class='mng__table--center'><a href='/admin/board/boardRead/'><img src='http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg' class='mng__table--thumb'/></a></td>";
+                listHtml += "<td class='mng__table--center'></td>";
+                listHtml += "<td class='mng__table--center'></td>";
+                listHtml += "<td class='mng__table--center'></td>";
+                listHtml += "<td class='mng__table--center'></td>";
+                listHtml += "<td class='mng__table--center'></td>";
+                listHtml += "<td class='mng__table--center'></td>";
+                listHtml += "</tr>"
 
                 $(".mng__table table tbody").append(listHtml);
             });
 
             // 페이징
             let pageHtml = "";
-            for(let i = 0; i < json.result.length / json.page_num; i++){
+            for(let i = 0; i < json.rows.length / json.page_num; i++){
                 pageHtml += "<li class=''><a href='javascript:;'>1111</a></li>"
 
                 $(".pagination").append(pageHtml);
