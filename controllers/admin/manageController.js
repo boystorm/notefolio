@@ -1,6 +1,6 @@
 const Manage = require("../../models/admin/manage");
 
-// 카테고리 메인 리스트 및 게시판 컨트롤러
+// 카테고리 메인 리스트 및 메인 게시판 컨트롤러
 exports.manageData = function(req, res){
     let mainId = req.params.mainId;
     let page = req.params.page;
@@ -78,3 +78,23 @@ exports.manageCategoryDelete = function(req, res){
     });
 };
 
+// 서브 게시판 목록 불러오기 컨트롤러
+exports.manageBoardData = function(req, res){
+    let mainId = req.params.mainId;
+    let subId = req.params.subId;
+    let page = req.params.page;
+
+    Manage.manageBoardData(mainId, subId, function(err, result){
+        if(err){
+            res.send(err);
+        } else {
+            res.send({
+                result : result,
+                page : page, 
+                length : result.length - 1,
+                page_num : 10,
+                //total : result.length
+            });
+        }
+    });
+}

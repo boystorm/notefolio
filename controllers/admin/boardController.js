@@ -15,7 +15,7 @@ exports.boardAddProcess = function(req, res){
     });
 };
 
-// 글 읽기 컨트롤러
+// 글 상세 컨트롤러
 exports.boardRead = function(req, res){
     let idx = req.params.idx;
     let mainId = req.params.mainId;

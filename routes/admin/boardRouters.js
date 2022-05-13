@@ -1,8 +1,12 @@
 const express = require('express'); 
 const router = express.Router();
 const BoardController = require('../../controllers/admin/boardController');
-
-/* admin/board */ 
+/**
+* =======================================
+* 설  명 : 게시판 라우터 
+* =======================================
+*/
+/* Default url : admin/board */ 
 /* 게시판 글쓰기 페이지 */
 router.get('/boardAdd/:mainId/:subId', function(req, res, next){ 
     let main = req.params.mainId;

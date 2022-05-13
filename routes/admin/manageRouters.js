@@ -1,15 +1,14 @@
 const express = require('express'); 
 const router = express.Router();
 const ManageController = require('../../controllers/admin/manageController');
-
-
 /**
 * =======================================
-* 설  명 : 관리 라우터 
+* 설  명 : 카테고리 관리 라우터 
 * =======================================
 */
-/* admin/manage */ 
-/* 카테고리 관리 화면 */
+/* default url : admin/manage */ 
+
+/* 카테고리 관리 화면 + 메인 카테 게시판 목록 불러오기) */
 router.get('/', function(req, res, next){ res.redirect('manage/1/page/1'); });
 router.get('/:mainId/page/:page', ManageController.manageData);
 
@@ -24,5 +23,9 @@ router.post('/manageCategoryUpdateProcess', ManageController.manageCategoryUpdat
 
 /* 카테고리 Delete 매니저 */
 router.delete('/category/:id', ManageController.manageCategoryDelete); 
+
+/* 서브 카테 게시판 목록 불러오기 */
+router.get('/:mainId/:subId/page/:page', ManageController.manageBoardData);
+
 
 module.exports = router;

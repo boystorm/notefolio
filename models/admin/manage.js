@@ -8,6 +8,7 @@ let Manage = function (){}; // 생성자
 Manage.manageData = function(mainId,result){
     let query1 = "SELECT * FROM main_category;";
     let query2 = "SELECT * FROM sub_category;";
+    // 게시판
     let query3 = "SELECT idx, image, title, content, date_format(regdate, '%Y-%m-%d %H:%i:%s') regdate," 
                 + "date_format(modidate, '%Y-%m-%d %H:%i:%s') modidate, main_id, sub_id FROM board WHERE main_id = ?";
 
@@ -71,6 +72,21 @@ Manage.manageCategoryDeleteProcess =  function(id, result){
             result(null, err);
         } else {
             console.log(result);
+            result(null, res);
+        }
+    });
+};
+
+
+// 서브 게시판 목록 불러오기
+Manage.manageBoardData = function(mainId, subId, result){
+    let query = "SELECT idx, image, title, content, date_format(regdate, '%Y-%m-%d %H:%i:%s') regdate," 
+                + "date_format(modidate, '%Y-%m-%d %H:%i:%s') modidate, main_id, sub_id FROM board WHERE main_id = ? and sub_id = ?";
+
+    conn.query(query, [mainId, subId], function(err, res){
+        if(err){
+         result(null, err);
+        } else {
             result(null, res);
         }
     });

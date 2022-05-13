@@ -208,6 +208,7 @@ function mainCategory(){
  */
 function subCategory(){
     $(".mng-category__list li a").on("click", function(){
+        alert("111");
         let self = $(this).hasClass("active");
         let element = $(".mng-category__all a");
         let elementAnother = $(".mng-category__list li a");
@@ -222,6 +223,50 @@ function subCategory(){
             $(this).addClass("active");
             $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
         }
+
+        $.ajax({
+            type : "get",
+            url : "/admin/manage/" + mainId + "/" + subId + "/page/" + 1,
+            dataType : "JSON",
+        })
+        .done(function(json){
+            console.log(json);
+            // 테이블 초기화
+            $(".mng__table table tbody").empty();
+            // 페이징 초기화
+            $(".pagination").empty();
+
+            _.forEach(json.result, function (val, key) {
+                let listHtml = "";
+                
+                console.log("key:" + key);
+
+                // listHtml += "1111";
+                // listHtml += "";
+                // listHtml += "";
+                // listHtml += "";
+
+                $(".mng__table table tbody").append(listHtml);
+            });
+
+            // 페이징
+            let pageHtml = "";
+            for(let i = 0; i < json.result.length / json.page_num; i++){
+                pageHtml += "<li class=''><a href='javascript:;'>1111</a></li>"
+
+                $(".pagination").append(pageHtml);
+            }
+            
+
+            // alrHtml += "<div class='event-box'>";
+            // alrHtml += "<div class='event-info-order'>" + (((page-1) * nPageLength) + (key+1)) + "</div>";
+            // alrHtml += "<div class='event-info-icon " + fnGetAlrIcon(val.eventCode) + "'>";
+            
+
+        })
+        .fail(function(request, status, error){
+            console.log("서브 카테고리 게시판 목록 불러오기 Ajax failed");
+        });
     });
 }
 
@@ -373,6 +418,10 @@ $(function() {
                 })
                 .done(function(result){
                     alert("삭제 되었습니다.");
+
+                    //0513 get board data
+                    
+                    
                 })
                 .fail(function(xhr, status, errorThrown){
                     console.log("게시판 삭제 Ajax failed")
