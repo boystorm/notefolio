@@ -271,6 +271,39 @@ main{
                                 }
                             }
                         }
+                        tbody tr{
+                            &.mng__table--main td{
+                                &:nth-child(1){
+                                    width: 5%
+                                }
+                                &:nth-child(2){
+                                    width: 5%;
+                                }
+                                &:nth-child(3){
+                                    width: 15%;
+                                }
+                                &:nth-child(4){
+                                    width: 30%;
+                                }
+                            }
+                            &.mng__table--sub td{
+                                &:nth-child(1){
+                                    width: 5%
+                                }
+                                &:nth-child(2){
+                                    width: 5%;
+                                }
+                                &:nth-child(3){
+                                    width: 5%;
+                                }
+                                &:nth-child(4){
+                                    width: 15%;
+                                }
+                                &:nth-child(5){
+                                    width: 30%;
+                                }
+                            }
+                        }
                     }
                     input[type=checkbox]{
                         cursor: pointer;

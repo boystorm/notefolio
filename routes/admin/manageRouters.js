@@ -24,8 +24,11 @@ router.post('/manageCategoryUpdateProcess', ManageController.manageCategoryUpdat
 /* 카테고리 Delete 매니저 */
 router.delete('/category/:id', ManageController.manageCategoryDelete); 
 
+/* 메인 카테 게시판 목록 불러오기 */
+router.get('/main/:mainId/page/:page', ManageController.manageMainBoardData);
+
 /* 서브 카테 게시판 목록 불러오기 */
-router.get('/:mainId/:subId/page/:page', ManageController.manageBoardData);
+router.get('/main/:mainId/sub/:subId/page/:page', ManageController.manageSubBoardData);
 
 
 module.exports = router;

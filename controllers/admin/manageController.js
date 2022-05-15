@@ -78,13 +78,12 @@ exports.manageCategoryDelete = function(req, res){
     });
 };
 
-// 서브 게시판 목록 불러오기 컨트롤러
-exports.manageBoardData = function(req, res){
+// 메인 게시판 목록 불러오기 컨트롤러
+exports.manageMainBoardData = function(req, res){
     let mainId = req.params.mainId;
-    let subId = req.params.subId;
     let page = req.params.page;
 
-    Manage.manageBoardData(mainId, subId, function(err, result){
+    Manage.manageMainBoardData(mainId, function(err, result){
         if(err){
             res.send(err);
         } else {
@@ -93,7 +92,27 @@ exports.manageBoardData = function(req, res){
                 page : page, 
                 length : result.length - 1,
                 page_num : 10,
-                //total : result.length
+                category : "main"
+            });
+        }
+    });
+}
+// 서브 게시판 목록 불러오기 컨트롤러
+exports.manageSubBoardData = function(req, res){
+    let mainId = req.params.mainId;
+    let subId = req.params.subId;
+    let page = req.params.page;
+
+    Manage.manageSubBoardData(mainId, subId, function(err, result){
+        if(err){
+            res.send(err);
+        } else {
+            res.send({
+                rows : result,
+                page : page, 
+                length : result.length - 1,
+                page_num : 10,
+                category : "sub"
             });
         }
     });

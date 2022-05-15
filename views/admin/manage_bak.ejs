@@ -93,30 +93,30 @@
                                     </div>
                                 </fieldset>
                             </form>
-                            <div class="mng__btn">
-                                <%
-                                    if(rows3.length != 0){
-                                %>
-                                    <button type="button" form="boardForm" id="boardDelBtn" class="btn btn-simple"><i class="fas fa-trash"></i></button>                                
-                                <% } else { %>
-                                    <a href="javascript:;" id="boardAddBtn" class="btn btn-simple "><i class="fas fa-plus"></i></a>
-                                    <button type="button" form="boardForm" id="boardDelBtn" class="btn btn-simple display-none"><i class="fas fa-trash"></i></button>                                
-                                <% } %>
-                                   
+                            <div class="mng__btn display-none">
+                                <a href="javascript:;" id="boardAddBtn" class="btn btn-simple"><i class="fas fa-plus"></i></a>
+                                <button type="button" form="boardForm" id="boardDelBtn" class="btn btn-simple"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>
 
                         <form action="" method="get" id="boardForm" >
                             <div class="mng__table">
-
-                                
-                                <!-- 분기처리 if(rows3.length != 0){ -->
-                                <div class="mng__empty display-none">등록된 프로젝트가 없습니다.</div>
                                 <div class="card">
                                     <table class="mng__table--box">
+                                        <!-- <colgroup> 
+                                            <col style="width:3%"> 
+                                            <col style="width:10%"> 
+                                            <col style="width:6%">
+                                            <col style="width:12%">
+                                            <col style="width:25%">
+                                            <col style="width:12%">
+                                            <col style="width:12%">
+                                            <col style="width:10%">
+                                            <col style="width:10%">
+                                        </colgroup> -->
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="item-box-chk"><input type="checkbox" id="boardAllChk"></th>
+                                                <!-- <th scope="col" class="item-box-chk"><input type="checkbox" id="boardAllChk"></th> -->
                                                 <th scope="col">순번</th>
                                                 <th scope="col">이미지</th>
                                                 <th scope="col">제목</th>
@@ -135,8 +135,8 @@
                                                     }else{
                                                         let data = rows3[i];
                                             %>
-                                            <tr class="mng__table--main">
-                                                <td class="mng__table--center item-box-chk"><input type="checkbox" name="boardChk[]" id="itemChk" value="<%= data.idx%>"></td>
+                                            <tr>
+                                                <!-- <td class="mng__table--center item-box-chk"><input type="checkbox" name="boardChk[]" id="itemChk" value="<%= data.idx%>"></td> -->
                                                 <td class="mng__table--center"><%= data.idx %></td>
                                                 <td class="mng__table--center"><a href="/admin/board/boardRead/<%= data.idx %>/<%= data.main_id %>/<%= data.sub_id %>"><img src="http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg" class="mng__table--thumb"></a></td>
                                                 <td class="mng__table--center"><%= data.title %></td>
@@ -149,6 +149,7 @@
                                             <% }
                                             } 
                                             %>
+                                            <div class="mng__empty display-none">등록된 프로젝트가 없습니다.</div>
                                         </tbody>
                                     </table>
                                 </div>
@@ -175,10 +176,6 @@
                                         </li>
                                     </ul> -->
                                 </div>
-                               
-
-
-
                             </div>
                         </form>
                     </div>

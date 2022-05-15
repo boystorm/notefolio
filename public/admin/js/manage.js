@@ -191,16 +191,27 @@ function mainCategory(){
         let self = $(this).hasClass("active");
         let element = $(".mng-category__all a");
         let elementAnother = $(".mng-category__list li a");
-        let manageBtn = $(".mng__btn");
-
+        let manageBtn = $("#boardAddBtn");
+        let mainId = $(this).data("mainId");
+        
         if(!self){
             manageBtn.addClass("display-none");
             elementAnother.removeClass("active");
             element.removeClass("active");
             $(this).addClass("active");
         }
-
-
+        // 진행
+        $.ajax({
+            type : "get",
+            url : "/admin/manage/main/" + mainId + "/page/" + 1,
+            dataType : "JSON",
+        })
+        .done(function(json){
+            boardList(json);
+        })
+        .fail(function(request, status, error){
+            console.log("메인 카테고리 게시판 목록 불러오기 Ajax failed");
+        });
     });
 }
 /**
@@ -213,90 +224,134 @@ function subCategory(){
         let selfAcive = $(this).hasClass("active");
         let element = $(".mng-category__all a");
         let elementAnother = $(".mng-category__list li a");
-        let manageBtn = $(".mng__btn");
+        let manageAddBtn = $("#boardAddBtn");
+        let manageDelBtn = $("#boardDelBtn");
         let mainId = $(this).data("mainId");
         let subId = $(this).data("subId");
-        let chkAllBox = "";
-        let chkBox = "";
+        let flag = "";
 
         if(!selfAcive){
-            manageBtn.removeClass("display-none");
+            manageAddBtn.removeClass("display-none");
+            manageDelBtn.removeClass("display-none");
             elementAnother.removeClass("active");
             element.removeClass("active");
             $(this).addClass("active");
-
-            chkAllBox += "<th scope='col' class='item-box-chk'><input type='checkbox' id='boardAllChk'></th>";
-            if(!$("#boardAllChk").is("#boardAllChk")){
-                $(".mng__table--box thead tr").prepend(chkAllBox);
-            }
-            
             $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
         }
 
         $.ajax({
             type : "get",
-            url : "/admin/manage/" + mainId + "/" + subId + "/page/" + 1,
+            url : "/admin/manage/main/" + mainId + "/sub/" + subId + "/page/" + 1,
             dataType : "JSON",
         })
         .done(function(json){
-            // 테이블 초기화
-            $(".mng__table table tbody").empty();
-            // 페이징 초기화
-            $(".pagination").empty();
-
-            _.forEach(json.rows, function (val, key) {
-                let listHtml = "";
-
-                listHtml += "<tr>";
-                listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' id='itemChk' value='" + val.idx + "'/></td>";
-                listHtml += "<td class='mng__table--center'>" + val.idx + "</td>";
-                listHtml += "<td class='mng__table--center'><a href='/admin/board/boardRead/" + val.idx + "/" + val.main_id + "/" + val.sub_id +"'>";
-                listHtml += "<img src='http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg' class='mng__table--thumb'/></a></td>";
-                listHtml += "<td class='mng__table--center'>" + val.title + "</td>";
-                listHtml += "<td class='mng__table--center'>" + val.content + "</td>";
-                listHtml += "<td class='mng__table--center'>"+ val.regdate +"</td>";
-                listHtml += "<td class='mng__table--center'>"+ val.modidate +"</td>";
-                listHtml += "<td class='mng__table--center'>"+ val.main_id +"</td>";
-                listHtml += "<td class='mng__table--center'>"+ val.sub_id +"</td>";
-                listHtml += "</tr>"
-
-                $(".mng__table table tbody").append(listHtml);
-            });
-
-            // 페이징
-            let pageHtml = "";
-            for(let i = 0; i < json.rows.length / json.page_num; i++){
-                // 수정 필요
-                // pageHtml += "<li class='"+ json.page == (i + 1) ? "active" : "" + "'>";
-                pageHtml += "<li class='"+ (json.page == i + 1) ? 'active' : '' +"'>";
-                pageHtml += "<a href='javascript:;'>" + (i + 1) + "</a>";
-                pageHtml += "</li>";
-
-                $(".pagination").append(pageHtml);
-            }
-            
-            /* 전체 선택 */
-            let boardAllChk = $("#boardAllChk");
-            boardAllChk.change(function(){
-                let self = $(this);
-                
-                let checked = self.prop("checked");
-                $("input[name='boardChk[]']").prop('checked', checked);
-            });
-
-            let boardChk = $('input[name="boardChk[]"]');
-            boardChk.change(function () {
-                let boardChkLength = boardChk.length;
-                let checkedLength = $('input[name="boardChk[]"]:checked').length;
-                let selectAll = (boardChkLength == checkedLength);
-
-                boardAllChk.prop('checked', selectAll);
-            });
-           
+            boardList(json, mainId, subId);
         })
         .fail(function(request, status, error){
             console.log("서브 카테고리 게시판 목록 불러오기 Ajax failed");
         });
+    });
+}
+
+/**
+ * =======================================
+ * 설  명 : 게시판 리스트 목록
+ * =======================================
+ */
+function boardList(json, mainId, subId){
+    let chkAllBox = "";
+    let chkBox = "";
+    let listHtml = "";
+    let boardAddBtn = "";
+    
+    if(json.rows != ''){
+        $(".mng__table .card").removeClass("display-none");
+        $(".pagination").removeClass("display-none");
+        $(".mng__empty").addClass("display-none");
+        $("#boardDelBtn").removeClass("display-none");
+        if(json.category === "sub"){
+            boardAddBtn += "<a href='javascript:;' id='boardAddBtn' class='btn btn-simple'><i class='fas fa-plus'></i></a>";
+            if(!$("#boardAddBtn").is("#boardAddBtn")){
+                $(".mng__btn").prepend(boardAddBtn);
+                $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
+            }
+        }
+
+        _.forEach(json.rows, function (val, key) {
+            // 테이블 초기화
+            console.log(json.rows);
+            $(".mng__table table tbody").empty();
+            // 페이징 초기화
+            $(".pagination").empty();
+
+            chkAllBox += "<th scope='col' class='item-box-chk'><input type='checkbox' id='boardAllChk'></th>";
+
+            if(!$("#boardAllChk").is("#boardAllChk")){
+                $(".mng__table--box thead tr").prepend(chkAllBox);
+            }
+
+            listHtml += "<tr class='mng__table--main'>";
+            listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' id='itemChk' value='" + val.idx + "'/></td>";    
+            listHtml += "<td class='mng__table--center'>" + val.idx + "</td>";
+            listHtml += "<td class='mng__table--center'><a href='/admin/board/boardRead/" + val.idx + "/" + val.main_id + "/" + val.sub_id +"'>";
+            listHtml += "<img src='http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg' class='mng__table--thumb'/></a></td>";
+            listHtml += "<td class='mng__table--center'>" + val.title + "</td>";
+            listHtml += "<td class='mng__table--center'>" + val.content + "</td>";
+            listHtml += "<td class='mng__table--center'>"+ val.regdate +"</td>";
+            listHtml += "<td class='mng__table--center'>"+ val.modidate +"</td>";
+            listHtml += "<td class='mng__table--center'>"+ val.main_id +"</td>";
+            listHtml += "<td class='mng__table--center'>"+ val.sub_id +"</td>";
+            listHtml += "</tr>"
+
+            $(".mng__table table tbody").append(listHtml);
+        });
+        // 페이징 위치 확인
+        let pageHtml = "";
+        for(let i = 0; i < json.rows.length / json.page_num; i++){
+            pageHtml += "<li class='" + (json.page == i+1 ? 'active' : '') + "'>";   
+            pageHtml += "<a href='javascript:;'>" + (i + 1) + "</a>";
+            pageHtml += "</li>";
+
+            $(".pagination").append(pageHtml);
+        }        
+    }else{
+        $(".mng__table .card").addClass("display-none");
+        $(".pagination").addClass("display-none");
+        $(".mng__empty").removeClass("display-none");
+        $("#boardDelBtn").addClass("display-none");
+        if(json.category === "sub"){
+            boardAddBtn += "<a href='javascript:;' id='boardAddBtn' class='btn btn-simple'><i class='fas fa-plus'></i></a>";
+            if(!$("#boardAddBtn").is("#boardAddBtn")){
+                $(".mng__btn").prepend(boardAddBtn);
+            }
+        }
+    }
+    
+    /* 전체 체크 */
+    allChk();
+}
+
+/**
+ * =======================================
+ * 설  명 : 전체 체크
+ * =======================================
+ */
+function allChk(){
+    let boardAllChk = $("#boardAllChk");
+    boardAllChk.change(function(){
+        let self = $(this);
+        
+        let checked = self.prop("checked");
+        $("input[name='boardChk[]']").prop('checked', checked);
+    });
+
+    let boardChk = $('input[name="boardChk[]"]');
+    boardChk.change(function () {
+        let boardChkLength = boardChk.length;
+        let checkedLength = $('input[name="boardChk[]"]:checked').length;
+        let selectAll = (boardChkLength == checkedLength);
+
+        boardAllChk.prop('checked', selectAll);
     });
 }
 
@@ -314,7 +369,14 @@ $(function() {
      * =======================================
      */
     subCategory();
-    
+
+    /**
+     * =======================================
+     * 설  명 : 전체체크
+     * =======================================
+     */
+     allChk();
+
     /**
      * =======================================
      * 설  명 : 카테고리 팝업 오픈
