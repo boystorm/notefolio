@@ -191,16 +191,20 @@ function mainCategory(){
         let self = $(this).hasClass("active");
         let element = $(".mng-category__all a");
         let elementAnother = $(".mng-category__list li a");
-        let manageBtn = $(".mng__btn");
+        let manageBtn = $("#boardAddBtn");
         let mainId = $(this).data("mainId");
-        let flag = "";
-
+        
         if(!self){
             manageBtn.addClass("display-none");
             elementAnother.removeClass("active");
             element.removeClass("active");
             $(this).addClass("active");
         }
+
+        // 삭제 버튼 Main category Id 값 추가 | Sub category Id 값 삭제
+        $("#boardDelBtn").attr("data-main-id", mainId);
+        $("#boardDelBtn").attr("data-sub-id", "");
+
         // 진행
         $.ajax({
             type : "get",
@@ -208,8 +212,7 @@ function mainCategory(){
             dataType : "JSON",
         })
         .done(function(json){
-            let flag = true; // Main
-            boardList(json, flag);
+            boardList(json);
         })
         .fail(function(request, status, error){
             console.log("메인 카테고리 게시판 목록 불러오기 Ajax failed");
@@ -226,18 +229,24 @@ function subCategory(){
         let selfAcive = $(this).hasClass("active");
         let element = $(".mng-category__all a");
         let elementAnother = $(".mng-category__list li a");
-        let manageBtn = $(".mng__btn");
+        let manageAddBtn = $("#boardAddBtn");
+        let manageDelBtn = $("#boardDelBtn");
         let mainId = $(this).data("mainId");
         let subId = $(this).data("subId");
         let flag = "";
 
         if(!selfAcive){
-            manageBtn.removeClass("display-none");
+            manageAddBtn.removeClass("display-none");
+            manageDelBtn.removeClass("display-none");
             elementAnother.removeClass("active");
             element.removeClass("active");
             $(this).addClass("active");
             $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
         }
+
+        // 삭제 버튼 Main category Id | Sub category Id 값 추가 
+        $("#boardDelBtn").attr("data-main-id", mainId);
+        $("#boardDelBtn").attr("data-sub-id", subId);
 
         $.ajax({
             type : "get",
@@ -245,8 +254,7 @@ function subCategory(){
             dataType : "JSON",
         })
         .done(function(json){
-            let flag = false; // sub
-            boardList(json, flag);
+            boardList(json, mainId, subId);
         })
         .fail(function(request, status, error){
             console.log("서브 카테고리 게시판 목록 불러오기 Ajax failed");
@@ -259,38 +267,46 @@ function subCategory(){
  * 설  명 : 게시판 리스트 목록
  * =======================================
  */
-function boardList(json, flag){
+function boardList(json, mainId, subId){
     let chkAllBox = "";
     let chkBox = "";
     let listHtml = "";
-    // 테이블 초기화
-    $(".mng__table table tbody").empty();
-    
-    // 페이징 초기화
-    $(".pagination").empty();
+    let boardAddBtn = "";
+    let pageHtml = "";
+
     if(json.rows != ''){
         $(".mng__table .card").removeClass("display-none");
+        $(".pagination").removeClass("display-none");
         $(".mng__empty").addClass("display-none");
-        _.forEach(json.rows, function (val, key) {
-            // flag : true = 메인, false = 서브
-            $(".item-box-chk").remove();
+        $("#boardDelBtn").removeClass("display-none");
 
-            if(!flag){
-                chkAllBox += "<th scope='col' class='item-box-chk'><input type='checkbox' id='boardAllChk'></th>";
+        // 전체 체크 초기화
+        if ($("#boardAllChk").is(':checked')) {
+            $("input[type=checkbox]").prop("checked", false);
+        }
+        
+        if(json.category === "sub"){
+            boardAddBtn += "<a href='javascript:;' id='boardAddBtn' class='btn btn-simple'><i class='fas fa-plus'></i></a>";
+            if(!$("#boardAddBtn").is("#boardAddBtn")){
+                $(".mng__btn").prepend(boardAddBtn);
+                $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
             }
+        }
+
+        _.forEach(json.rows, function (val, key) {
+            // 테이블 초기화
+            $(".mng__table table tbody").empty();
+            // 페이징 초기화
+            $(".pagination").empty();
+
+            chkAllBox += "<th scope='col' class='item-box-chk'><input type='checkbox' id='boardAllChk'></th>";
+
             if(!$("#boardAllChk").is("#boardAllChk")){
                 $(".mng__table--box thead tr").prepend(chkAllBox);
             }
 
-            if(!flag){
-                listHtml += "<tr class='mng__table--sub'>";
-            }else{
-                listHtml += "<tr class='mng__table--main'>";
-            }
-            
-            if(!flag){
-                listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' id='itemChk' value='" + val.idx + "'/></td>";    
-            }
+            listHtml += "<tr class='mng__table--main'>";
+            listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' id='itemChk' value='" + val.idx + "'/></td>";    
             listHtml += "<td class='mng__table--center'>" + val.idx + "</td>";
             listHtml += "<td class='mng__table--center'><a href='/admin/board/boardRead/" + val.idx + "/" + val.main_id + "/" + val.sub_id +"'>";
             listHtml += "<img src='http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg' class='mng__table--thumb'/></a></td>";
@@ -304,22 +320,38 @@ function boardList(json, flag){
 
             $(".mng__table table tbody").append(listHtml);
         });
-        
-        // 페이징
-        let pageHtml = "";
+         // 페이징 위치 확인
         for(let i = 0; i < json.rows.length / json.page_num; i++){
+            console.log(json.rows.length / json.page_num)
             pageHtml += "<li class='" + (json.page == i+1 ? 'active' : '') + "'>";   
             pageHtml += "<a href='javascript:;'>" + (i + 1) + "</a>";
             pageHtml += "</li>";
-
-            $(".pagination").append(pageHtml);
-        }
+        }   
+        $(".pagination").append(pageHtml);
+        
     }else{
         $(".mng__table .card").addClass("display-none");
+        $(".pagination").addClass("display-none");
         $(".mng__empty").removeClass("display-none");
+        $("#boardDelBtn").addClass("display-none");
+        if(json.category === "sub"){
+            boardAddBtn += "<a href='javascript:;' id='boardAddBtn' class='btn btn-simple'><i class='fas fa-plus'></i></a>";
+            if(!$("#boardAddBtn").is("#boardAddBtn")){
+                $(".mng__btn").prepend(boardAddBtn);
+            }
+        }
     }
     
-    /* 전체 선택 */
+    /* 전체 체크 */
+    allChk();
+}
+
+/**
+ * =======================================
+ * 설  명 : 전체 체크
+ * =======================================
+ */
+function allChk(){
     let boardAllChk = $("#boardAllChk");
     boardAllChk.change(function(){
         let self = $(this);
@@ -339,9 +371,22 @@ function boardList(json, flag){
 }
 
 
-
-
 $(function() {
+    /**
+     * =======================================
+     * 설  명 : Init 초기화
+     * =======================================
+     */
+    if($(".mng__table--main").length === 0){
+        $(".mng__table .card").addClass("display-none");
+        $("#boardAddBtn").addClass("display-none");
+        $(".mng__empty").removeClass("display-none");
+    }else{
+        $(".mng__table .card").removeClass("display-none");
+        $("#boardDelBtn").removeClass("display-none");
+        $(".mng__empty").addClass("display-none");
+    }
+
     /**
      * =======================================
      * 설  명 : 메인 카테고리 클릭 호출
@@ -354,7 +399,14 @@ $(function() {
      * =======================================
      */
     subCategory();
-    
+
+    /**
+     * =======================================
+     * 설  명 : 전체체크
+     * =======================================
+     */
+     allChk();
+
     /**
      * =======================================
      * 설  명 : 카테고리 팝업 오픈
@@ -456,6 +508,10 @@ $(function() {
             let chkCount = $("input[name='boardChk[]']:checked").length;
             let flag = window.confirm(chkCount + "건이 삭제됩니다. 확인해주세요.");
 
+             // 삭제 버튼 data
+             let mainId = $(this).data("mainId");
+             let subId = $(this).data("subId");
+            
             if(flag){
                 $("input[name='boardChk[]']:checked").each(function(){
                     let tmpVal = $(this).val();
@@ -469,8 +525,33 @@ $(function() {
                 .done(function(result){
                     alert("삭제 되었습니다.");
 
-                    //0513 get board data
-                    
+                    if(mainId != "" && (subId != "" && subId != undefined)){
+                        // sub category    
+                        $.ajax({
+                            type : "get",
+                            url : "/admin/manage/main/" + mainId + "/sub/" + subId + "/page/" + 1,
+                            dataType : "JSON",
+                        })
+                        .done(function(json){
+                            boardList(json, mainId, subId);
+                        })
+                        .fail(function(request, status, error){
+                            console.log("삭제 후 서브 카테고리 게시판 목록 불러오기 Ajax failed");
+                        });
+
+                    }else{
+                        $.ajax({
+                            type : "get",
+                            url : "/admin/manage/main/" + mainId + "/page/" + 1,
+                            dataType : "JSON",
+                        })
+                        .done(function(json){
+                            boardList(json);
+                        })
+                        .fail(function(request, status, error){
+                            console.log("삭제 후 메인 카테고리 게시판 목록 불러오기 Ajax failed");
+                        });
+                    }                 
                     
                 })
                 .fail(function(xhr, status, errorThrown){
@@ -491,7 +572,7 @@ $(function() {
      * =======================================
      */
     $(".pagination li").on("click", function(){
-        alert("111");
+        //alert("111");
     });
 });
 

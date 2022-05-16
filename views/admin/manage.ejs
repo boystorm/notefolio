@@ -101,9 +101,6 @@
 
                         <form action="" method="get" id="boardForm" >
                             <div class="mng__table">
-
-                                
-                                <!-- 분기처리 if(rows3.length != 0){ -->
                                 <div class="mng__empty display-none">등록된 프로젝트가 없습니다.</div>
                                 <div class="card">
                                     <table class="mng__table--box">
@@ -150,7 +147,8 @@
                                         <%
                                             for(let j = 0; j < rows3.length / page_num; j++){
                                         %>
-                                            <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="javascript:;"><%= j + 1 %></a></li>
+                                            <!-- <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="/admin/manage/1/page/<%= j + 1 %>" ><%= j + 1 %></a></li> -->
+                                            <li class="<%= page == j + 1 ? 'active' : ''%>"><a href="javascript:;" data-main-id="<%= rows3[j].main_id %>" data-page="<%= j + 1 %>"><%= j + 1 %></a></li>
                                         <%
                                             }
                                         %>
