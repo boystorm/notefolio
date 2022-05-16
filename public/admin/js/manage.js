@@ -510,8 +510,6 @@ $(function() {
              // 삭제 버튼 data
              let mainId = $(this).data("mainId");
              let subId = $(this).data("subId");
-
-             console.log("main :" + mainId +"|| sub : " + subId);
             
             if(flag){
                 $("input[name='boardChk[]']:checked").each(function(){
@@ -527,9 +525,23 @@ $(function() {
                     alert("삭제 되었습니다.");
 
                     // 0516 불러올때 2가지 메인,서브 셀렉 분리할때 변수에 mainId subId 로 분리해서 url 분리 처리
+                    // sub category
+                    if(mainId != "" && (subId != "" && subId != undefined)){
+                        // console.log("Sub Category = main :" + mainId +"|| sub : " + subId);
+                        // console.log("mainId : 참거짓 = " + mainId != "");
+                        // console.log("subId : 참거짓 = " + (subId != "" && subId != undefined));
 
-                    
-                    
+                        // console.log("mainId + subId : 참거짓 =" + mainId != "" && (subId != "" && subId != undefined));
+
+
+
+                    }else{
+                        // main category
+                        // console.log("Sub Category = main :" + mainId +"|| sub : " + subId);
+                        
+
+
+                    }                 
                     
                 })
                 .fail(function(xhr, status, errorThrown){
