@@ -293,8 +293,6 @@ function boardList(json, mainId, subId){
         }
 
         _.forEach(json.rows, function (val, key) {
-            
-
             // 테이블 초기화
             $(".mng__table table tbody").empty();
             // 페이징 초기화
@@ -381,10 +379,10 @@ $(function() {
     if($(".mng__table--main").length === 0){
         $(".mng__table .card").addClass("display-none");
         $("#boardAddBtn").addClass("display-none");
-
         $(".mng__empty").removeClass("display-none");
     }else{
         $(".mng__table .card").removeClass("display-none");
+        $("#boardDelBtn").removeClass("display-none");
         $(".mng__empty").addClass("display-none");
     }
 
@@ -508,6 +506,12 @@ $(function() {
             let chkArray = new Array();
             let chkCount = $("input[name='boardChk[]']:checked").length;
             let flag = window.confirm(chkCount + "건이 삭제됩니다. 확인해주세요.");
+
+             // 삭제 버튼 data
+             let mainId = $(this).data("mainId");
+             let subId = $(this).data("subId");
+
+             console.log("main :" + mainId +"|| sub : " + subId);
             
             if(flag){
                 $("input[name='boardChk[]']:checked").each(function(){
@@ -520,7 +524,7 @@ $(function() {
                     url : "/admin/board/boardDelete/" + chkArray,
                 })
                 .done(function(result){
-                    //alert("삭제 되었습니다.");
+                    alert("삭제 되었습니다.");
 
                     // 0516 불러올때 2가지 메인,서브 셀렉 분리할때 변수에 mainId subId 로 분리해서 url 분리 처리
 
