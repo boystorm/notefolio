@@ -199,6 +199,7 @@ function mainCategory(){
             elementAnother.removeClass("active");
             element.removeClass("active");
             $(this).addClass("active");
+            
         }
         // 진행
         $.ajax({
@@ -269,6 +270,12 @@ function boardList(json, mainId, subId){
         $(".pagination").removeClass("display-none");
         $(".mng__empty").addClass("display-none");
         $("#boardDelBtn").removeClass("display-none");
+
+        // 전체 체크 초기화
+        if ($("#boardAllChk").is(':checked')) {
+            $("input[type=checkbox]").prop("checked", false);
+        }
+        
         if(json.category === "sub"){
             boardAddBtn += "<a href='javascript:;' id='boardAddBtn' class='btn btn-simple'><i class='fas fa-plus'></i></a>";
             if(!$("#boardAddBtn").is("#boardAddBtn")){
@@ -278,6 +285,8 @@ function boardList(json, mainId, subId){
         }
 
         _.forEach(json.rows, function (val, key) {
+            
+
             // 테이블 초기화
             $(".mng__table table tbody").empty();
             // 페이징 초기화
