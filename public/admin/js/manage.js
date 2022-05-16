@@ -501,6 +501,8 @@ $(function() {
             let chkCount = $("input[name='boardChk[]']:checked").length;
             let flag = window.confirm(chkCount + "건이 삭제됩니다. 확인해주세요.");
             
+            
+            
 
             if(flag){
                 $("input[name='boardChk[]']:checked").each(function(){
@@ -515,7 +517,7 @@ $(function() {
                 .done(function(result){
                     //alert("삭제 되었습니다.");
 
-                    // 불러올때 2가지 메인,서브 셀렉 분리할때 변수에 mainId subId 로 분리해서 url 분리 처리
+                    // 0516 불러올때 2가지 메인,서브 셀렉 분리할때 변수에 mainId subId 로 분리해서 url 분리 처리
 
                     
                     
