@@ -199,8 +199,12 @@ function mainCategory(){
             elementAnother.removeClass("active");
             element.removeClass("active");
             $(this).addClass("active");
-            
         }
+
+        // 삭제 버튼 Main category Id 값 추가 | Sub category Id 값 삭제
+        $("#boardDelBtn").attr("data-main-id", mainId);
+        $("#boardDelBtn").attr("data-sub-id", "");
+
         // 진행
         $.ajax({
             type : "get",
@@ -239,6 +243,10 @@ function subCategory(){
             $(this).addClass("active");
             $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
         }
+
+        // 삭제 버튼 Main category Id | Sub category Id 값 추가 
+        $("#boardDelBtn").attr("data-main-id", mainId);
+        $("#boardDelBtn").attr("data-sub-id", subId);
 
         $.ajax({
             type : "get",
@@ -501,9 +509,6 @@ $(function() {
             let chkCount = $("input[name='boardChk[]']:checked").length;
             let flag = window.confirm(chkCount + "건이 삭제됩니다. 확인해주세요.");
             
-            
-            
-
             if(flag){
                 $("input[name='boardChk[]']:checked").each(function(){
                     let tmpVal = $(this).val();
