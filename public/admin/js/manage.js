@@ -279,7 +279,6 @@ function boardList(json, mainId, subId){
 
         _.forEach(json.rows, function (val, key) {
             // 테이블 초기화
-            console.log(json.rows);
             $(".mng__table table tbody").empty();
             // 페이징 초기화
             $(".pagination").empty();
@@ -357,6 +356,18 @@ function allChk(){
 
 
 $(function() {
+    /**
+     * =======================================
+     * 설  명 : Init
+     * =======================================
+     */
+    if($(".mng__table--main").length === 0){
+        $(".mng__table .card").addClass("display-none");
+        $("#boardAddBtn").addClass("display-none");
+
+        $(".mng__empty").removeClass("display-none");
+    }
+
     /**
      * =======================================
      * 설  명 : 메인 카테고리 클릭 호출
