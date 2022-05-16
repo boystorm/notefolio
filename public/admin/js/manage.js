@@ -524,23 +524,32 @@ $(function() {
                 .done(function(result){
                     alert("삭제 되었습니다.");
 
-                    // 0516 불러올때 2가지 메인,서브 셀렉 분리할때 변수에 mainId subId 로 분리해서 url 분리 처리
-                    // sub category
                     if(mainId != "" && (subId != "" && subId != undefined)){
-                        // console.log("Sub Category = main :" + mainId +"|| sub : " + subId);
-                        // console.log("mainId : 참거짓 = " + mainId != "");
-                        // console.log("subId : 참거짓 = " + (subId != "" && subId != undefined));
-
-                        // console.log("mainId + subId : 참거짓 =" + mainId != "" && (subId != "" && subId != undefined));
-
-
+                        // sub category    
+                        $.ajax({
+                            type : "get",
+                            url : "/admin/manage/main/" + mainId + "/sub/" + subId + "/page/" + 1,
+                            dataType : "JSON",
+                        })
+                        .done(function(json){
+                            boardList(json, mainId, subId);
+                        })
+                        .fail(function(request, status, error){
+                            console.log("삭제 후 서브 카테고리 게시판 목록 불러오기 Ajax failed");
+                        });
 
                     }else{
-                        // main category
-                        // console.log("Sub Category = main :" + mainId +"|| sub : " + subId);
-                        
-
-
+                        $.ajax({
+                            type : "get",
+                            url : "/admin/manage/main/" + mainId + "/page/" + 1,
+                            dataType : "JSON",
+                        })
+                        .done(function(json){
+                            boardList(json);
+                        })
+                        .fail(function(request, status, error){
+                            console.log("삭제 후 메인 카테고리 게시판 목록 불러오기 Ajax failed");
+                        });
                     }                 
                     
                 })
