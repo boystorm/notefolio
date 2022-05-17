@@ -17,7 +17,7 @@ $(function() {
         height: 300,                 // set editor height
         minHeight: null,             // set minimum height of editor
         maxHeight: null,             // set maximum height of editor
-        focus: true,                  // set focus to editable area after initializing summernote
+        focus: false,                  // set focus to editable area after initializing summernote
         styleTags: [
             'p',{ title: 'Blockquote', tag: 'blockquote', className: 'blockquote', value: 'blockquote' },
             'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
@@ -40,15 +40,5 @@ $(function() {
 
         }
       });
-
-    /**
-     * =======================================
-     * 설  명 : 글쓰기 취소(이전으로)
-     * =======================================
-     */     
-    $("#boardCancelBtn").on("click", function(){
-        history.go(-1);
-    });
-
 });
 
