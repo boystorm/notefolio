@@ -212,7 +212,7 @@ function mainCategory(){
             dataType : "JSON",
         })
         .done(function(json){
-            boardList(json);
+            boardList(json, mainId);
         })
         .fail(function(request, status, error){
             console.log("메인 카테고리 게시판 목록 불러오기 Ajax failed");
@@ -273,6 +273,7 @@ function boardList(json, mainId, subId){
     let listHtml = "";
     let boardAddBtn = "";
     let pageHtml = "";
+    
 
     if(json.rows != ''){
         $(".mng__table .card").removeClass("display-none");
@@ -293,42 +294,88 @@ function boardList(json, mainId, subId){
             }
         }
 
-        _.forEach(json.rows, function (val, key) {
-            // 테이블 초기화
-            $(".mng__table table tbody").empty();
-            // 페이징 초기화
-            $(".pagination").empty();
+        // 테이블 초기화
+        $(".mng__table table tbody").empty();
+        // 페이징 초기화
+        $(".pagination").empty();
 
-            chkAllBox += "<th scope='col' class='item-box-chk'><input type='checkbox' id='boardAllChk'></th>";
+        chkAllBox += "<th scope='col' class='item-box-chk'><input type='checkbox' id='boardAllChk'></th>";
 
-            if(!$("#boardAllChk").is("#boardAllChk")){
-                $(".mng__table--box thead tr").prepend(chkAllBox);
+        if(!$("#boardAllChk").is("#boardAllChk")){
+            $(".mng__table--box thead tr").prepend(chkAllBox);
+        }
+        console.log("mainId :" + mainId + "||" + "subId : " + subId);
+        for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
+            if(i > json.length){
+                i++;
+            }else{
+                let data = json.rows[i];
+                listHtml += "<tr class='mng__table--main'>";
+                listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' id='itemChk' value='" + data.idx + "'/></td>";    
+                listHtml += "<td class='mng__table--center'>" + data.idx + "</td>";
+                listHtml += "<td class='mng__table--center'><a href='/admin/board/boardRead/" + data.idx + "/" + data.main_id + "/" + data.sub_id +"'>";
+                listHtml += "<img src='http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg' class='mng__table--thumb'/></a></td>";
+                listHtml += "<td class='mng__table--center'>" + data.title + "</td>";
+                listHtml += "<td class='mng__table--center'>" + data.content + "</td>";
+                listHtml += "<td class='mng__table--center'>"+ data.regdate +"</td>";
+                listHtml += "<td class='mng__table--center'>"+ data.modidate +"</td>";
+                listHtml += "<td class='mng__table--center'>"+ data.main_id +"</td>";
+                listHtml += "<td class='mng__table--center'>"+ data.sub_id +"</td>";
+                listHtml += "</tr>"
+            } 
+        };
+        $(".mng__table table tbody").append(listHtml);   
+         // 페이징
+        for(let i = 0; i < json.rows.length / json.page_num; i++){
+            let data = json.rows[i];
+            pageHtml += "<li class='" + (json.page == i+1 ? 'active' : '') + "'>";
+           
+            if(mainId != "" && (subId != "" && subId != undefined)){
+                //sub category
+                pageHtml += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-sub-id='"+ data.sub_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
+            }else{
+                //main category
+                pageHtml += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
             }
 
-            listHtml += "<tr class='mng__table--main'>";
-            listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' id='itemChk' value='" + val.idx + "'/></td>";    
-            listHtml += "<td class='mng__table--center'>" + val.idx + "</td>";
-            listHtml += "<td class='mng__table--center'><a href='/admin/board/boardRead/" + val.idx + "/" + val.main_id + "/" + val.sub_id +"'>";
-            listHtml += "<img src='http://www.jeong9-9.com/img/thumbnail/card16_thumbnail.jpg' class='mng__table--thumb'/></a></td>";
-            listHtml += "<td class='mng__table--center'>" + val.title + "</td>";
-            listHtml += "<td class='mng__table--center'>" + val.content + "</td>";
-            listHtml += "<td class='mng__table--center'>"+ val.regdate +"</td>";
-            listHtml += "<td class='mng__table--center'>"+ val.modidate +"</td>";
-            listHtml += "<td class='mng__table--center'>"+ val.main_id +"</td>";
-            listHtml += "<td class='mng__table--center'>"+ val.sub_id +"</td>";
-            listHtml += "</tr>"
-
-            $(".mng__table table tbody").append(listHtml);
-        });
-         // 페이징 위치 확인
-        for(let i = 0; i < json.rows.length / json.page_num; i++){
-            console.log(json.rows.length / json.page_num)
-            pageHtml += "<li class='" + (json.page == i+1 ? 'active' : '') + "'>";   
-            pageHtml += "<a href='javascript:;'>" + (i + 1) + "</a>";
             pageHtml += "</li>";
         }   
         $(".pagination").append(pageHtml);
-        
+
+        // 페이징 클릭
+        $(".pagination li a").on("click", function(){
+            let mainId = $(this).data("mainId");
+            let subId = $(this).data("subId");
+            let page = $(this).data("page");
+
+            if(mainId != "" && (subId != "" && subId != undefined)){
+                // sub category
+                $.ajax({
+                    type : "get",
+                    url : "/admin/manage/main/" + mainId + "/sub/"+ subId +"/page/" + page,
+                    dataType : "JSON",
+                })
+                .done(function(json){
+                    boardList(json, mainId, subId);
+                })
+                .fail(function(request, status, error){
+                    console.log("서브 페이징 게시판 목록 불러오기 Ajax failed");
+                });
+            }else{
+                // main category
+                $.ajax({
+                    type : "get",
+                    url : "/admin/manage/main/" + mainId + "/page/" + page,
+                    dataType : "JSON",
+                })
+                .done(function(json){
+                    boardList(json, mainId);
+                })
+                .fail(function(request, status, error){
+                    console.log("메인 페이징 게시판 목록 불러오기 Ajax failed");
+                });
+            }
+        });
     }else{
         $(".mng__table .card").addClass("display-none");
         $(".pagination").addClass("display-none");
@@ -568,11 +615,25 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 페이지 클릭
+     * 설  명 : 페이지 클릭 호출 함수로 변경필요
      * =======================================
      */
-    $(".pagination li").on("click", function(){
-        //alert("111");
+    $(".pagination li a").on("click", function(){
+        let mainId = $(this).data("mainId");
+        let page = $(this).data("page");
+
+        $.ajax({
+            type : "get",
+            url : "/admin/manage/main/" + mainId + "/page/" + page,
+            dataType : "JSON",
+        })
+        .done(function(json){
+            boardList(json, mainId);
+        })
+        .fail(function(request, status, error){
+            console.log("페이징 게시판 목록 불러오기 Ajax failed");
+        });
     });
+
 });
 

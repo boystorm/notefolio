@@ -304,7 +304,7 @@ function boardList(json, mainId, subId){
         if(!$("#boardAllChk").is("#boardAllChk")){
             $(".mng__table--box thead tr").prepend(chkAllBox);
         }
-        console.log("mainId :" + mainId + "||" + "subId : " + subId);
+        //console.log("mainId :" + mainId + "||" + "subId : " + subId);
         for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
             if(i > json.length){
                 i++;
@@ -634,6 +634,5 @@ $(function() {
             console.log("페이징 게시판 목록 불러오기 Ajax failed");
         });
     });
-
 });
 
