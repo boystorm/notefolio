@@ -212,7 +212,7 @@ function mainCategory(){
             dataType : "JSON",
         })
         .done(function(json){
-            boardList(json);
+            boardList(json, mainId);
         })
         .fail(function(request, status, error){
             console.log("메인 카테고리 게시판 목록 불러오기 Ajax failed");
@@ -273,6 +273,7 @@ function boardList(json, mainId, subId){
     let listHtml = "";
     let boardAddBtn = "";
     let pageHtml = "";
+    
 
     if(json.rows != ''){
         $(".mng__table .card").removeClass("display-none");
@@ -303,7 +304,7 @@ function boardList(json, mainId, subId){
         if(!$("#boardAllChk").is("#boardAllChk")){
             $(".mng__table--box thead tr").prepend(chkAllBox);
         }
-
+        console.log("mainId :" + mainId + "||" + "subId : " + subId);
         for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
             if(i > json.length){
                 i++;
@@ -324,13 +325,17 @@ function boardList(json, mainId, subId){
             } 
         };
         $(".mng__table table tbody").append(listHtml);   
-        
          // 페이징
         for(let i = 0; i < json.rows.length / json.page_num; i++){
             let data = json.rows[i];
             pageHtml += "<li class='" + (json.page == i+1 ? 'active' : '') + "'>";
-            // 페이징 분기처리 변경필요
-            pageHtml += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-sub-id='"+ data.sub_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
+            // 페이징 분기처리 변경필요 /// 확인 필요함
+            if(mainId != "" && (subId != "" && subId != undefined)){
+                //sub category
+                pageHtml += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-sub-id='"+ data.sub_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
+            }else{
+                pageHtml += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
+            }
             pageHtml += "</li>";
         }   
         $(".pagination").append(pageHtml);
@@ -340,18 +345,34 @@ function boardList(json, mainId, subId){
             let mainId = $(this).data("mainId");
             let subId = $(this).data("subId");
             let page = $(this).data("page");
-    
-            $.ajax({
-                type : "get",
-                url : "/admin/manage/main/" + mainId + "/sub/"+ subId +"/page/" + page,
-                dataType : "JSON",
-            })
-            .done(function(json){
-                boardList(json);
-            })
-            .fail(function(request, status, error){
-                console.log("삭제 후 메인 카테고리 게시판 목록 불러오기 Ajax failed");
-            });
+
+            if(mainId != "" && (subId != "" && subId != undefined)){
+                // sub category
+                $.ajax({
+                    type : "get",
+                    url : "/admin/manage/main/" + mainId + "/sub/"+ subId +"/page/" + page,
+                    dataType : "JSON",
+                })
+                .done(function(json){
+                    boardList(json, mainId, subId);
+                })
+                .fail(function(request, status, error){
+                    console.log("서브 페이징 게시판 목록 불러오기 Ajax failed");
+                });
+            }else{
+                // main category
+                $.ajax({
+                    type : "get",
+                    url : "/admin/manage/main/" + mainId + "/page/" + page,
+                    dataType : "JSON",
+                })
+                .done(function(json){
+                    boardList(json, mainId);
+                })
+                .fail(function(request, status, error){
+                    console.log("메인 페이징 게시판 목록 불러오기 Ajax failed");
+                });
+            }
         });
         
     }else{
@@ -606,11 +627,12 @@ $(function() {
             dataType : "JSON",
         })
         .done(function(json){
-            boardList(json);
+            boardList(json, mainId);
         })
         .fail(function(request, status, error){
-            console.log("삭제 후 메인 카테고리 게시판 목록 불러오기 Ajax failed");
+            console.log("페이징 게시판 목록 불러오기 Ajax failed");
         });
     });
+
 });
 
