@@ -433,7 +433,7 @@ $(function() {
         $("#boardDelBtn").removeClass("display-none");
         $(".mng__empty").addClass("display-none");
     }
-
+ 
     /**
      * =======================================
      * 설  명 : 메인 카테고리 클릭 호출
@@ -468,7 +468,7 @@ $(function() {
 
         fnCategoryPopList();
     });
-
+    
     /**
      * =======================================
      * 설  명 : 카테고리 팝업 닫기
@@ -634,5 +634,18 @@ $(function() {
             console.log("페이징 게시판 목록 불러오기 Ajax failed");
         });
     });
+
+
+    /**
+     * =======================================
+     * 설  명 : TEST
+     * =======================================
+     */
+    let link = document.location.href;
+    let tab = link.split('#').pop();
+    console.log(tab);
+    
+    // $('a[class$="+ tab +"]').trigger("click");
+    $('.'+ tab).trigger("click");
 });
 

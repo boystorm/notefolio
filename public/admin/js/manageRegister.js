@@ -78,10 +78,8 @@ $(function() {
                 })
                 .done(function(json){
                     console.log("글쓰기 등록 success");
-
-                    
-
-                  
+                    window.location = "/admin/manage/1/page/1#" + "3" ;
+                    // window.location = "/admin/manage/1/page/1" ;
                 })
                 .fail(function(xhr, status, errorThrown){
                     console.log("글쓰기 등록 Ajax failed")
