@@ -329,18 +329,20 @@ function boardList(json, mainId, subId){
         for(let i = 0; i < json.rows.length / json.page_num; i++){
             let data = json.rows[i];
             pageHtml += "<li class='" + (json.page == i+1 ? 'active' : '') + "'>";
-            // 페이징 분기처리 변경필요 /// 확인 필요함
+           
             if(mainId != "" && (subId != "" && subId != undefined)){
                 //sub category
                 pageHtml += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-sub-id='"+ data.sub_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
             }else{
+                //main category
                 pageHtml += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
             }
+
             pageHtml += "</li>";
         }   
         $(".pagination").append(pageHtml);
 
-        // 페이징 클릭 분기처리 변경필요
+        // 페이징 클릭
         $(".pagination li a").on("click", function(){
             let mainId = $(this).data("mainId");
             let subId = $(this).data("subId");
@@ -374,7 +376,6 @@ function boardList(json, mainId, subId){
                 });
             }
         });
-        
     }else{
         $(".mng__table .card").addClass("display-none");
         $(".pagination").addClass("display-none");

@@ -39,7 +39,11 @@
                     <div class="register">
                         <div class="register__option">
                             <div class="register__btn">
-                                <a href="/admin/manage/1" class="btn btn-cancel">취소</a>
+                                <%  
+                                    console.log("mainid : " + mainId);
+                                    console.log("subid :" + subId);
+                                %>
+                                <a href="javascript:;" id="cancelAddBtn" data-main-id="<%= mainId %>" data-sub-id="<%= subId %>" class="btn btn-cancel">취소</a>
                                 <button type="submit" class="btn btn-confirm">확인</button>
                             </div>
                         </div>
