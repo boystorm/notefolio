@@ -647,5 +647,24 @@ $(function() {
     
     // $('a[class$="+ tab +"]').trigger("click");
     $('.'+ tab).trigger("click");
+
+    /**
+     * =======================================
+     * 설  명 : 새로고침시 url 초기화
+     * =======================================
+     */
+     document.onkeyup = fkey;
+      
+     var wasPressed = false;
+      
+     function fkey(e){
+         e = e || window.event;
+         if(wasPressed) return;
+      
+         if(e.keyCode == 116){
+             location.href = "/admin/manage/1/page/1";
+         }
+     }
+     
 });
 
