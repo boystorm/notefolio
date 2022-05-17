@@ -201,6 +201,9 @@ function mainCategory(){
             $(this).addClass("active");
         }
 
+        // url 초기화 : 해시 제거
+        changeUrl("","1");
+
         // 삭제 버튼 Main category Id 값 추가 | Sub category Id 값 삭제
         $("#boardDelBtn").attr("data-main-id", mainId);
         $("#boardDelBtn").attr("data-sub-id", "");
@@ -243,6 +246,9 @@ function subCategory(){
             $(this).addClass("active");
             $("#boardAddBtn").attr("href", "/admin/board/boardAdd/" + mainId + "/" + subId);
         }
+
+        // url 초기화 : 해시 제거
+        changeUrl("","1");
 
         // 삭제 버튼 Main category Id | Sub category Id 값 추가 
         $("#boardDelBtn").attr("data-main-id", mainId);
@@ -415,6 +421,19 @@ function allChk(){
 
         boardAllChk.prop('checked', selectAll);
     });
+}
+/**
+ * =======================================
+ * 설  명 : url 초기화
+ * =======================================
+ */
+function changeUrl(title, url, state) {
+    if (typeof (history.pushState) != "undefined") { //브라우저가 지원하는 경우
+        history.pushState(state, title, url);
+    }
+    else {
+        location.href = url; //브라우저가 지원하지 않는 경우 페이지 이동처리
+    }
 }
 
 
