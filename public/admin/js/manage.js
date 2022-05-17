@@ -615,7 +615,7 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 페이지 클릭 호출 함수로 변경필요
+     * 설  명 : 페이지 클릭 호출
      * =======================================
      */
     $(".pagination li a").on("click", function(){
@@ -635,7 +635,6 @@ $(function() {
         });
     });
 
-
     /**
      * =======================================
      * 설  명 : 페이지 이동시 활성화 변경
@@ -647,24 +646,5 @@ $(function() {
     
     // $('a[class$="+ tab +"]').trigger("click");
     $('.'+ tab).trigger("click");
-
-    /**
-     * =======================================
-     * 설  명 : 새로고침시 url 초기화
-     * =======================================
-     */
-     document.onkeyup = fkey;
-      
-     var wasPressed = false;
-      
-     function fkey(e){
-         e = e || window.event;
-         if(wasPressed) return;
-      
-         if(e.keyCode == 116){
-             location.href = "/admin/manage/1/page/1";
-         }
-     }
-     
 });
 
