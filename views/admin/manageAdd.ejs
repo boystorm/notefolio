@@ -33,14 +33,15 @@
                 </div>
             </div>
         </header>
-        <form action="/admin/board/boardAddProcess" method="post">
+        <!-- action="/admin/board/boardAddProcess" method="post"-->
+        <form id="boardAddForm" method="post">
             <main>
                 <div class="content">
                     <div class="register">
                         <div class="register__option">
                             <div class="register__btn">
-                                <a href="/admin/manage/1/page/1" class="btn btn-cancel">취소</a>
-                                <button type="submit" class="btn btn-confirm">확인</button>
+                                <a href="javascript:;" id="cancelAddBtn" class="btn btn-cancel">취소</a>
+                                <button type="submit" id="boardAddBtn" class="btn btn-confirm">확인</button>
                             </div>
                         </div>
                         

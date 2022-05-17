@@ -10,7 +10,7 @@ exports.boardAddProcess = function(req, res){
         if (err) {
             res.send(err);
         } else {
-            res.redirect("/admin/manage/1/page/1");
+            res.send(result);
         }
     });
 };

@@ -40,5 +40,54 @@ $(function() {
 
         }
       });
+
+    /**
+     * =======================================
+     * 설  명 : 취소 버튼
+     * =======================================
+     */   
+    $("#cancelAddBtn").on("click",function(){
+        histroy.go(-1);
+    });
+
+    /**
+     * =======================================
+     * 설  명 : 글쓰기 등록
+     * =======================================
+     */   
+    $("#boardAddBtn").on("click", function(){
+        let boardAddForm = $("#boardAddForm").validate({
+            rules: {
+                title: {
+                    required: true
+                },
+            },
+            messages: {
+                title: {
+                    required: "필수 항목입니다."
+                }
+            },
+            submitHandler: function(form) {
+                let parameter = $("#boardAddForm").serializeObject();                
+                
+                $.ajax({
+                    type : "POST",
+                    url : "/admin/board/boardAddProcess",
+                    dataType : "JSON",
+                    data : parameter
+                })
+                .done(function(json){
+                    console.log("글쓰기 등록 success");
+
+                    
+
+                  
+                })
+                .fail(function(xhr, status, errorThrown){
+                    console.log("글쓰기 등록 Ajax failed")
+                })
+            }
+        });            
+    });
 });
 
