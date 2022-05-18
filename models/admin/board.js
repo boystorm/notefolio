@@ -50,23 +50,7 @@ Board.boardUpdateProcess = function(idx, mainId, subId, title, result){
 }
 
 // 게시판 글 메인 삭제
-Board.boardMainDelete = function(idxArr, queryStr, result){
-    let datas = idxArr;
-    let questionMark = queryStr;
-
-    let del = "DELETE FROM board where idx in (" + questionMark + ");";
-
-    conn.query(del, datas, function(err, res){
-        if(err){
-            result(null, err);
-        } else {
-            result(null, res);
-        }
-    })
-}
-
-// 게시판 글 서브 삭제
-Board.boardSubDelete = function(idxArr, queryStr, result){
+Board.boardDelete = function(idxArr, queryStr, result){
     let datas = idxArr;
     let questionMark = queryStr;
 

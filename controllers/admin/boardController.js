@@ -55,10 +55,9 @@ exports.boardUpdateProcess = function(req, res){
     });
 };
 
-// 글 메인 삭제 컨트롤러
-exports.boardMainDelete = function(req, res){
+// 글 삭제 컨트롤러
+exports.boardDelete = function(req, res){
     let paramsIdx = req.params.idx;
-    let mainId = req.params.mainId;
 
     let idxArr = new Array();
     idxArr = paramsIdx.split(",");
@@ -69,42 +68,11 @@ exports.boardMainDelete = function(req, res){
         queryStr += "?";
     }
 
-    Board.boardMainDelete(idxArr, queryStr, function(err, result){
+    Board.boardDelete(idxArr, queryStr, function(err, result){
         if(err){
             res.send(err);
         } else {
-            res.json({
-                result : result,
-                mId : mainId
-            });
-        }
-    });
-};
-
-// 글 서브 삭제 컨트롤러
-exports.boardSubDelete = function(req, res){
-    let paramsIdx = req.params.idx;
-    let mainId = req.params.mainId;
-    let subId = req.params.subId;
-
-    let idxArr = new Array();
-    idxArr = paramsIdx.split(",");
-
-    let queryStr = "";
-    for(let i = 0; i < idxArr.length; i++){
-        if(queryStr) queryStr += ",";
-        queryStr += "?";
-    }
-
-    Board.boardSubDelete(idxArr, queryStr, function(err, result){
-        if(err){
-            res.send(err);
-        } else {
-            res.json({
-                result : result,
-                mId : mainId, 
-                sId : subId
-            });
+            res.send(result);
         }
     });
 };

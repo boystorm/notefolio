@@ -45,7 +45,7 @@
                 let data2 = json.rows2[j];
                 if(data2.main_id === 1){
                     info += "<li>";
-                    info += "<a href='javascript:;' data-main-id=" + data2.main_id +" data-sub-id=" + data2.sub_id + ">" + data2.sub_title + "</a>";
+                    info += "<a href='javascript:;' id='pr"+ data2.sub_id +"' data-main-id=" + data2.main_id +" data-sub-id=" + data2.sub_id + ">" + data2.sub_title + "</a>";
                     info += "</li>";
                 }
             }   
@@ -55,7 +55,7 @@
                 let data3 = json.rows2[k];
                 if(data3.main_id === 2){
                     info += "<li>";
-                    info += "<a href='javascript:;' data-main-id=" + data3.main_id +" data-sub-id=" + data3.sub_id + ">" + data3.sub_title + "</a>";
+                    info += "<a href='javascript:;' id='ar"+ data3.sub_id +"' data-main-id=" + data3.main_id +" data-sub-id=" + data3.sub_id + ">" + data3.sub_title + "</a>";
                     info += "</li>";
                 }
             }
@@ -201,6 +201,9 @@ function mainCategory(){
             $(this).addClass("active");
         }
 
+        // url 초기화 : 해시 제거
+        changeUrl("","1");
+
         // 삭제 버튼 Main category Id 값 추가 | Sub category Id 값 삭제
         $("#boardDelBtn").attr("data-main-id", mainId);
         $("#boardDelBtn").attr("data-sub-id", "");
@@ -255,10 +258,18 @@ function subCategory(){
         })
         .done(function(json){
             boardList(json, mainId, subId);
+
+            console.log("여기가 진짜 삭제 버튼 영역인거 같은데?? :"+ subId);
+
+
         })
         .fail(function(request, status, error){
             console.log("서브 카테고리 게시판 목록 불러오기 Ajax failed");
         });
+
+
+        // url 초기화 : 해시 제거
+        changeUrl("","1");
     });
 }
 
@@ -304,7 +315,7 @@ function boardList(json, mainId, subId){
         if(!$("#boardAllChk").is("#boardAllChk")){
             $(".mng__table--box thead tr").prepend(chkAllBox);
         }
-        console.log("mainId :" + mainId + "||" + "subId : " + subId);
+        //console.log("mainId :" + mainId + "||" + "subId : " + subId);
         for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
             if(i > json.length){
                 i++;
@@ -416,6 +427,19 @@ function allChk(){
         boardAllChk.prop('checked', selectAll);
     });
 }
+/**
+ * =======================================
+ * 설  명 : url 초기화
+ * =======================================
+ */
+function changeUrl(title, url, state) {
+    if (typeof (history.pushState) != "undefined") { //브라우저가 지원하는 경우
+        history.pushState(state, title, url);
+    }
+    else {
+        location.href = url; //브라우저가 지원하지 않는 경우 페이지 이동처리
+    }
+}
 
 
 $(function() {
@@ -433,7 +457,7 @@ $(function() {
         $("#boardDelBtn").removeClass("display-none");
         $(".mng__empty").addClass("display-none");
     }
-
+ 
     /**
      * =======================================
      * 설  명 : 메인 카테고리 클릭 호출
@@ -468,7 +492,7 @@ $(function() {
 
         fnCategoryPopList();
     });
-
+    
     /**
      * =======================================
      * 설  명 : 카테고리 팝업 닫기
@@ -546,7 +570,7 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 그리드 삭제
+     * 설  명 : 글 삭제
      * =======================================
      */
     $("#boardDelBtn").on("click", function(){
@@ -554,46 +578,62 @@ $(function() {
             let chkArray = new Array();
             let chkCount = $("input[name='boardChk[]']:checked").length;
             let flag = window.confirm(chkCount + "건이 삭제됩니다. 확인해주세요.");
+            let urlChange = "";
 
-             // 삭제 버튼 data
-             let mainId = $(this).data("mainId");
-             let subId = $(this).data("subId");
+            // 삭제 버튼 data
+            let mainId = $(this).data("mainId");
+            let subId = $(this).data("subId");
             
+            console.log(subId);
+
             if(flag){
                 $("input[name='boardChk[]']:checked").each(function(){
                     let tmpVal = $(this).val();
                     chkArray.push(tmpVal);
                 });
 
+                // url 분기처리
+                if(mainId != "" && subId != ""){
+                    console.log("분기처리" + subId);
+                    urlChange = "/admin/board/boardDelete/" + chkArray + "/" + mainId + "/" + subId;
+                }else{
+                    urlChange = "/admin/board/boardDelete/" + chkArray + "/" + mainId;
+                }
+
                 $.ajax({
                     type : "get",
-                    url : "/admin/board/boardDelete/" + chkArray,
+                    url : urlChange
                 })
                 .done(function(result){
-                    alert("삭제 되었습니다.");
+                    // alert("삭제 되었습니다.");
+                    //console.log(result);
+                    //console.log("mainId :" + result.mId + "|| subId : " + result.sId);
 
-                    if(mainId != "" && (subId != "" && subId != undefined)){
-                        // sub category    
+                    if(result.mId != "" && result.sId != undefined){
+                        console.log("sId:"+result.sId);
                         $.ajax({
                             type : "get",
-                            url : "/admin/manage/main/" + mainId + "/sub/" + subId + "/page/" + 1,
+                            url : "/admin/manage/main/" + result.mId + "/sub/" + result.sId + "/page/" + 1,
                             dataType : "JSON",
                         })
                         .done(function(json){
-                            boardList(json, mainId, subId);
+                            console.log("서브 카테 게시글 불러오기 json:"+json);
+                            boardList(json, result.mId, result.sId);
                         })
                         .fail(function(request, status, error){
                             console.log("삭제 후 서브 카테고리 게시판 목록 불러오기 Ajax failed");
                         });
 
                     }else{
+                        console.log("메인 카테 게시글 불러오기")
                         $.ajax({
                             type : "get",
-                            url : "/admin/manage/main/" + mainId + "/page/" + 1,
+                            url : "/admin/manage/main/" + result.mId + "/page/" + 1,
                             dataType : "JSON",
                         })
                         .done(function(json){
-                            boardList(json);
+                            console.log("메인 카테 게시글 불러오기 json:"+json);
+                            boardList(json, result.mId);
                         })
                         .fail(function(request, status, error){
                             console.log("삭제 후 메인 카테고리 게시판 목록 불러오기 Ajax failed");
@@ -615,7 +655,7 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 페이지 클릭 호출 함수로 변경필요
+     * 설  명 : 페이징 클릭 호출(정적)
      * =======================================
      */
     $(".pagination li a").on("click", function(){
@@ -635,5 +675,17 @@ $(function() {
         });
     });
 
+    /**
+     * =======================================
+     * 설  명 : 글 등록 후 페이지 이동 탭 활성화
+     * =======================================
+     */
+    let link = document.location.href;
+    let tab = link.split("#").pop();
+   
+    if(tab != ""){
+        $("#"+ tab).trigger("click");
+    }
+    
 });
 
