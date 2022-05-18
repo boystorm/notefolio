@@ -565,7 +565,7 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 그리드 삭제
+     * 설  명 : 글 삭제
      * =======================================
      */
     $("#boardDelBtn").on("click", function(){
@@ -612,7 +612,7 @@ $(function() {
                             dataType : "JSON",
                         })
                         .done(function(json){
-                            boardList(json);
+                            boardList(json, mainId);
                         })
                         .fail(function(request, status, error){
                             console.log("삭제 후 메인 카테고리 게시판 목록 불러오기 Ajax failed");
