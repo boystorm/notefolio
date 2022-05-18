@@ -77,9 +77,8 @@ $(function() {
                     data : parameter
                 })
                 .done(function(json){
-                    console.log("글쓰기 등록 success");
-                    console.log(json.mainId);
-                    if(json.mainId === 1){// 메인
+                    console.log(json);
+                    if(json.mainId === "1"){
                         window.location = "/admin/manage/1/page/1#pr" + json.subId ;
                     }else{
                         window.location = "/admin/manage/1/page/1#ar" + json.subId ;
@@ -91,5 +90,13 @@ $(function() {
             }
         });            
     });
+
+    /**
+     * =======================================
+     * 설  명 : 글쓰기 수정
+     * =======================================
+     */
+
+
 });
 
