@@ -58,8 +58,10 @@ exports.boardUpdateProcess = function(req, res){
 // 글 삭제 컨트롤러
 exports.boardDelete = function(req, res){
     let paramsIdx = req.params.idx;
+    let mainId = req.params.mainId;
+    let subId = req.params.subId;
 
-    var idxArr = new Array();
+    let idxArr = new Array();
     idxArr = paramsIdx.split(",");
 
     let queryStr = "";
@@ -68,7 +70,7 @@ exports.boardDelete = function(req, res){
         queryStr += "?";
     }
 
-    Board.boardDelete(idxArr, queryStr, function(err, result){
+    Board.boardDelete(idxArr, queryStr, mainId, subId, function(err, result){
         if(err){
             res.send(err);
         } else {

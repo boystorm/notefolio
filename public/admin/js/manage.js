@@ -586,12 +586,14 @@ $(function() {
 
                 $.ajax({
                     type : "get",
-                    url : "/admin/board/boardDelete/" + chkArray,
+                    url : "/admin/board/boardDelete/" + chkArray + "/" + mainId + "/" + subId, // board table 에서 글 삭제
                 })
                 .done(function(result){
-                    alert("삭제 되었습니다.");
-
-                    if(mainId != "" && (subId != "" && subId != undefined)){
+                    // alert("삭제 되었습니다.");
+                    console.log(result);
+                    if(mainId != "" && subId != undefined){
+                        console.log("서브 카테 게시글 불러오기")
+                        console.log("mainId :" + mainId + "|| subId : " + subId);
                         // sub category    
                         $.ajax({
                             type : "get",
@@ -599,6 +601,7 @@ $(function() {
                             dataType : "JSON",
                         })
                         .done(function(json){
+                            console.log("서브 카테 게시글 불러오기 json:"+json);
                             boardList(json, mainId, subId);
                         })
                         .fail(function(request, status, error){
@@ -606,12 +609,14 @@ $(function() {
                         });
 
                     }else{
+                        console.log("메인 카테 게시글 불러오기")
                         $.ajax({
                             type : "get",
                             url : "/admin/manage/main/" + mainId + "/page/" + 1,
                             dataType : "JSON",
                         })
                         .done(function(json){
+                            console.log("메인 카테 게시글 불러오기 json:"+json);
                             boardList(json, mainId);
                         })
                         .fail(function(request, status, error){
