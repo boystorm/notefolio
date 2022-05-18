@@ -84,7 +84,6 @@ $(function() {
                     data : parameter
                 })
                 .done(function(json){
-                    console.log(json);
                     if(json.mainId === "1"){
                         window.location = "/admin/manage/1/page/1#pr" + json.subId ;
                     }else{
