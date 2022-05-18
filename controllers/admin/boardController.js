@@ -70,11 +70,17 @@ exports.boardDelete = function(req, res){
         queryStr += "?";
     }
 
-    Board.boardDelete(idxArr, queryStr, mainId, subId, function(err, result){
+    Board.boardDelete(idxArr, queryStr, function(err, result){
         if(err){
             res.send(err);
         } else {
-            res.send(result);
+            console.log("삭제컨트롤러 메인:" + mainId + "삭제컨트롤러 서브 :" + subId);
+            //res.send(result);
+            res.json({
+                result : result,
+                mainId : mainId, 
+                subId : subId
+            });
         }
     });
 };

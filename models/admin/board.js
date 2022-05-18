@@ -50,10 +50,9 @@ Board.boardUpdateProcess = function(idx, mainId, subId, title, result){
 }
 
 // 게시판 글 삭제
-Board.boardDelete = function(idxArr, queryStr, mainId, subId, result){
+Board.boardDelete = function(idxArr, queryStr, result){
     let datas = idxArr;
     let questionMark = queryStr;
-    console.log("que: mainId:" + mainId + "que:subId:" + subId);
 
     let del = "DELETE FROM board where idx in (" + questionMark + ");";
 

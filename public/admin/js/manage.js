@@ -596,15 +596,14 @@ $(function() {
 
                 $.ajax({
                     type : "get",
-                    // 0518 분기처리 필요 삭제 컨트롤러도 2개로 작업해야할듯 그래야 나눠서 글 불러오기 가능할듯
                     url : urlChange
                 })
                 .done(function(result){
                     // alert("삭제 되었습니다.");
-                    //console.log(result);
+
                     if(mainId != "" && subId != undefined){
                         //console.log("서브 카테 게시글 불러오기")
-                        //console.log("mainId :" + mainId + "|| subId : " + subId);
+                        console.log("mainId :" + mainId + "|| subId : " + subId);
                         // sub category    
                         $.ajax({
                             type : "get",
