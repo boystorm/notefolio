@@ -586,6 +586,7 @@ $(function() {
 
                 $.ajax({
                     type : "get",
+                    // 0518 분기처리 필요 삭제 컨트롤러도 2개로 작업해야할듯 그래야 나눠서 글 불러오기 가능할듯
                     url : "/admin/board/boardDelete/" + chkArray + "/" + mainId + "/" + subId, // board table 에서 글 삭제
                 })
                 .done(function(result){
