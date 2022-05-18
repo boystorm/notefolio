@@ -573,28 +573,38 @@ $(function() {
             let chkArray = new Array();
             let chkCount = $("input[name='boardChk[]']:checked").length;
             let flag = window.confirm(chkCount + "건이 삭제됩니다. 확인해주세요.");
+            let urlChange = "";
 
-             // 삭제 버튼 data
-             let mainId = $(this).data("mainId");
-             let subId = $(this).data("subId");
+            // 삭제 버튼 data
+            let mainId = $(this).data("mainId");
+            let subId = $(this).data("subId");
             
+            
+
             if(flag){
                 $("input[name='boardChk[]']:checked").each(function(){
                     let tmpVal = $(this).val();
                     chkArray.push(tmpVal);
                 });
 
+                // url 분기처리
+                if(mainId != "" && subId != ""){
+                    urlChange = "/admin/board/boardDelete/" + chkArray + "/" + mainId + "/" + subId;
+                }else{
+                    urlChange = "/admin/board/boardDelete/" + chkArray + "/" + mainId;
+                }
+
                 $.ajax({
                     type : "get",
                     // 0518 분기처리 필요 삭제 컨트롤러도 2개로 작업해야할듯 그래야 나눠서 글 불러오기 가능할듯
-                    url : "/admin/board/boardDelete/" + chkArray + "/" + mainId + "/" + subId, // board table 에서 글 삭제
+                    url : urlChange
                 })
                 .done(function(result){
                     // alert("삭제 되었습니다.");
-                    console.log(result);
+                    //console.log(result);
                     if(mainId != "" && subId != undefined){
-                        console.log("서브 카테 게시글 불러오기")
-                        console.log("mainId :" + mainId + "|| subId : " + subId);
+                        //console.log("서브 카테 게시글 불러오기")
+                        //console.log("mainId :" + mainId + "|| subId : " + subId);
                         // sub category    
                         $.ajax({
                             type : "get",

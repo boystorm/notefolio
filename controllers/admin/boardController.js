@@ -55,7 +55,7 @@ exports.boardUpdateProcess = function(req, res){
     });
 };
 
-// 글 삭제 컨트롤러
+// 글 서브 삭제 컨트롤러
 exports.boardDelete = function(req, res){
     let paramsIdx = req.params.idx;
     let mainId = req.params.mainId;
