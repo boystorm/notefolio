@@ -45,7 +45,7 @@ function fnCategoryInitList(){
                 let data2 = json.rows2[j];
                 if(data2.main_id === 1){
                     info += "<li>";
-                    info += "<a href='javascript:;' data-main-id=" + data2.main_id +" data-sub-id=" + data2.sub_id + ">" + data2.sub_title + "</a>";
+                    info += "<a href='javascript:;' id='pr"+ data2.sub_id +"' data-main-id=" + data2.main_id +" data-sub-id=" + data2.sub_id + ">" + data2.sub_title + "</a>";
                     info += "</li>";
                 }
             }   
@@ -55,7 +55,7 @@ function fnCategoryInitList(){
                 let data3 = json.rows2[k];
                 if(data3.main_id === 2){
                     info += "<li>";
-                    info += "<a href='javascript:;' data-main-id=" + data3.main_id +" data-sub-id=" + data3.sub_id + ">" + data3.sub_title + "</a>";
+                    info += "<a href='javascript:;' id='ar"+ data3.sub_id +"' data-main-id=" + data3.main_id +" data-sub-id=" + data3.sub_id + ">" + data3.sub_title + "</a>";
                     info += "</li>";
                 }
             }
@@ -634,7 +634,7 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 페이지 클릭 호출
+     * 설  명 : 페이징 클릭 호출(정적)
      * =======================================
      */
     $(".pagination li a").on("click", function(){
@@ -656,14 +656,15 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 페이지 이동시 활성화 변경
+     * 설  명 : 글 등록 후 페이지 이동 탭 활성화
      * =======================================
      */
     let link = document.location.href;
-    let tab = link.split('#').pop();
-    console.log(tab);
+    let tab = link.split("#").pop();
+   
+    if(tab != ""){
+        $("#"+ tab).trigger("click");
+    }
     
-    // $('a[class$="+ tab +"]').trigger("click");
-    $('.'+ tab).trigger("click");
 });
 

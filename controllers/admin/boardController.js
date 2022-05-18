@@ -10,7 +10,11 @@ exports.boardAddProcess = function(req, res){
         if (err) {
             res.send(err);
         } else {
-            res.send(result);
+            res.json({
+                result : result,
+                mainId : mainId, 
+                subId : subId
+            });
         }
     });
 };

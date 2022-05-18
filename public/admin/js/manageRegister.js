@@ -68,7 +68,7 @@ $(function() {
                 }
             },
             submitHandler: function(form) {
-                let parameter = $("#boardAddForm").serializeObject();                
+                let parameter = $("#boardAddForm").serializeObject();    
                 
                 $.ajax({
                     type : "POST",
@@ -78,8 +78,12 @@ $(function() {
                 })
                 .done(function(json){
                     console.log("글쓰기 등록 success");
-                    window.location = "/admin/manage/1/page/1#" + "3" ;
-                    // window.location = "/admin/manage/1/page/1" ;
+                    console.log(json.mainId);
+                    if(json.mainId === 1){// 메인
+                        window.location = "/admin/manage/1/page/1#pr" + json.subId ;
+                    }else{
+                        window.location = "/admin/manage/1/page/1#ar" + json.subId ;
+                    }
                 })
                 .fail(function(xhr, status, errorThrown){
                     console.log("글쓰기 등록 Ajax failed")
