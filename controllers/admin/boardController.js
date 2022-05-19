@@ -50,7 +50,12 @@ exports.boardUpdateProcess = function(req, res){
         if(err){
             res.send(err);
         } else {
-            res.redirect("/admin/manage/1/page/1")
+            // res.redirect("/admin/manage/1/page/1")
+            res.json({
+                result : result,
+                mainId : mainId, 
+                subId : subId
+            });
         }
     });
 };

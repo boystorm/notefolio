@@ -33,14 +33,16 @@
                 </div>
             </div>
         </header>
-        <form action="/admin/board/boardUpdateProcess" method="post">
+        <!-- action 으로 안넘어가고 스크립트 처리 준비 -->
+        <!-- <form  action="/admin/board/boardUpdateProcess" method="post"> -->
+        <form id="boardModForm" method="post">
             <main>
                 <div class="content">
                     <div class="register">
                         <div class="register__option">
                             <div class="register__btn">
                                 <a href="javascript:;" id="boardCancelBtn" class="btn btn-cancel">취소</a>
-                                <button type="submit" class="btn btn-confirm">수정</button>
+                                <button type="submit" id="boardModBtn" class="btn btn-confirm">수정</button>
                             </div>
                         </div>
                         
