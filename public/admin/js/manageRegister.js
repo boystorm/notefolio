@@ -6,15 +6,60 @@ $(function() {
      */   
     $("#registerTitle").focus();
 
+
     /**
      * =======================================
-     * 설  명 : file uploader lib
+     * 설  명 : 파일 업로드 썸네일
      * =======================================
      */   
-     $('#ssi-upload').ssi_uploader({
-        url: 'http://ssinput.com/php/upload.php'
+
+    let fileTarget = $('.filebox .upload-hidden');
+
+    fileTarget.on('change', function(){
+        if(window.FileReader){
+            // 파일명 추출
+            let filename = $(this)[0].files[0].name;
+            $(this).siblings('.upload-name').val(filename);
+        } 
+
+        else {
+            // Old IE 파일명 추출
+            let filename = $(this).val().split('/').pop().split('\\').pop();
+            $(this).siblings('.upload-name').val(filename);
+        };
+        
     });
 
+    //preview image 
+    let imgTarget = $('.preview-image .upload-hidden');
+
+    imgTarget.on('change', function(){
+        let parent = $(this).parent();
+        parent.children('.upload-display').remove();
+
+        if(window.FileReader){
+            //image 파일만
+            if (!$(this)[0].files[0].type.match(/image\//)) return;
+            
+            let reader = new FileReader();
+            reader.onload = function(e){
+                let src = e.target.result;
+                parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
+        }
+
+        else {
+            $(this)[0].select();
+            $(this)[0].blur();
+            let imgSrc = document.selection.createRange().text;
+            parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
+
+            let img = $(this).siblings('.upload-display').find('img');
+            img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
+        }
+    });
+    
     /**
      * =======================================
      * 설  명 : summernote lib

@@ -384,7 +384,7 @@ main{
                     input {
                         border-radius: 4px;
                         color: #888;
-                        height: 35px;
+                        height: 40px;
                         border: 1px solid #ddd;
                         padding: 0 15px;
                     }
@@ -683,11 +683,73 @@ main{
 .color__important {
     color: red;
 }
-// ssi uploader
-.ssi-uploader {
-    display: flex;
-    flex-direction: column;
+// File uploader
+.upload-name{
+    width: 94%;
 }
-.ssi-buttonWrapper {
-    margin-left :auto;
+.filebox {
+    input[type="file"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip:rect(0,0,0,0);
+        border: 0;
+    }
+    label {
+        display: inline-block;
+        padding: .5em .75em;
+        color: #999;
+        font-size: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #fdfdfd;
+        cursor: pointer;
+        border: 1px solid #ebebeb;
+        border-bottom-color: #e2e2e2;
+        border-radius: .25em;
+    }
+    /* named upload */
+    .upload-name {
+        display: inline-block;
+        padding: .5em .75em;
+        font-size: inherit;
+        font-family: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #f5f5f5;
+        border: 1px solid #ebebeb;
+        border-bottom-color: #e2e2e2;
+        border-radius: .25em;
+        -webkit-appearance: none; /* 네이티브 외형 감추기 */
+        -moz-appearance: none;
+        appearance: none;
+    }
+    /* imaged preview */
+    .upload-display {
+        margin-bottom: 5px;
+        img {
+            display: block;
+            max-width: 100%;
+            width: 100% \9;
+            height: auto;
+          }
+    }
+    .upload-thumb-wrap {
+        display: inline-block;
+        width: 54px;
+        padding: 2px;
+        vertical-align: middle;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+     }
+}
+.filebox.bs3-primary label {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    margin-bottom: 0 !important;
 }

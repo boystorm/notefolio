@@ -4,10 +4,7 @@
     <%-include('head.ejs') %>
     
     <script src="/admin/js/manageRegister.js"></script>
-    <!-- ssi-uploader file uploader library -->
-    <link href="/lib/ssiuploader/ssi-uploader.min.css" rel="stylesheet" type="text/css" />
-    <script src="/lib/ssiuploader/ssi-uploader.min.js"></script>
-    
+        
     <!-- summernote edit lib -->
     <link href="/lib/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
     <script src="/lib/summernote/summernote-lite.min.js"></script>
@@ -57,7 +54,11 @@
 
                                 <div class="form__groups">
                                     <p><span class="color__important">* </span>썸네일 이미지</p>
-                                    <input type="file" multiple id="ssi-upload"/>
+                                    <div class="filebox bs3-primary preview-image">
+                                        <input class="upload-name" value="파일선택" disabled="disabled">
+                                        <label for="inputFile">업로드</label> 
+                                        <input type="file" id="inputFile" class="upload-hidden"> 
+                                    </div>
                                 </div>
                                 
                                 <div class="form__groups">
