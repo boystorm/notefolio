@@ -14,7 +14,25 @@ const path = require("path");   // 유연한 디렉토리
 const cookieParser = require('cookie-parser')   // 쿠키 파서
 const expressSession = require('express-session');    // 세션 파서
 const ejs = require('ejs');  // ejs 템플릿
+const multer = require('multer'); // multer
  
+/**
+* =======================================
+* 설  명 : multer 파일 생성 연결
+* =======================================
+*/
+const storage = multer.diskStorage({
+  destination:  (req, file, cb) => {
+    cb(null, './public/uploads/')
+  },
+  filename:  (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname)// 파일 원본이름 저장
+  }
+})
+
+const upload = multer({ storage: storage }); // 미들웨어 생성
+
+
 /**
 * =======================================
 * 설  명 : app.use() 미들웨이 기능 마운트
