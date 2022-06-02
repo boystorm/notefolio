@@ -120,24 +120,31 @@ $(function() {
                 }
             },
             submitHandler: function(form) {
-                let parameter = $("#boardAddForm").serializeObject();    
+                //let parameter = $("#boardAddForm").serializeObject();    
+                var formData = new FormData($("#boardAddForm").get(0));    
+
+                //$("#boardAddForm").serializeObject()
+
                 
                 $.ajax({
                     type : "POST",
                     url : "/admin/board/boardAddProcess",
+                    enctype: "multipart/form-data",
+                    processData: false,
+                    contentType: false,
                     dataType : "JSON",
-                    data : parameter
+                    data : formData
                 })
-                .done(function(json){
-                    if(json.mainId === "1"){
-                        window.location = "/admin/manage/1/page/1#pr" + json.subId ;
-                    }else{
-                        window.location = "/admin/manage/1/page/1#ar" + json.subId ;
-                    }
-                })
-                .fail(function(xhr, status, errorThrown){
-                    console.log("글쓰기 등록 Ajax failed")
-                })
+                // .done(function(json){
+                //     if(json.mainId === "1"){
+                //         window.location = "/admin/manage/1/page/1#pr" + json.subId ;
+                //     }else{
+                //         window.location = "/admin/manage/1/page/1#ar" + json.subId ;
+                //     }
+                // })
+                // .fail(function(xhr, status, errorThrown){
+                //     console.log("글쓰기 등록 Ajax failed")
+                // })
             }
         });            
     });

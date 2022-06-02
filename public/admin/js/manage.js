@@ -726,11 +726,12 @@ $(function() {
      * =======================================
      */
     let link = document.location.href;
-    let tab = link.split("#").pop();
-   
-    if(tab != ""){
-        $("#"+ tab).trigger("click");
+    if(link.includes("#")){
+        let tab = link.split("#").pop();
+
+        if(tab != ""){
+            $("#"+ tab).trigger("click");
+        }
     }
-    
 });
 
