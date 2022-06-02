@@ -30,8 +30,8 @@
                 </div>
             </div>
         </header>
-        <!-- action="/admin/board/boardAddProcess" method="post"-->
-        <form id="boardAddForm" method="post">
+        <!-- action="/admin/board/boardAddProcess" method="post" enctype="multipart/form-data"-->
+        <form id="boardAddForm"  method="post" >
             <main>
                 <div class="content">
                     <div class="register">
@@ -57,7 +57,7 @@
                                     <div class="filebox bs3-primary preview-image">
                                         <input class="upload-name" value="파일선택" disabled="disabled">
                                         <label for="inputFile">업로드</label> 
-                                        <input type="file" id="inputFile" class="upload-hidden"> 
+                                        <input type="file" id="inputFile" name="userfile" class="upload-hidden"> 
                                     </div>
                                 </div>
                                 

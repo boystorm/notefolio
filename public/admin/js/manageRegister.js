@@ -120,13 +120,17 @@ $(function() {
                 }
             },
             submitHandler: function(form) {
-                let parameter = $("#boardAddForm").serializeObject();    
+                //let parameter = $("#boardAddForm").serializeObject();    
+                let formData = new FormData($("#boardAddForm")[0]);
                 
                 $.ajax({
                     type : "POST",
                     url : "/admin/board/boardAddProcess",
                     dataType : "JSON",
-                    data : parameter
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data : formData
                 })
                 .done(function(json){
                     if(json.mainId === "1"){

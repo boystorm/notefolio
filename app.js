@@ -53,6 +53,7 @@ app.engine('ejs', require('ejs').__express);
  app.use('/admin/manage', managePages);
  app.use('/admin/board', boardPages);
 
+
  /**
   * =======================================
   * 설  명 : 서버 실행(포트 : 3000)

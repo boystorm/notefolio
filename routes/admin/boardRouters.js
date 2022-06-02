@@ -1,7 +1,8 @@
 const express = require('express'); 
 const router = express.Router();
-const BoardController = require('../../controllers/admin/boardController');
 const multer = require('multer'); // multer
+const BoardController = require('../../controllers/admin/boardController');
+
  
 /**
 * =======================================
@@ -10,7 +11,7 @@ const multer = require('multer'); // multer
 */
 const storage = multer.diskStorage({
   destination:  (req, file, cb) => {
-    cb(null, '../../public/uploads')
+    cb(null, './public/uploads') // 경로 이렇게 하니까 됨..
   },
   filename:  (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname)// 파일 원본이름 저장
@@ -36,7 +37,7 @@ router.get('/boardAdd/:mainId/:subId', function(req, res, next){
 });
 
 /* 게시판 글 등록 */
-router.post('/boardAddProcess', BoardController.boardAddProcess);
+router.post('/boardAddProcess', upload.single("userfile"), BoardController.boardAddProcess);
 
 /* 게시판 글 읽기 */
 router.get('/boardRead/:idx/:mainId/:subId', BoardController.boardRead);

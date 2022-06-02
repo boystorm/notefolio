@@ -2,6 +2,7 @@ const Board = require("../../models/admin/board");
 
 // 글 등록 컨트롤러
 exports.boardAddProcess = function(req, res){
+    console.log(req.file);
     let mainId = req.body.mainId;
     let subId = req.body.subId;
     let title = req.body.title;
