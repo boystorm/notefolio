@@ -10,7 +10,7 @@ const multer = require('multer'); // multer
 */
 const storage = multer.diskStorage({
   destination:  (req, file, cb) => {
-    cb(null, './public/uploads/')
+    cb(null, '../../public/uploads')
   },
   filename:  (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname)// 파일 원본이름 저장
