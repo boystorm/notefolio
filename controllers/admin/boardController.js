@@ -2,7 +2,7 @@ const Board = require("../../models/admin/board");
 
 // 글 등록 컨트롤러
 exports.boardAddProcess = function(req, res){
-    console.log(req.file);
+    //console.log(req.file);
     let mainId = req.body.mainId;
     let subId = req.body.subId;
     let title = req.body.title;
@@ -18,6 +18,16 @@ exports.boardAddProcess = function(req, res){
             });
         }
     });
+};
+
+// 글 에디터 사진 등록 컨트롤러
+exports.boardImage = function(req, res){
+    imgurl = '';
+    if(req.file !== undefined) {
+        var imgurl = req.file.path;
+        imgurl = imgurl.substr(6);
+    }
+    res.json(imgurl); 
 };
 
 // 글 상세 컨트롤러

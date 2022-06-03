@@ -89,9 +89,33 @@ $(function() {
             ['insert', ['link', 'picture']]
         ],
         callbacks: {
-
+            onImageUpload : function(files) {
+                sendFile(files[0], this);
+            }
         }
       });
+
+      function sendFile(file, editor){
+        data = new FormData()
+        data.append("userfile", file)
+        $.ajax({
+          data: data,
+          type: "POST",
+          url : "/admin/board/uploads",
+          cache: false,
+          contentType: false,
+          enctype: "multipart/form-data",
+          processData: false,
+          success: function (response) {
+            let url = location.origin + response;
+            let imgurl = $('<img>').attr({
+               'src': url
+            });
+            $("#summernote").summernote("insertNode", imgurl[0]);
+          },
+        })
+      }
+
 
     /**
      * =======================================
@@ -120,7 +144,6 @@ $(function() {
                 }
             },
             submitHandler: function(form) {
-                //let parameter = $("#boardAddForm").serializeObject();    
                 let formData = new FormData($("#boardAddForm")[0]);
                 
                 $.ajax({
