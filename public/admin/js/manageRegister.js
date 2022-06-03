@@ -96,13 +96,14 @@ $(function() {
       });
 
       function sendFile(file, editor){
-        data = new FormData()
-        data.append("userfile", file)
+        let data = new FormData()
+        data.append("summerfile", file);
+
         $.ajax({
           data: data,
           type: "POST",
           url : "/admin/board/uploads",
-          cache: false,
+          async: false,
           contentType: false,
           enctype: "multipart/form-data",
           processData: false,
@@ -144,13 +145,21 @@ $(function() {
                 }
             },
             submitHandler: function(form) {
+                $("#summerContents").val(getEditorContents("#summernote"));
                 let formData = new FormData($("#boardAddForm")[0]);
-                
+
+                for(let key of formData.keys()){
+//                    console.log(`${key}: ${formData.get(key)}`);
+                    console.log(formData.get(key));
+
+                 }
+
                 $.ajax({
                     type : "POST",
                     url : "/admin/board/boardAddProcess",
                     dataType : "JSON",
-                    cache: false,
+                    enctype: "multipart/form-data",
+                    async: false,
                     contentType: false,
                     processData: false,
                     data : formData
@@ -168,6 +177,15 @@ $(function() {
             }
         });            
     });
+
+    /*
+     * =======================================
+     * 설  명 : summernote 에디터에 작성한 HTML의 값을 얻는다.
+     * =======================================
+     */
+    function getEditorContents(selectHtmlQuery) {
+        return $(selectHtmlQuery).summernote("code");
+    }
 
     /**
      * =======================================

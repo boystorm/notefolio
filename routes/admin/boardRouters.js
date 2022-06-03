@@ -40,7 +40,7 @@ router.get('/boardAdd/:mainId/:subId', function(req, res, next){
 router.post('/boardAddProcess', upload.single("userfile"), BoardController.boardAddProcess);
 
 /* 게시판 에디터 이미지 등록 */
-router.post('/uploads', upload.single("userfile"), BoardController.boardImage);
+router.post('/uploads', upload.single("summerfile"), BoardController.boardImage);
 
 /* 게시판 글 읽기 */
 router.get('/boardRead/:idx/:mainId/:subId', BoardController.boardRead);

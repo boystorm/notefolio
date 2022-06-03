@@ -2,22 +2,22 @@ const Board = require("../../models/admin/board");
 
 // 글 등록 컨트롤러
 exports.boardAddProcess = function(req, res){
-    //console.log(req.file);
-    let mainId = req.body.mainId;
-    let subId = req.body.subId;
-    let title = req.body.title;
+    console.log(req.file);
+    // let mainId = req.body.mainId;
+    // let subId = req.body.subId;
+    // let title = req.body.title;
 
-    Board.boardAddProcess(mainId, subId, title, function(err, result){
-        if (err) {
-            res.send(err);
-        } else {
-            res.json({
-                result : result,
-                mainId : mainId, 
-                subId : subId
-            });
-        }
-    });
+    // Board.boardAddProcess(mainId, subId, title, function(err, result){
+    //     if (err) {
+    //         res.send(err);
+    //     } else {
+    //         res.json({
+    //             result : result,
+    //             mainId : mainId, 
+    //             subId : subId
+    //         });
+    //     }
+    // });
 };
 
 // 글 에디터 사진 등록 컨트롤러
