@@ -31,9 +31,9 @@
             </div>
         </header>
         <!-- action="/admin/board/boardAddProcess" method="post" enctype="multipart/form-data"-->
-        <form id="boardAddForm"  method="post" >
-            <main>
-                <div class="content">
+        <main>
+            <div class="content">
+                <form id="boardAddForm"  method="post" >
                     <div class="register">
                         <div class="register__option">
                             <div class="register__btn">
@@ -46,7 +46,7 @@
                             <div class="card register__act">
                                 <input type="text" name="mainId" value="<%= mainId %>">
                                 <input type="text" name="subId" value="<%= subId %>">
-								<textarea id="summerContents" name="contents"></textarea>
+                                <textarea id="summerContents" name="contents"></textarea>
 
                                 <div class="form__groups">
                                     <label for="registerTitle"><span class="color__important">* </span>제목</label>
@@ -61,18 +61,16 @@
                                         <input type="file" id="inputFile" name="userfile" class="upload-hidden"> 
                                     </div>
                                 </div>
-                                
-                                
                             </div>
                         </div>
                     </div>
+                </form>
+                <div class="form__groups card">
+                    <p>내용</p>
+                    <div id="summernote"></div>
                 </div>
-            </main>
-        </form>
-        <div class="form__groups">
-            <p>내용</p>
-            <div id="summernote"></div>
-        </div>
+            </div>
+        </main>
     </div>
 </body>
 </html>

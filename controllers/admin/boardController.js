@@ -2,29 +2,34 @@ const Board = require("../../models/admin/board");
 
 // 글 등록 컨트롤러
 exports.boardAddProcess = function(req, res){
-    console.log(req.file);
-    // let mainId = req.body.mainId;
-    // let subId = req.body.subId;
-    // let title = req.body.title;
+    let imgurl = '';
+    let mainId = req.body.mainId;
+    let subId = req.body.subId;
+    let title = req.body.title;
 
-    // Board.boardAddProcess(mainId, subId, title, function(err, result){
-    //     if (err) {
-    //         res.send(err);
-    //     } else {
-    //         res.json({
-    //             result : result,
-    //             mainId : mainId, 
-    //             subId : subId
-    //         });
-    //     }
-    // });
+    if(req.file !== undefined) {
+        imgurl = req.file.path;
+        imgurl = imgurl.substr(6);
+    }
+
+    Board.boardAddProcess(imgurl, mainId, subId, title, function(err, result){
+        if (err) {
+            res.send(err);
+        } else {
+            res.json({
+                result : result,
+                mainId : mainId, 
+                subId : subId
+            });
+        }
+    });
 };
 
 // 글 에디터 사진 등록 컨트롤러
 exports.boardImage = function(req, res){
-    imgurl = '';
+    let imgurl = '';
     if(req.file !== undefined) {
-        var imgurl = req.file.path;
+        imgurl = req.file.path;
         imgurl = imgurl.substr(6);
     }
     res.json(imgurl); 

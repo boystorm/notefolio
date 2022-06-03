@@ -103,9 +103,8 @@ $(function() {
           data: data,
           type: "POST",
           url : "/admin/board/uploads",
-          async: false,
-          contentType: false,
           enctype: "multipart/form-data",
+          contentType: false,
           processData: false,
           success: function (response) {
             let url = location.origin + response;
@@ -148,18 +147,11 @@ $(function() {
                 $("#summerContents").val(getEditorContents("#summernote"));
                 let formData = new FormData($("#boardAddForm")[0]);
 
-                for(let key of formData.keys()){
-//                    console.log(`${key}: ${formData.get(key)}`);
-                    console.log(formData.get(key));
-
-                 }
-
                 $.ajax({
                     type : "POST",
                     url : "/admin/board/boardAddProcess",
                     dataType : "JSON",
                     enctype: "multipart/form-data",
-                    async: false,
                     contentType: false,
                     processData: false,
                     data : formData
