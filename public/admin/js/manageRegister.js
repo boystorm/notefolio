@@ -179,9 +179,20 @@ $(function() {
         return $(selectHtmlQuery).summernote("code");
     }
 
-    /**
+    /*
      * =======================================
-     * 설  명 : 글쓰기 수정
+     * 설  명 : summernote 에디터안의 HTML을 htmlContents로 변경한다.
+     * =======================================
+     */
+    function setEditorContents(selectHtmlQuery, htmlContents) {
+        $(selectHtmlQuery).summernote("code", htmlContents);
+    }
+     //setEditorContents("#noticeEditor", $("#detailViewContents").html());
+
+
+     /*
+     * =======================================
+     * 설  명 : 글 수정 버튼
      * =======================================
      */
     $("#boardModBtn").on("click", function(){
