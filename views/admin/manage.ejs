@@ -110,7 +110,6 @@
                                                 <th scope="col">순번</th>
                                                 <th scope="col">이미지</th>
                                                 <th scope="col">제목</th>
-                                                <th scope="col">내용</th>
                                                 <th scope="col">작성일</th>
                                                 <th scope="col">수정일</th>
                                                 <th scope="col">메인 카테고리</th>
@@ -128,8 +127,8 @@
                                             <tr class="mng__table--main">
                                                 <td class="mng__table--center item-box-chk"><input type="checkbox" name="boardChk[]" id="itemChk" value="<%= data.idx%>"></td>
                                                 <td class="mng__table--center"><%= data.idx %></td>
-                                                <!-- <td class="mng__table--center"><a href="/admin/board/boardRead/<%= data.idx %>/<%= data.main_id %>/<%= data.sub_id %>" id="modBoardBtn"><img src="<%= data.image %>" class="mng__table--thumb"></a></td> -->
-                                                <td class="mng__table--center"><a href="javascript:;" id="modBoardBtn"><img src="<%= data.image %>" class="mng__table--thumb"></a></td>
+                                                <td class="mng__table--center"><a href="/admin/board/boardRead/<%= data.idx %>/<%= data.main_id %>/<%= data.sub_id %>" id="modBoardBtn"><img src="<%= data.image %>" class="mng__table--thumb"></a></td>
+                                                <!-- <td class="mng__table--center"><a href="javascript:;" id="modBoardBtn" data-idx="<%= data.idx %>" data-main-id="<%= data.sub_id %>" data-sub-id="<%= data.sub_id %>"><img src="<%= data.image %>" class="mng__table--thumb"></a></td> -->
                                                 <td class="mng__table--center"><%= data.title %></td>
                                                 <td class="mng__table--center"><%= data.regdate %></td>
                                                 <td class="mng__table--center"><%= data.modidate %></td>

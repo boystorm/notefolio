@@ -46,7 +46,7 @@ router.post('/uploads', upload.single("summerfile"), BoardController.boardImage)
 router.get('/boardRead/:idx/:mainId/:subId', BoardController.boardRead);
 
 /* 게시판 글 수정 */
-router.post('/boardUpdateProcess', BoardController.boardUpdateProcess);
+router.post('/boardUpdateProcess', upload.single("userfile"), BoardController.boardUpdateProcess);
 
 /* 게시판 글 삭제 */
 router.get('/boardDelete/:idx', BoardController.boardDelete);

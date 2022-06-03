@@ -3,7 +3,7 @@
 <head>
     <%-include('head.ejs') %>
     
-    <script src="/admin/js/manageRegister.js"></script>
+    <script src="/admin/js/manageRegisterMod.js"></script>
         
     <!-- summernote edit lib -->
     <link href="/lib/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
@@ -32,53 +32,55 @@
         </header>
         <!-- action 으로 안넘어가고 스크립트 처리 준비 -->
         <!-- <form  action="/admin/board/boardUpdateProcess" method="post"> -->
-        <form id="boardModForm" method="post">
             <main>
                 <div class="content">
-                    <div class="register">
-                        <div class="register__option">
-                            <div class="register__btn">
-                                <a href="javascript:;" id="boardCancelBtn" class="btn btn-cancel">취소</a>
-                                <button type="submit" id="boardModBtn" class="btn btn-confirm">수정</button>
-                            </div>
-                        </div>
-                        
-                        <div class="register__action">
-                            <div class="card register__act">
-                                <input type="text" name="idx" value="<%= idx %>">
-                                <input type="text" name="mainId" value="<%= mainId %>">
-                                <input type="text" name="subId" value="<%= subId %>">
-
-                                <% 
-                                for(let i = 0; i < rows.length; i++) {
-                                    let data = rows[i]; 
-                                %>
-                                <div class="form__groups">
-                                    <label for="registerTitle"><span class="color__important">* </span>제목</label>
-                                    <input id="registerTitle" type="text" name="title" value="<%= data.title %>">
+                    <form id="boardModForm" method="post">
+                        <div class="register">
+                            <div class="register__option">
+                                <div class="register__btn">
+                                    <a href="javascript:;" id="boardCancelBtn" class="btn btn-cancel">취소</a>
+                                    <button type="submit" id="boardModBtn" class="btn btn-confirm">수정</button>
                                 </div>
+                            </div>
+                            
+                            <div class="register__action">
+                                <div class="card register__act">
+                                    <input type="text" name="idx" value="<%= idx %>">
+                                    <input type="text" name="mainId" value="<%= mainId %>">
+                                    <input type="text" name="subId" value="<%= subId %>">
+                                    <% 
+                                    for(let i = 0; i < rows.length; i++) {
+                                        let data = rows[i]; 
+                                    %>
+                                    <textarea id="summerContents" name="contents"><%= data.content %></textarea>
 
-                                <div class="form__groups">
-                                    <p><span class="color__important">* </span>썸네일 이미지</p>
-                                    <div class="filebox bs3-primary preview-image">
-                                        <input class="upload-name" value="파일선택" disabled="disabled">
-                                        <label for="inputFile">업로드</label> 
-                                        <input type="file" id="inputFile" class="upload-hidden">
+                                    
+                                    <div class="form__groups">
+                                        <label for="registerTitle"><span class="color__important">* </span>제목</label>
+                                        <input id="registerTitle" type="text" name="title" value="<%= data.title %>">
                                     </div>
-                                </div>
-                                
-                                <div class="form__groups">
-                                    <p>내용</p>
-                                    <div id="summernote"></div>
-                                </div>
-                                <% } %>
 
+                                    <div class="form__groups">
+                                        <p><span class="color__important">* </span>썸네일 이미지</p>
+                                        <div class="filebox bs3-primary preview-image">
+                                            <input class="upload-name" value="파일선택" disabled="disabled">
+                                            <label for="inputFile">업로드</label> 
+                                            <input type="file" id="inputFile" name="userfile" class="upload-hidden">
+                                        </div>
+                                    </div>
+                                    <% } %>
+
+                                </div>
                             </div>
                         </div>
+                    </form>
+                    <div class="form__groups card">
+                        <p>내용</p>
+                        <div id="summernote"></div>
                     </div>
                 </div>
             </main>
-        </form>
+        
     </div>
 </body>
 </html>

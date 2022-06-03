@@ -35,9 +35,10 @@ Board.boardRead = function(idx, mainId, subId, result){
 }
 
 // 게시판 글 수정
-Board.boardUpdateProcess = function(idx, mainId, subId, title, result){
-    let datas = [title, idx, mainId, subId];
-    let update = "UPDATE board set title=?, modidate=now() where idx=? and main_Id=? and sub_Id=?;";
+Board.boardUpdateProcess = function(idx, imgurl, mainId, subId, title, contents, result){
+    let datas = [imgurl, title, contents, idx, mainId, subId];
+    console.log(datas);
+    let update = "UPDATE board set image=?, title=?, content=?, modidate=now() where idx=? and main_Id=? and sub_Id=?;";
     
     conn.query(update, datas, function(err, res){
         console.log(datas);

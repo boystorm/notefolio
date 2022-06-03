@@ -119,7 +119,7 @@ $(function() {
 
     /**
      * =======================================
-     * 설  명 : 등록,수정 취소 버튼
+     * 설  명 : 등록 취소 버튼
      * =======================================
      */   
     $("#boardCancelBtn").on("click",function(){
@@ -178,57 +178,5 @@ $(function() {
     function getEditorContents(selectHtmlQuery) {
         return $(selectHtmlQuery).summernote("code");
     }
-
-    /*
-     * =======================================
-     * 설  명 : summernote 에디터안의 HTML을 htmlContents로 변경한다.
-     * =======================================
-     */
-    function setEditorContents(selectHtmlQuery, htmlContents) {
-        $(selectHtmlQuery).summernote("code", htmlContents);
-    }
-     //setEditorContents("#noticeEditor", $("#detailViewContents").html());
-
-
-     /*
-     * =======================================
-     * 설  명 : 글 수정 버튼
-     * =======================================
-     */
-    $("#boardModBtn").on("click", function(){
-        let boardModForm = $("#boardModForm").validate({
-            rules: {
-                title: {
-                    required: true
-                },
-            },
-            messages: {
-                title: {
-                    required: "필수 항목입니다."
-                }
-            },
-            submitHandler: function(form) {
-                // logic
-                let parameter = $("#boardModForm").serializeObject();
-
-                $.ajax({
-                    type : "POST",
-                    url : "/admin/board/boardUpdateProcess",
-                    dataType : "JSON",
-                    data : parameter
-                })
-                .done(function(json){
-                    if(json.mainId === "1"){
-                        window.location = "/admin/manage/1/page/1#pr" + json.subId ;
-                    }else{
-                        window.location = "/admin/manage/1/page/1#ar" + json.subId ;
-                    }
-                })
-                .fail(function(xhr, status, errorThrown){
-                    console.log("글쓰기 등록 Ajax failed")
-                })
-            }
-        });            
-    });
 });
 

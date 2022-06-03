@@ -58,16 +58,24 @@ exports.boardRead = function(req, res){
 
 // 글 수정 컨트롤러
 exports.boardUpdateProcess = function(req, res){
+    let imgurl = '';
     let idx = req.body.idx;
     let mainId = req.body.mainId;
     let subId = req.body.subId;
     let title = req.body.title;
+    let contents = req.body.contents;
+
+    if(req.file !== undefined) {
+        imgurl = req.file.path;
+        imgurl = imgurl.substr(6);
+    }
+    console.log(idx + "," + imgurl + "," + mainId + "," +  subId + "," + title +"," + contents)
+
     
-    Board.boardUpdateProcess(idx, mainId, subId, title, function(err, result){
+    Board.boardUpdateProcess(idx, imgurl, mainId, subId, title, contents, function(err, result){
         if(err){
             res.send(err);
         } else {
-            // res.redirect("/admin/manage/1/page/1")
             res.json({
                 result : result,
                 mainId : mainId, 

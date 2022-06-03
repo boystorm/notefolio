@@ -401,7 +401,6 @@ function boardList(json, mainId, subId){
                 i++;
             }else{
                 let data = json.rows[i];
-                console.log(data);
                 listHtml += "<tr class='mng__table--main'>";
                 listHtml += "<td class='mng__table--center item-box-chk'><input type='checkbox' name='boardChk[]' id='itemChk' value='" + data.idx + "'/></td>";    
                 listHtml += "<td class='mng__table--center'>" + data.idx + "</td>";
@@ -741,9 +740,9 @@ $(function() {
      * 설  명 : 상세페이지 이동(글수정)
      * =======================================
      */
-    $("#modBoardBtn").on("click", function(){
-        alert("111");
-    })
+    // $("#modBoardBtn").on("click", function(){
+        
+    // })
 
 
 });
