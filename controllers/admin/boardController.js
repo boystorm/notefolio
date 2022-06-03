@@ -6,13 +6,14 @@ exports.boardAddProcess = function(req, res){
     let mainId = req.body.mainId;
     let subId = req.body.subId;
     let title = req.body.title;
+    let contents = req.body.contents;
 
     if(req.file !== undefined) {
         imgurl = req.file.path;
         imgurl = imgurl.substr(6);
     }
 
-    Board.boardAddProcess(imgurl, mainId, subId, title, function(err, result){
+    Board.boardAddProcess(imgurl, mainId, subId, title, contents, function(err, result){
         if (err) {
             res.send(err);
         } else {

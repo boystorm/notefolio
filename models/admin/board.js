@@ -10,10 +10,10 @@ db_config.connect(conn);
 let Board = function (){}; // 생성자
 
 // 게시판 글 등록
-Board.boardAddProcess = function(imgurl, mainId, subId, title, result){
-    let insert = "INSERT INTO board (image, title, content, regdate, modidate, main_id, sub_id) values(?,?,1,now(),now(),?,?);";
+Board.boardAddProcess = function(imgurl, mainId, subId, title, contents, result){
+    let insert = "INSERT INTO board (image, title, content, regdate, modidate, main_id, sub_id) values(?,?,?,now(),now(),?,?);";
 
-    conn.query(insert, [imgurl, title, mainId, subId], function(err, res){
+    conn.query(insert, [imgurl, title, contents, mainId, subId], function(err, res){
         if(err){
             result(null, err);
         } else {

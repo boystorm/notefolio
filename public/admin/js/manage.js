@@ -395,7 +395,6 @@ function boardList(json, mainId, subId){
             $(".mng__table--box thead tr").prepend(chkAllBox);
         }
         
-        
         //console.log("mainId :" + mainId + "||" + "subId : " + subId);
         for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
             if(i > json.length){
@@ -409,7 +408,6 @@ function boardList(json, mainId, subId){
                 listHtml += "<td class='mng__table--center'><a href='/admin/board/boardRead/" + data.idx + "/" + data.main_id + "/" + data.sub_id +"'>";
                 listHtml += "<img src='"+ data.image + "' class='mng__table--thumb'/></a></td>";
                 listHtml += "<td class='mng__table--center'>" + data.title + "</td>";
-                listHtml += "<td class='mng__table--center'>" + data.content + "</td>";
                 listHtml += "<td class='mng__table--center'>"+ data.regdate +"</td>";
                 listHtml += "<td class='mng__table--center'>"+ data.modidate +"</td>";
                 listHtml += "<td class='mng__table--center'>"+ data.main_id +"</td>";
