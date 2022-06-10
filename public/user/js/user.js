@@ -17,6 +17,7 @@ function fnCategoryInitList(){
 
 
         /* Project 클릭시 서브 메뉴 및 게시판 전체 나오게 에이젝스 처리*/
+        
 
     })
     .fail(function(xhr, status, errorThrown){
