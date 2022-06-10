@@ -1,0 +1,9 @@
+/* 네비게이션 */
+.navi{position: relative;height: 45px;line-height: 45px;border-bottom: 1px solid #ddd;}
+.navi .logo{position: absolute;left: 20px;}
+.navi ul{display: flex;justify-content: center}
+.navi ul li{padding:0 20px;}
+
+/* wrap */
+.sub-category{display: flex;justify-content: center;padding-top: 40px;}
+.sub-category li{padding: 0 20px;}

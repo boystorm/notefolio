@@ -45,10 +45,13 @@ app.engine('ejs', require('ejs').__express);
   * 설  명 : 라우팅(routes)
   * =======================================
   */
+ let userPages = require('./routes/user/userRouters.js');    // 유저 페이지
  let adminPages = require('./routes/admin/authorRouters.js');    // 관리자 로그인
  let managePages = require('./routes/admin/manageRouters.js');    // 카테고리 페이지
  let boardPages = require('./routes/admin/boardRouters.js');    // 게시판 관리
  
+ app.use('/', userPages);
+
  app.use('/admin', adminPages);
  app.use('/admin/manage', managePages);
  app.use('/admin/board', boardPages);
