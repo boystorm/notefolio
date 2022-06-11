@@ -1,9 +1,23 @@
 /* 네비게이션 */
-.navi{position: relative;height: 45px;line-height: 45px;border-bottom: 1px solid #ddd;}
+.navi{position: relative;height: 50px;line-height: 50px;border-bottom: 1px solid #ddd;}
+.navi a{color: #333; font-weight: bold; font-size: 16px;}
 .navi .logo{position: absolute;left: 20px;}
 .navi ul{display: flex;justify-content: center}
 .navi ul li{padding:0 20px;}
 
-/* wrap */
-.sub-category{display: flex;justify-content: center;padding-top: 40px;}
+/* 프로필 */
+.container .profile{padding: 82px 3% 0 3%;}
+/* 서브 카테고리 */
+.sub-category{display: flex;justify-content: center;padding: 40px 0;}
 .sub-category li{padding: 0 20px;}
+.sub-category li a{color: #333; font-weight: bold; font-size: 16px;}
+/* 리스트 */
+.note{min-height: 1000px;padding: 82px 3% 0 3%;}
+.note-list *{color: #333;}
+.note-list{display: flex;flex-wrap: wrap;}
+.note-list .note-item{border-radius: 5px;border: 1px solid #ddd;margin: 10px;}
+.note-list .note-item a{display: flex;flex-direction: column;}
+.note-list .note-item .note-img{width: 350px; height: 350px;border-radius: 5px;}
+.note-list .note-item .note-img img{width: 100%;border-radius: 5px;}
+.note-list .note-item .note-info{padding: 10px 20px;height: 40px; line-height: 40px;}
+
