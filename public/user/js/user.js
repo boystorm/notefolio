@@ -3,8 +3,8 @@ function fnCategoryInitList(){
     let profile = '';
     profile += "<div id='container' class='container'>";
     profile += "<div class='profile'>";
-    profile += "<h1>프로필 영역입니다.</h1>";
-    profile += "<img src='http://www.jeong9-9.com/img/index/index_img.jpg'>";
+    // profile += "<h1>프로필 영역입니다.</h1>";
+    // profile += "<img src='http://www.jeong9-9.com/img/index/index_img.jpg'>";
     profile += "</div>";
     profile += "</div>";
     $("#wrap").append(profile);
