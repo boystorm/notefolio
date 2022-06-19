@@ -8,7 +8,7 @@ a{text-decoration: none;}
 .navi ul li{padding:0 20px;}
 
 /* 프로필 */
-.container .profile{padding: 82px 3% 0 3%;}
+.profile{padding: 82px 3% 0 3%;}
 /* 서브 카테고리 */
 .sub-category{display: flex;justify-content: center;padding: 40px 0;}
 .sub-category li{padding: 0 20px;}

@@ -51,7 +51,6 @@ function fnCategoryInitList(){
 * =======================================
 */
 function fnMainCategory(mainId){
-    let notefolio = "";
     if(mainId != undefined){
         $.ajax({
             type : "get",
@@ -59,28 +58,93 @@ function fnMainCategory(mainId){
             dataType : "JSON"
         })
         .done(function(json){
-            /* 바디 초기화 */
-            $("#container").remove();
+            fnNoteList(json);
+        })
+        .fail(function(xhr, status, errorThrown){
+            console.log("게시판 및 카테고리 Ajax failed")
+        });
+    }
+}
 
-            notefolio += "<div id='container' class='container'>";
-            notefolio += "<div class='note'>";
-            notefolio += "<ul id='subCategory' class='sub-category'>";
+/**
+* =======================================
+* 설  명 : 포트폴리오 리스트
+* =======================================
+*/
+function fnNoteList(json){
+    let notefolio = "";
+    /* 바디 초기화 */
+    $("#container").remove();
 
-            if(json.mainId == 1){
-                notefolio += "<li><a href='javascript:;'>Project ALL</a></li>";
-            }else{
-                notefolio += "<li><a href='javascript:;'>Artwork ALL</a></li>";
-            }
-            
-            /* 서브 카테고리 */
-            for(i = 0; i < json.rows2.length ; i++){
-                let data = json.rows2[i];
-                if(data.main_id == json.mainId){
-                    notefolio += "<li><a href='javascript:;'>" + data.sub_title + "</a></li>";
-                }
-            };
-            notefolio += "</ul>";
-            /* 전체 데이터 추출 */
+    notefolio += "<div id='container' class='container'>";
+    notefolio += "<div class='note'>";
+    notefolio += "<ul id='subCategory' class='sub-category'>";
+
+    if(json.mainId == 1){
+        notefolio += "<li><a href='javascript:;'>Project ALL</a></li>";
+    }else{
+        notefolio += "<li><a href='javascript:;'>Artwork ALL</a></li>";
+    }
+
+    /* 서브 카테고리 */
+    for(i = 0; i < json.rows2.length ; i++){
+        let data = json.rows2[i];
+        if(data.main_id == json.mainId){
+            notefolio += "<li><a href='javascript:;'>" + data.sub_title + "</a></li>";
+        }
+    };
+    notefolio += "</ul>";
+    /* 전체 데이터 추출 */
+    notefolio += "<div class='note-list'>";
+
+    for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
+        if(i > json.length){
+            i++;
+        }else{
+            let data = json.rows3[i];
+            notefolio += "<div class='note-item'>";
+            notefolio += "<a href='javascript:;'>";
+            notefolio += "<div class='note-img'>";
+            notefolio += "<img src='"+ data.image +"'>";
+            notefolio += "</div>";
+            notefolio += "<div class='note-info'>";
+            notefolio += "<p>"+ data.title +"</p>";
+            notefolio += "</div>";
+            notefolio += "</a>";
+            notefolio += "</div>";
+        }
+    };
+    notefolio += "</div>";
+
+    /* 페이지 */
+    notefolio += "<div class='note-page'>";
+    notefolio += "<ul>"
+    for(let i = 0; i < json.rows3.length / json.page_num; i++){
+        let data = json.rows3[i];
+        notefolio += "<li class='" + (json.page == i+1 ? 'active' : '') + "'>";
+        notefolio += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
+        notefolio += "</li>";
+    }
+    notefolio += "</ul>"
+    notefolio += "</div>";
+
+    $("#wrap").append(notefolio);
+
+    /* 페이지 클릭 */
+    $(".note-page li a").on("click", function(){
+        let mainId = $(this).data("mainId");
+        let page = $(this).data("page");
+
+        $.ajax({
+            type : "get",
+            url : "/" + mainId + "/page/" + page,
+            dataType : "JSON",
+        })
+        .done(function(json){
+            $(".note-list").remove();
+            $(".note-page").remove();
+
+             /* 전체 데이터 추출 */
             notefolio += "<div class='note-list'>";
 
             for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
@@ -115,32 +179,14 @@ function fnMainCategory(mainId){
             notefolio += "</div>";
 
             $("#wrap").append(notefolio);
-
-            /* 페이지 클릭 */
-            $(".note-page li a").on("click", function(){
-                let mainId = $(this).data("mainId");
-                let page = $(this).data("page");
-
-                $.ajax({
-                    type : "get",
-                    url : "/main/" + mainId + "/page/" + page,
-                    dataType : "JSON",
-                })
-                .done(function(json){
-                    
-                })
-                .fail(function(request, status, error){
-                    console.log("메인 페이징 게시판 목록 불러오기 Ajax failed");
-                });
-
-            });
         })
-        .fail(function(xhr, status, errorThrown){
-            console.log("게시판 및 카테고리 Ajax failed")
+        .fail(function(request, status, error){
+            console.log("페이징 불러오기 Ajax failed");
         });
-    }
-}
 
+    });
+}
+    
 
 
 $(function() {
