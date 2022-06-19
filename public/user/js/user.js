@@ -141,8 +141,7 @@ function fnNoteList(json){
             dataType : "JSON",
         })
         .done(function(json){
-            $(".note-list").remove();
-            $(".note-page").remove();
+            
 
              /* 전체 데이터 추출 */
             notefolio += "<div class='note-list'>";
