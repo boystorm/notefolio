@@ -18,7 +18,8 @@ exports.manageData = function(req, res){
                 rows3 : result3,
                 page : page, // page 번호
                 length : result3.length - 1, // 페이지 넘어갈때를 대비한 수
-                page_num : 10 // 페이지 행 수
+                page_num : 10, // 페이지 행 수
+                mainId: mainId,
             }); 
         }
     });
@@ -33,6 +34,25 @@ exports.catgoryData = function(req, res){
             res.json({
                 rows1 : result1, 
                 rows2 : result2
+            });
+        }
+    });
+};
+
+// 메인 카테 게시판 컨트롤러
+exports.mainBoardData = function(req, res){
+    let mainId = req.params.mainId;
+    let page = req.params.page;
+
+    User.mainBoardData(mainId, function(err, result){
+        if(err){
+            res.send(err);
+        } else {
+            res.send({
+                rows : result,
+                page : page, 
+                length : result.length - 1,
+                page_num : 10
             });
         }
     });

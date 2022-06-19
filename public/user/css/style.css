@@ -1,3 +1,5 @@
+/* 초기화 */
+a{text-decoration: none;}
 /* 네비게이션 */
 .navi{position: relative;height: 50px;line-height: 50px;border-bottom: 1px solid #ddd;}
 .navi a{color: #333; font-weight: bold; font-size: 16px;}
@@ -17,7 +19,12 @@
 .note-list{display: flex;flex-wrap: wrap;}
 .note-list .note-item{border-radius: 5px;border: 1px solid #ddd;margin: 10px;}
 .note-list .note-item a{display: flex;flex-direction: column;}
-.note-list .note-item .note-img{width: 350px; height: 350px;border-radius: 5px;}
+.note-list .note-item .note-img{width: 350px; height: 350px; overflow: hidden;border-radius: 5px; background-color: #eee;}
 .note-list .note-item .note-img img{width: 100%;border-radius: 5px;}
 .note-list .note-item .note-info{padding: 10px 20px;height: 40px; line-height: 40px;}
+/* 페이지 */
+.note-page{width: 100%;margin-top: 20px;}
+.note-page ul{display: flex;justify-content: center;}
+.note-page ul li a{display: flex;align-items: center;justify-content: center;width: 24px;height: 24px;line-height: 25px;color: #212121;border-radius: 3px;}
+.note-page ul li.active a{background-color: #333;color: #fff;}
 
