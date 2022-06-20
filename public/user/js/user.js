@@ -131,9 +131,7 @@ function fnNoteList(json){
     $("#notePage").append(notefolioPage);
 
     /* 페이지 클릭 */
-    $(".note-page li a").on("click", function(){
-        $("#noteList").empty();
-        $("#notePage").empty();
+    $(document).on("click", ".note-page li a", function(){
         let mainId = $(this).data("mainId");
         let page = $(this).data("page");
 
@@ -143,9 +141,12 @@ function fnNoteList(json){
             dataType : "JSON",
         })
         .done(function(json){
+            $("#noteList").empty();
+            $("#notePage").empty();
+
             let notefolioList = "";
             let notefolioPage = "";
-            console.log(json);
+            
              /* 전체 데이터 추출 */
 
             for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
@@ -193,7 +194,42 @@ $(function() {
     fnProfileInitList(); // 프로필 화면
     
     // 메인 + 서브 + 페이지
-    $("#")
+    $(document).on("click", "#subCategory li a", function(){
+        // 초기화 
+        $("#noteList").empty();
+        $("#notePage").empty();
+
+        let mainId = $(this).data("mainId");
+        let subId = $(this).data("subId");
+
+        if(subId == undefined){ // All click
+            $.ajax({
+                type : "get",
+                url : "/" + mainId + "/page/" + 1,
+                dataType : "JSON"
+            })
+            .done(function(json){
+                fnNoteList(json);
+            })
+            .fail(function(xhr, status, errorThrown){
+                console.log("게시판 및 카테고리 Ajax failed")
+            });
+        }else{
+            // 여기 부터 진행 > 라우터 만들어야됨 > 서브 리스트 불러오기
+            // $.ajax({
+            //     type : "get",
+            //     url : "/" + mainId + "/sub/" + subId + "/page/" + 1,
+            //     dataType : "JSON"
+            // })
+            // .done(function(json){
+            //     console.log(json);
+            // })
+            // .fail(function(xhr, status, errorThrown){
+            //     console.log("게시판 및 카테고리 Ajax failed")
+            // });
+        }
+    })
+
 
 });
 
