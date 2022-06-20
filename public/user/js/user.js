@@ -81,16 +81,16 @@ function fnNoteList(json){
     $("#notePage").empty();
 
     if(json.mainId == 1){
-        notefolioCate += "<li><a href='javascript:;'>Project ALL</a></li>";
+        notefolioCate += "<li><a href='javascript:;' data-main-id=" + json.mainId + ">Project ALL</a></li>";
     }else{
-        notefolioCate += "<li><a href='javascript:;'>Artwork ALL</a></li>";
+        notefolioCate += "<li><a href='javascript:;' data-main-id=" + json.mainId + ">Artwork ALL</a></li>";
     }
 
     /* 서브 카테고리 */
     for(i = 0; i < json.rows2.length ; i++){
         let data = json.rows2[i];
         if(data.main_id == json.mainId){
-            notefolioCate += "<li><a href='javascript:;'>" + data.sub_title + "</a></li>";
+            notefolioCate += "<li><a href='javascript:;' data-main-id=" + data.main_id + "  data-sub-id=" + data.sub_id + ">" + data.sub_title + "</a></li>";
         }
     };
 
@@ -192,6 +192,8 @@ $(function() {
     fnCategoryInitList(); // 상단 헤더
     fnProfileInitList(); // 프로필 화면
     
+    // 메인 + 서브 + 페이지
+    $("#")
 
 });
 
