@@ -55,6 +55,7 @@ User.subBoardData = function(mainId, subId, result){
         if(err){
          result(null, err);
         } else {
+            console.log(res);
             result(null, res);
         }
     });

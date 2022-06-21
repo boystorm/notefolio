@@ -19,7 +19,7 @@ exports.manageData = function(req, res){
                 page : page, // page 번호
                 length : result3.length - 1, // 페이지 넘어갈때를 대비한 수
                 page_num : 10, // 페이지 행 수
-                mainId: mainId,
+                mainId: mainId
             }); 
         }
     });

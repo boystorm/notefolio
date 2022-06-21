@@ -32,7 +32,11 @@ function fnCategoryInitList(){
         $("#mainCategory").append(info);
 
         /* 포트폴리오 메뉴 */
-        $("#mainCategory li a").on("click", function(){       
+        $("#mainCategory li a").on("click", function(){     
+            /* 프로필 숨김 및 리스트 숨김 해지 */
+            $("#profile").addClass("display-none");
+            $("#note").removeClass("display-none");  
+
             let mainId = $(this).data('mainId');
             fnMainCategory(mainId);
         });
@@ -45,7 +49,7 @@ function fnCategoryInitList(){
 
 /**
 * =======================================
-* 설  명 : 포트폴리오 메뉴 클릭
+* 설  명 : 메뉴 클릭
 * =======================================
 */
 function fnMainCategory(mainId){
@@ -56,7 +60,9 @@ function fnMainCategory(mainId){
             dataType : "JSON"
         })
         .done(function(json){
+            fnNoteCate(json);
             fnNoteList(json);
+            fnNoteListPage(json, mainId);
         })
         .fail(function(xhr, status, errorThrown){
             console.log("게시판 및 카테고리 Ajax failed")
@@ -66,24 +72,17 @@ function fnMainCategory(mainId){
 
 /**
 * =======================================
-* 설  명 : 포트폴리오 리스트
+* 설  명 : 서브 카테고리
 * =======================================
 */
-function fnNoteList(json){
+function fnNoteCate(json){
     let notefolioCate= ""; // 카테고리
-    let notefolio = ""; // 리스트
-    let notefolioPage = ""; // 페이지
-    /* 바디 초기화 */
-    $("#profile").addClass("display-none");
-    $("#note").removeClass("display-none");
-    $("#subCategory").empty();
-    $("#noteList").empty();
-    $("#notePage").empty();
-
+    $("#subCategory").empty(); // 카테고리 비우기
+    
     if(json.mainId == 1){
-        notefolioCate += "<li><a href='javascript:;' data-main-id=" + json.mainId + ">Project ALL</a></li>";
+        notefolioCate += "<li><a href='javascript:;' class='active' data-main-id=" + json.mainId + ">Project ALL</a></li>";
     }else{
-        notefolioCate += "<li><a href='javascript:;' data-main-id=" + json.mainId + ">Artwork ALL</a></li>";
+        notefolioCate += "<li><a href='javascript:;' class='active' data-main-id=" + json.mainId + ">Artwork ALL</a></li>";
     }
 
     /* 서브 카테고리 */
@@ -95,10 +94,18 @@ function fnNoteList(json){
     };
 
     $("#subCategory").append(notefolioCate);
+}
 
+/**
+* =======================================
+* 설  명 : 서브 리스트
+* =======================================
+*/
+function fnNoteList(json){
+    let notefolio= ""; // 리스트
+    $("#noteList").empty(); // 리스트 비우기
 
-    /* 전체 데이터 추출 */
-
+    /* 전체 리스트 데이터 추출 */
     for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
         if(i > json.length){
             i++;
@@ -117,89 +124,89 @@ function fnNoteList(json){
         }
     };
     $("#noteList").append(notefolio);
+}
+
+
+/**
+* =======================================
+* 설  명 : 서브 리스트 페이징
+* =======================================
+*/
+function fnNoteListPage(json, mainId, subId){
+    let notefolioPage= ""; // 페이지
+    $("#notePage").empty(); // 페이지 비우기
 
     /* 페이지 */
     notefolioPage += "<ul>"
     for(let i = 0; i < json.rows3.length / json.page_num; i++){
         let data = json.rows3[i];
         notefolioPage += "<li class='" + (json.page == i+1 ? 'active' : '') + "'>";
-        notefolioPage += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
+
+        if(mainId != "" && (subId != "" && subId != undefined)){
+            //sub category
+            notefolioPage += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-sub-id='"+ data.sub_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
+        }else{
+            //main category
+            notefolioPage += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
+        }
         notefolioPage += "</li>";
     }
     notefolioPage += "</ul>"
 
     $("#notePage").append(notefolioPage);
-
-    /* 페이지 클릭 */
-    $(document).on("click", ".note-page li a", function(){
-        let mainId = $(this).data("mainId");
-        let page = $(this).data("page");
-
-        $.ajax({
-            type : "get",
-            url : "/" + mainId + "/page/" + page,
-            dataType : "JSON",
-        })
-        .done(function(json){
-            $("#noteList").empty();
-            $("#notePage").empty();
-
-            let notefolioList = "";
-            let notefolioPage = "";
-            
-             /* 전체 데이터 추출 */
-
-            for(var i = (json.page * json.page_num) - json.page_num; i < (json.page * json.page_num); i++) {
-                if(i > json.length){
-                    i++;
-                }else{
-                    let data = json.rows3[i];
-                    notefolioList += "<div class='note-item'>";
-                    notefolioList += "<a href='javascript:;'>";
-                    notefolioList += "<div class='note-img'>";
-                    notefolioList += "<img src='"+ data.image +"'>";
-                    notefolioList += "</div>";
-                    notefolioList += "<div class='note-info'>";
-                    notefolioList += "<p>"+ data.title +"</p>";
-                    notefolioList += "</div>";
-                    notefolioList += "</a>";
-                    notefolioList += "</div>";
-                }
-            };
-
-            $("#noteList").append(notefolioList);
-
-            notefolioPage += "<div class='note-page'>";
-            notefolioPage += "<ul>"
-            for(let i = 0; i < json.rows3.length / json.page_num; i++){
-                let data = json.rows3[i];
-                notefolioPage += "<li class='" + (json.page == i+1 ? 'active' : '') + "'>";
-                notefolioPage += "<a href='javascript:;' data-main-id='"+ data.main_id +"' data-page='" + (i + 1) + "'>" + (i + 1) + "</a>";
-                notefolioPage += "</li>";
-            }
-            notefolioPage += "</ul>"
-            notefolioPage += "</div>";
-
-            $("#notePage").append(notefolioPage);
-        })
-        .fail(function(request, status, error){
-            console.log("페이징 불러오기 Ajax failed");
-        });
-    });
 }
 
 $(function() {
     fnCategoryInitList(); // 상단 헤더
     fnProfileInitList(); // 프로필 화면
     
+    /**
+    * =======================================
+    * 설  명 : 서브 리스트 페이징 클릭
+    * =======================================
+    /* 페이지 클릭 */
+    $(document).on("click", ".note-page li a", function(){
+        let mainId = $(this).data("mainId");
+        let subId = $(this).data("subId");
+        let page = $(this).data("page");
+        
+        // 초기화 
+        $("#noteList").empty();
+        $("#notePage").empty();
+
+        if(subId == undefined){ // All click
+            $.ajax({
+                type : "get",
+                url : "/" + mainId + "/page/" + page,
+                dataType : "JSON",
+            })
+            .done(function(json){
+                fnNoteList(json);
+                fnNoteListPage(json, mainId);
+            })
+            .fail(function(request, status, error){
+                console.log("페이징 불러오기 Ajax failed");
+            });
+        }else{
+            $.ajax({
+                type : "get",
+                url : "/main/" + mainId + "/sub/" + subId + "/page/" + page,
+                dataType : "JSON"
+            })
+            .done(function(json){
+                fnNoteList(json);
+                fnNoteListPage(json, mainId, subId);
+            })
+            .fail(function(xhr, status, errorThrown){
+                console.log("서브 게시판 및 카테고리 Ajax failed")
+            });
+        }
+    });
+
     $(document).on("click", "#subCategory li a", function(){
         let mainId = $(this).data("mainId");
         let subId = $(this).data("subId");
         let selfAcive = $(this).hasClass("active");
-
-        // 초기화 
-        $("#noteList").empty();
-        $("#notePage").empty();
 
         // 서브 카테고리
         if(!selfAcive){
@@ -210,33 +217,30 @@ $(function() {
         if(subId == undefined){ // All click
             $.ajax({
                 type : "get",
-                url : "/main/" + mainId + "/page/" + 1,
+                url : "/" + mainId + "/page/" + 1,
                 dataType : "JSON"
             })
             .done(function(json){
-                console.log(json);
-                
-
-
+                fnNoteList(json);
+                fnNoteListPage(json, mainId);
             })
             .fail(function(xhr, status, errorThrown){
-                console.log("게시판 및 카테고리 Ajax failed")
+                console.log("메인 게시판 및 카테고리 Ajax failed")
             });
         }else{
-            // $.ajax({
-            //     type : "get",
-            //     url : "/main/" + mainId + "/sub/" + subId + "/page/" + 1,
-            //     dataType : "JSON"
-            // })
-            // .done(function(json){
-            //     console.log(json);
-            // })
-            // .fail(function(xhr, status, errorThrown){
-            //     console.log("게시판 및 카테고리 Ajax failed")
-            // });
+            $.ajax({
+                type : "get",
+                url : "/main/" + mainId + "/sub/" + subId + "/page/" + 1,
+                dataType : "JSON"
+            })
+            .done(function(json){
+                fnNoteList(json);
+                fnNoteListPage(json, mainId, subId);
+            })
+            .fail(function(xhr, status, errorThrown){
+                console.log("서브 게시판 및 카테고리 Ajax failed")
+            });
         }
     })
-
-
 });
 
