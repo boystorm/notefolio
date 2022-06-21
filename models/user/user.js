@@ -46,12 +46,12 @@ User.categoryData = function(result){
     });
 };
 
-// 메인 게시판 목록 불러오기
-User.mainBoardData = function(mainId, result){
+// 서브 게시판 목록 불러오기
+User.subBoardData = function(mainId, subId, result){
     let query = "SELECT idx, image, title, content, date_format(regdate, '%Y-%m-%d %H:%i:%s') regdate," 
-                + "date_format(modidate, '%Y-%m-%d %H:%i:%s') modidate, main_id, sub_id FROM board WHERE main_id = ?";
+                + "date_format(modidate, '%Y-%m-%d %H:%i:%s') modidate, main_id, sub_id FROM board WHERE main_id = ? and sub_id = ?";
 
-    conn.query(query, [mainId], function(err, res){
+    conn.query(query, [mainId, subId], function(err, res){
         if(err){
          result(null, err);
         } else {
@@ -61,3 +61,4 @@ User.mainBoardData = function(mainId, result){
 };
 
 module.exports = User;
+

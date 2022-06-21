@@ -97,6 +97,7 @@ exports.manageMainBoardData = function(req, res){
         }
     });
 }
+
 // 서브 게시판 목록 불러오기 컨트롤러
 exports.manageSubBoardData = function(req, res){
     let mainId = req.params.mainId;

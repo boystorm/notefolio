@@ -39,17 +39,18 @@ exports.catgoryData = function(req, res){
     });
 };
 
-// 메인 카테 게시판 컨트롤러
-exports.mainBoardData = function(req, res){
+// 서브 카테 게시판 컨트롤러
+exports.subBoardData = function(req, res){
     let mainId = req.params.mainId;
+    let subId = req.params.subId;
     let page = req.params.page;
 
-    User.mainBoardData(mainId, function(err, result){
+    User.subBoardData(mainId, subId, function(err, result){
         if(err){
             res.send(err);
         } else {
             res.send({
-                rows : result,
+                rows3 : result,
                 page : page, 
                 length : result.length - 1,
                 page_num : 10
