@@ -58,3 +58,23 @@ exports.subBoardData = function(req, res){
         }
     });
 };
+
+// 글 상세 컨트롤러
+exports.boardRead = function(req, res){
+    let idx = req.params.idx;
+    let mainId = req.params.mainId;
+    let subId = req.params.subId;
+
+    User.boardRead(idx, mainId, subId, function(err, result){
+        if(err){
+            res.send(err);
+        } else {
+            res.send({
+                idx : idx,
+                mainId : mainId,
+                subId : subId,
+                rows : result
+            });
+        }
+    });
+};

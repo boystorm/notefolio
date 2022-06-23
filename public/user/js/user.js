@@ -111,7 +111,7 @@ function fnNoteList(json){
             i++;
         }else{
             let data = json.rows3[i];
-            notefolio += "<div class='note-item'>";
+            notefolio += "<div class='note-item' data-idx=" + data.idx + " data-main-id=" + data.main_id + "  data-sub-id=" + data.sub_id + ">";
             notefolio += "<a href='javascript:;'>";
             notefolio += "<div class='note-img'>";
             notefolio += "<img src='"+ data.image +"'>";
@@ -253,8 +253,41 @@ $(function() {
     * 설  명 : 팝업 오픈
     * =======================================
     */
+    $(document).on("click", ".note-item", function(){
+        $("#pop").removeClass("display-none");
+        $(".pop-area").empty();
 
+        let idx = $(this).data("idx");
+        let mainId = $(this).data("mainId");
+        let subId = $(this).data("subId");
 
+        $.ajax({
+            type : "get",
+            url : "/" + idx + "/" + mainId + "/" + subId,
+            dataType : "JSON"
+        })
+        .done(function(json){
+            /* 데이터 추출 */
+            let notefolioData = "";
+            notefolioData += json.rows[0].content;         
+              
+            $(".pop-area").append(notefolioData);
 
+        })
+        .fail(function(xhr, status, errorThrown){
+            console.log("서브 게시판 및 카테고리 Ajax failed")
+        });
+
+    })
+
+    /**
+    * =======================================
+    * 설  명 : 팝업 닫기
+    * =======================================
+    */
+    $(document).on("click", "#popClose", function(){
+        $("#pop").addClass("display-none");
+    });
+    
 });
 

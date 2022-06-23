@@ -61,5 +61,18 @@ User.subBoardData = function(mainId, subId, result){
     });
 };
 
+// 게시판 글 읽기
+User.boardRead = function(idx, mainId, subId, result){
+    let select = "SELECT * FROM board WHERE idx = ? AND main_id = ? AND sub_id = ?;";
+    conn.query(select, [idx, mainId, subId], function(err, res){
+        if(err){
+            result(null, err);
+        } else {
+            result(null, res)
+        }
+    });
+}
+
+
 module.exports = User;
 

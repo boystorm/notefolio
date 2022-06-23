@@ -17,4 +17,7 @@ router.get('/category/data', UserController.catgoryData);
 /* 서브 카테 게시판 목록 불러오기 */
 router.get('/main/:mainId/sub/:subId/page/:page', UserController.subBoardData);
 
+/* 게시판 글 읽기 */
+router.get('/:idx/:mainId/:subId', UserController.boardRead);
+
 module.exports = router;
