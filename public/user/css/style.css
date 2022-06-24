@@ -11,6 +11,7 @@ a{text-decoration: none;}
 
 /* 프로필 */
 .profile{padding: 82px 3% 0 3%;}
+.profile img{width: 100%;}
 /* 메인 카테고리 */
 #mainCategory li a{color: #333; font-weight: bold;font-size: 16px;padding: 10px;border-radius: 30px;}
 #mainCategory li a:hover{background-color: #ddd;}
@@ -87,4 +88,4 @@ a{text-decoration: none;}
 	border-radius: 5px;
 }
 .pop-area{width: 900px;}
-.pop-area img{width: 100%};
+.pop-area img{width: 100%}
