@@ -104,6 +104,7 @@ main{
             border-radius: 4px;
             box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.1);
             background-color: #fff;
+            margin-bottom: 40px;
         }
         /* password modify */
         .member-modify {
@@ -387,8 +388,19 @@ main{
                         height: 40px;
                         border: 1px solid #ddd;
                         padding: 0 15px;
+                        width: 500px;
                     }
                 }
+            }
+        }
+        /* edit */
+        .edit{
+            width: 79%;
+            padding: 20px;
+            p{
+                font-weight: bold;
+                font-size: 16px;
+                margin-bottom: 10px;  
             }
         }
     }
