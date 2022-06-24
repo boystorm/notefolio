@@ -44,9 +44,9 @@
                         
                         <div class="register__action">
                             <div class="card register__act">
-                                <input type="text" name="mainId" value="<%= mainId %>">
-                                <input type="text" name="subId" value="<%= subId %>">
-                                <textarea id="summerContents" name="contents"></textarea>
+                                <input type="hidden" name="mainId" value="<%= mainId %>">
+                                <input type="hidden" name="subId" value="<%= subId %>">
+                                <textarea id="summerContents" name="contents" class="display-none"></textarea>
 
                                 <div class="form__groups">
                                     <label for="registerTitle"><span class="color__important">* </span>제목</label>

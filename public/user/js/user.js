@@ -24,7 +24,7 @@ function fnCategoryInitList(){
     })
     .done(function(json){
         let info = '';
-        info += "<li><a href='/'>프로필</a></li>";
+        info += "<li><a href='/' class='active'>프로필</a></li>";
         for(i = 0; i < json.rows1.length ; i++){
             let data = json.rows1[i];
             info += "<li><a href='javascript:;' data-main-id='" + data.main_id + "'>"+ data.main_title +"</a></li>";
@@ -33,6 +33,14 @@ function fnCategoryInitList(){
 
         /* 포트폴리오 메뉴 */
         $("#mainCategory li a").on("click", function(){     
+            let selfAcive = $(this).hasClass("active");
+
+            // 서브 카테고리
+            if(!selfAcive){
+                $("#mainCategory li a").removeClass("active");
+                $(this).addClass("active");
+            }
+
             /* 프로필 숨김 및 리스트 숨김 해지 */
             $("#profile").addClass("display-none");
             $("#note").removeClass("display-none");  
@@ -254,7 +262,7 @@ $(function() {
     * =======================================
     */
     $(document).on("click", ".note-item", function(){
-        $("#pop").removeClass("display-none");
+        $(".layer-n").css("display","block");
         $(".pop-area").empty();
 
         let idx = $(this).data("idx");
@@ -285,9 +293,8 @@ $(function() {
     * 설  명 : 팝업 닫기
     * =======================================
     */
-    $(document).on("click", "#popClose", function(){
-        $("#pop").addClass("display-none");
-    });
+     $(".layer-n .bg, .layer-n .pop-close").on( "click", function(e) {
+		$(this).closest(".layer-n").fadeOut();
+	});
     
 });
-

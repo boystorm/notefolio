@@ -11,10 +11,16 @@ a{text-decoration: none;}
 
 /* 프로필 */
 .profile{padding: 82px 3% 0 3%;}
+/* 메인 카테고리 */
+#mainCategory li a{color: #333; font-weight: bold;font-size: 16px;padding: 10px;border-radius: 30px;}
+#mainCategory li a:hover{background-color: #ddd;}
+#mainCategory li a.active{background-color: #212121;color: #fff;}
+
 /* 서브 카테고리 */
 .sub-category{display: flex;justify-content: center;padding: 40px 0;}
 .sub-category li{padding: 0 20px;}
-.sub-category li a{color: #333; font-weight: bold;font-size: 16px;}
+.sub-category li a{color: #333; font-weight: bold;font-size: 16px;padding: 10px;border-radius: 30px;}
+.sub-category li a:hover{background-color: #ddd;}
 .sub-category li a.active{background-color: #212121;color: #fff;}
 
 /* 리스트 */
@@ -32,6 +38,53 @@ a{text-decoration: none;}
 .note-page ul li a{display: flex;align-items: center;justify-content: center;width: 24px;height: 24px;line-height: 25px;color: #212121;border-radius: 3px;}
 .note-page ul li.active a{background-color: #333;color: #fff;}
 
-/* 팝업 */
-.pop{position: fixed;left: 50%; top: 50%;transform: translate(-50%, -50%);background-color: #fff;width: 600px;height: 600px; border:2px solid #eee;}
-.pop img{width: 100%};
+/*** ========================================================================== 
+ * 팝업
+ * ========================================================================== */
+.layer-n {
+    display:none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+.layer-n .layer-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    background-color: #fff;
+    border-radius: 3px;
+}
+.layer-n .bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+}
+.layer-n .pop-close{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 16px;
+    color: #333;
+	margin-left: auto;
+	position: relative;
+	display: inline-block;
+}
+.layer-n .pop-wrap{
+	display: flex;
+	flex-direction: column;
+	background-color: #fff; 
+	border-radius: 5px;
+}
+.pop-area{width: 900px;}
+.pop-area img{width: 100%};
