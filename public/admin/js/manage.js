@@ -409,7 +409,7 @@ function boardList(json, mainId, subId){
                 listHtml += "<td class='mng__table--center'>" + data.title + "</td>";
                 listHtml += "<td class='mng__table--center'>"+ data.regdate +"</td>";
                 listHtml += "<td class='mng__table--center'>"+ data.modidate +"</td>";
-                listHtml += "<td class='mng__table--center'>"+ data.main_id +"</td>";
+                listHtml += "<td class='mng__table--center'>"+ (data.main_id == 1 ? "Project" : "Artwork") + "</td>";
                 listHtml += "<td class='mng__table--center'>"+ data.sub_id +"</td>";
                 listHtml += "</tr>"
             } 
